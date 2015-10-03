@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+
+
+<AnchorPane maxHeight="200.0" maxWidth="400.0" minHeight="110.0" minWidth="400.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button minWidth="90.0" mnemonicParsing="false" style="-fx-color: green;" text="Cadastrar" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+      <Button minWidth="90.0" mnemonicParsing="false" style="-fx-color: red;" text="Cancelar" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="110.0" />
+      <Label text="Nome: " AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="18.0" />
+      <TextField AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <Label text="Valor:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="50.0" />
+      <TextField AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0" />
+   </children>
+</AnchorPane>
