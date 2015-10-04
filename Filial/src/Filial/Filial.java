@@ -1,25 +1,21 @@
 package Filial;
 
-import Filial.Controle.Controle;
-import Tools.Visual.UsaCamadaControle;
 import Tools.Visual.WindowController;
 import Tools.Visual.WindowLoader;
+import javafx.application.Application;
+import javafx.stage.Stage;
 
-/**
- * Created by Gustavo Freitas on 03/10/2015.
- */
-public class Filial {
+public class Filial extends Application {
 
-    Filial filial = null;
-    FilialRemote remoteImpl = null;
-    WindowController controlador = null;
-
-    public void start(){
-
-        this.controlador = WindowLoader.loadWindow("/Filial/Visao/FilialMainWindow.fxml");
-        ((UsaCamadaControle)this.controlador.getInternalController()).setControle(new Controle());
-        this.controlador.show();
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        WindowController janela = WindowLoader.loadWindow("/Visao/FilialMainWindow.fxml");
+        janela.show();
 
     }
 
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 }
