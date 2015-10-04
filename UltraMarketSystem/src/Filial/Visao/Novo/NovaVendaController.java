@@ -7,6 +7,7 @@ import Filial.Modelo.Venda.ItemVenda;
 import Filial.Visao.UsaCamadaControle;
 import Tools.Visual.Controller;
 import Tools.Visual.WindowLoader;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -23,7 +24,7 @@ import java.util.ResourceBundle;
  */
 public class NovaVendaController extends Controller implements UsaCamadaControle{
 
-    private Controle controle;
+    private Controle controle = null;
 
     @FXML
     private ListView<Produto> itens;
@@ -96,13 +97,6 @@ public class NovaVendaController extends Controller implements UsaCamadaControle
         this.limpar();
     }
 
-    @FXML
-    private void updateEvent(){
-        if(this.clientes.getItems().size() == 0) {
-            this.update();
-        }
-    }
-
     public void limpar(){
         this.itensAdicionados.getItems().clear();
         this.desconto.setText("");
@@ -117,7 +111,10 @@ public class NovaVendaController extends Controller implements UsaCamadaControle
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        Platform.runLater(() -> {
+            while(this.controle == null){}
+            this.update();
+        });
     }
 
     @Override
