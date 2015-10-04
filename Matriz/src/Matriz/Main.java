@@ -5,22 +5,18 @@ import Modelo.MatrizRemoteImpl;
 import Tools.Visual.WindowLoader;
 import javafx.application.Application;
 import javafx.stage.Stage;
-
 import java.rmi.Naming;
+import java.rmi.registry.Registry;
 
-public class Main extends Application {
+import static java.rmi.registry.LocateRegistry.createRegistry;
+import static java.rmi.registry.LocateRegistry.getRegistry;
+
+public class Main extends FXMLApplication {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        try {
-            java.rmi.registry.LocateRegistry.createRegistry(MatrizRemote.PORTA);
-            MatrizRemote matriz = new MatrizRemoteImpl();
-            Naming.rebind(MatrizRemote.OBJECT_NAME, matriz);
-            WindowLoader.showMessage("Matriz iniciada.", "O servidor matriz foi iniciado com sucesso na porta: " + MatrizRemote.PORTA);
-        }
-        catch (Exception e){
-            WindowLoader.showException("Erro ao iniciar servidor Matriz.", "Erro na inicialização do servidor Matriz.", e);
-        }
+    public void start(Stage primaryStage) {
+        associateFile("../Visao/Matriz.fxml");
+        start(getScene(), "Servidor Matriz", FXMLApplication.STAGE_SHOW);
     }
 
     public static void main(String[] args) {
