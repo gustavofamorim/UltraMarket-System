@@ -17,7 +17,7 @@ public class Filial {
     public void start(){
 
         this.controlador = WindowLoader.loadWindow("/Filial/Visao/FilialMainWindow.fxml");
-        ((UsaCamadaControle)this.controlador.getInternalControllers().get(0)).setControle(new Controle());
+        ((UsaCamadaControle)this.controlador.getInternalController()).setControle(new Controle());
         this.controlador.show();
 
     }

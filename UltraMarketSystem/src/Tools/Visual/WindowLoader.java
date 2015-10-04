@@ -22,7 +22,7 @@ public class WindowLoader {
         if(controlador != null) {
             janela = new WindowController();
             janela.setScene(new Scene(controlador.getMyPane()));
-            janela.getInternalControllers().add(controlador);
+            janela.setInternalController(controlador);
         }
 
         return janela;
