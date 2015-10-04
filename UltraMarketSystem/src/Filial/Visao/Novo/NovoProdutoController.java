@@ -28,25 +28,14 @@ public class NovoProdutoController extends Controller implements UsaCamadaContro
     @FXML
     private void cadastrar(ActionEvent event){
 
-        Double valor = null;
-
         if(this.controle == null){
             throw new NullPointerException("O controlador não foi setado.");
         }
         else {
-
-            try {
-                valor = Double.parseDouble(this.valor.getText().replace(",", "."));
-            }
-            catch(NumberFormatException e){
-                WindowLoader.showMessage("Entrada Inválida", "Valor é um campo numérico.");
-                valor = null;
-            }
-
-            if (this.nome.getText().length() == 0 && this.valor.getText().length() == 0 && valor > 0) {
-                WindowLoader.showError("Preencha todos os campos.", "É necessário que todos os campos estejam preenchidos corretamente.");
+            if (this.nome.getText().length() == 0 && this.valor.getText().length() == 0) {
+                WindowLoader.showError("Preencha todos os campos.", "É necessário que todos os campos estejam preenchidos.", "");
             } else {
-                this.controle.salvarProduto(this.nome.getText(), valor);
+                this.controle.salvarProduto(this.nome.getText(), Double.parseDouble(this.valor.getText().replace(",", ".")));
                 this.limpar();
             }
         }

@@ -9,17 +9,13 @@ import java.util.ArrayList;
  */
 public class WindowController extends Stage {
 
-    Controller internalController;
+    ArrayList<Controller> internalControllers = new ArrayList<>();
 
     public WindowController(){
         super();
     }
 
-    public Controller getInternalController() {
-        return internalController;
-    }
-
-    public void setInternalController(Controller internalController) {
-        this.internalController = internalController;
+    public ArrayList<Controller> getInternalControllers() {
+        return internalControllers;
     }
 }
