@@ -94,6 +94,10 @@ public class Venda {
         this.cliente = cliente;
     }
 
+    public int getCod() {
+        return cod;
+    }
+
     @Override
     public String toString(){
         String str = "Venda: " + this.cod + "\n";

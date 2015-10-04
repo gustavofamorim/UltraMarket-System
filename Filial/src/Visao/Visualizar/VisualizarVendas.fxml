@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane minHeight="500.0" minWidth="500.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Visao.Visualizar.VisualizarVendasController">
+   <children>
+      <TableView fx:id="dados" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="45.0">
+        <columns>
+          <TableColumn fx:id="colId" maxWidth="100.0" minWidth="100.0" prefWidth="-1.0" text="Id" />
+          <TableColumn fx:id="colTotal" maxWidth="184.0" minWidth="184.0" prefWidth="184.0" resizable="false" text="Total" />
+            <TableColumn fx:id="colData" maxWidth="195.0" minWidth="195.0" prefWidth="195.0" text="Data e Hora" />
+        </columns>
+      </TableView>
+      <Button fx:id="detalhes" minWidth="100.0" mnemonicParsing="false" onAction="#verDetalhes" style="-fx-color: green;" text="Detalhes" AnchorPane.leftAnchor="390.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+   </children>
+</AnchorPane>

@@ -78,7 +78,8 @@ public class NovaVendaController extends Controller implements UsaCamadaControle
         else {
             if (this.itensAdicionados.getItems().size() == 0) {
                 WindowLoader.showError("Venda sem itens.", "Adicione itens para prosseguir.", "");
-            } else {
+            }
+            else {
                 try {
                     Double desconto = Double.parseDouble(this.desconto.getText().replace(",", "."));
                     Double valorPago = Double.parseDouble(this.valorPago.getText().replace(",", "."));
@@ -111,10 +112,6 @@ public class NovaVendaController extends Controller implements UsaCamadaControle
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Platform.runLater(() -> {
-            while(this.controle == null){}
-            this.update();
-        });
     }
 
     @Override
@@ -125,5 +122,6 @@ public class NovaVendaController extends Controller implements UsaCamadaControle
     @Override
     public void setControle(Controle controle){
         this.controle = controle;
+        this.update();
     }
 }

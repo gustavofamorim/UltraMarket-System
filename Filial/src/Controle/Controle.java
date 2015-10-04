@@ -4,6 +4,7 @@ import Banco.BankSimulator;
 import Modelo.Cliente;
 import Modelo.Produto;
 import Modelo.Venda.ItemVenda;
+import Modelo.Venda.Venda;
 import Modelo.Venda.VendaBuilder;
 
 import java.util.ArrayList;
@@ -30,6 +31,10 @@ public class Controle {
 
     public ArrayList<Cliente> obterTodosCliente(){
         return (banco.selectAllFromCliente());
+    }
+
+    public ArrayList<Venda> obterTodosVenda(){
+        return (banco.selectAllFromVenda());
     }
 
     public void novaVenda(Collection<ItemVenda> itens, Double pagamento, Double desconto, Cliente cliente){

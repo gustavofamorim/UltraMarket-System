@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane minHeight="380.0" minWidth="500.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Visao.Novo.NovaVendaController">
+<AnchorPane minHeight="500.0" minWidth="500.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Visao.Novo.NovaVendaController">
    <children>
       <Button minWidth="90.0" mnemonicParsing="false" onAction="#cancelar" style="-fx-color: red;" text="Cancelar" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="110.0" />
       <Button minWidth="90.0" mnemonicParsing="false" onAction="#finalizar" style="-fx-color: green;" text="Finalizar" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />

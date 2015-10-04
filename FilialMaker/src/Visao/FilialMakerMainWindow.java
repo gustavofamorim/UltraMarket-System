@@ -1,7 +1,5 @@
-package FilialMaker.Visao;
+package Visao;
 
-import FilialMaker.Controle.Controle;
-import FilialMaker.FilialMaker;
 import Tools.Visual.Controller;
 import Tools.Visual.WindowLoader;
 import javafx.event.ActionEvent;
@@ -9,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -17,20 +16,37 @@ import java.util.ResourceBundle;
  */
 public class FilialMakerMainWindow extends Controller implements Initializable {
 
-    private Controle controle = new Controle();
-
     @FXML
     private TextField nome;
 
     @FXML
+    private TextField porta;
+
+    @FXML
     public void criar(ActionEvent event){
-        if(this.nome.getText().length() > 0) {
-            this.controle.registrarFilial(this.nome.getText());
+        Integer porta = null;
+
+        try {
+            porta = Integer.parseInt(this.porta.getText());
         }
-        else{
-            WindowLoader.showError("Erro", "A filial precisa de um nome né...");
+        catch (NumberFormatException e){
+            WindowLoader.showError("Dados Inválidos", "A porta é inválida.");
+            porta = null;
         }
-        this.limpar();
+
+        if(this.nome.getText().length() > 0 && porta != null){
+            //Inicia a filial
+            try {
+                //Process novaFilial = new ProcessBuilder("java -jar " + System.getProperty("user.dir") + "\\Interpretador.jar " + nome + " " + porta).start();
+                Runtime.getRuntime().exec("java -jar " + System.getProperty("user.dir") + "\\Interpretador.jar " + nome + " " + porta);
+
+                System.out.println(System.getProperty("user.dir"));
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+            }
+            this.limpar();
+        }
     }
 
     @FXML
@@ -39,11 +55,12 @@ public class FilialMakerMainWindow extends Controller implements Initializable {
     }
 
     public void limpar(){
+        this.porta.setText("");
         this.nome.setText("");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.controle.conectar();
+
     }
 }

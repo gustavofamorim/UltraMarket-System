@@ -35,4 +35,8 @@ public class BankSimulator {
     public ArrayList<Cliente> selectAllFromCliente(){
         return (this.clientes);
     }
+
+    public ArrayList<Venda> selectAllFromVenda(){
+        return (this.vendas);
+    }
 }

@@ -40,7 +40,7 @@ public class VendaBuilder implements Builder<Venda> {
         return (false);
     }
 
-    public boolean pagar(Double valor){
+    public boolean pagar(Double valor) {
 
         if(this.venda.getItens().isEmpty()){
             return (false);
@@ -69,6 +69,11 @@ public class VendaBuilder implements Builder<Venda> {
             dataEHora.format(formatador);
 
             this.venda.setDataEHora(dataEHora);
+
+            if(this.venda.getValorPago() < this.venda.getTotalComDesconto()){
+                this.venda.getCliente().setDebito(this.venda.getTotalComDesconto() - this.venda.getValorPago());
+            }
+
             System.out.println(this.venda);
             return (this.venda);
         }

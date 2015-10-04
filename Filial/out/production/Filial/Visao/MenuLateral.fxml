@@ -4,17 +4,18 @@
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Visao.MenuLateralController">
+<AnchorPane id="AnchorPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Visao.MenuLateralController">
     <stylesheets>
-        <URL value="@../../resources/css/material-default-style.css" />
+        <URL value="@../resources/css/material-default-style.css" />
     </stylesheets>
+   <styleClass>
+      <String fx:value="fundo-verde" />
+   </styleClass>
    <children>
-      <Accordion AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Accordion maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <padding>
             <Insets bottom="1.0" />
          </padding>
@@ -62,7 +63,7 @@
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../resources/icons/general/png/48/ic_add.png" />
+                        <Image url="@../resources/icons/ic_add.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -117,7 +118,7 @@
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../resources/icons/general/png/48/ic_monitor.png" />
+                        <Image url="@../resources/icons/ic_monitor.png" />
                      </image>
                   </ImageView>
                </graphic>
