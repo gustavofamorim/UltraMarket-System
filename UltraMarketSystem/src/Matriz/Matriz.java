@@ -12,7 +12,7 @@ public class Matriz {
     public static final Integer PORTA = 1099;
     public static final String NOME_OBJETO = "matriz";
 
-    public static void main(String args[]){
+    public void start(){
         try {
             java.rmi.registry.LocateRegistry.createRegistry(Matriz.PORTA);
             MatrizRemote matriz = new MatrizRemoteImpl();

@@ -6,7 +6,7 @@
     -fx-font-family: "RobotoDraft";
 }
 
-//// Tamanho
+// Tamanho
 .texto-tamanho-pequeno {
     -fx-font-size: 12px;        //Tamanho da fonte
 }
