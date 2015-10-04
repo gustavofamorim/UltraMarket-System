@@ -1,15 +1,11 @@
-package Filial;
+package FilialMaker;
 
 /**
  * Created by Gustavo Freitas on 03/10/2015.
  */
-public class Filial {
-
-    Filial filial = null;
-    FilialRemote remoteImpl = null;
+public class FilialMaker {
 
     public static void main(String args[]){
-
 
     }
 

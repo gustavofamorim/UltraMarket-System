@@ -1,4 +1,4 @@
-package Tools;
+package Tools.Visual;
 
 import java.util.Objects;
 

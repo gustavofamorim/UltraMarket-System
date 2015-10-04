@@ -1,10 +1,7 @@
-package Tools;
+package Tools.Visual;
 
 import javafx.fxml.Initializable;
 import javafx.scene.layout.Region;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 /**
  * Created by Gustavo Freitas on 03/10/2015.

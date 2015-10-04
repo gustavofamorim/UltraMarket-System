@@ -8,8 +8,8 @@ package Filial.Visao;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import Tools.Controller;
-import Tools.Message;
+import Tools.Visual.Controller;
+import Tools.Visual.Message;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

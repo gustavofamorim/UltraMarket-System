@@ -1,5 +1,6 @@
-package Filial;
+package Filial.Banco;
 
+import Filial.Filial;
 import Filial.Modelo.Cliente;
 import Filial.Modelo.Produto;
 import Filial.Modelo.Venda.Venda;

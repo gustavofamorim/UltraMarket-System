@@ -2,6 +2,7 @@ package Filial.Modelo.Venda;
 
 import Filial.Modelo.Cliente;
 import Filial.Modelo.Produto;
+import Tools.Builder;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -12,7 +13,7 @@ import java.util.Locale;
 /**
  * Created by Gustavo Freitas on 02/10/2015.
  */
-public class VendaBuilder {
+public class VendaBuilder implements Builder<Venda> {
 
     private Venda venda = new Venda();
 

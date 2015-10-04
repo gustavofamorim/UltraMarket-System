@@ -1,6 +1,6 @@
 package Filial.Controle;
 
-import Filial.BankSimulator;
+import Filial.Banco.BankSimulator;
 import Filial.Modelo.Cliente;
 import Filial.Modelo.Produto;
 import Filial.Modelo.Venda.ItemVenda;

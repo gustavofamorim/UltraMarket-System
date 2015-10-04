@@ -5,8 +5,8 @@ package Filial.Visao.Novo;
  */
 
 import Filial.Controle.Controle;
-import Tools.Controller;
-import Tools.WindowLoader;
+import Tools.Visual.Controller;
+import Tools.Visual.WindowLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;

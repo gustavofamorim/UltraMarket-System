@@ -1,4 +1,4 @@
-package Tools;
+package Tools.Visual;
 
 /**
  * Created by Gustavo Freitas on 03/10/2015.

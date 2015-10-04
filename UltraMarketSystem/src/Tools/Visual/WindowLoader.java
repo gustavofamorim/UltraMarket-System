@@ -1,11 +1,10 @@
-package Tools;
+package Tools.Visual;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
-import javafx.stage.Stage;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
