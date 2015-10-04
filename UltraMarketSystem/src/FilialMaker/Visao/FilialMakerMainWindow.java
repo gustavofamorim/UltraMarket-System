@@ -1,7 +1,9 @@
 package FilialMaker.Visao;
 
+import FilialMaker.Controle.Controle;
 import FilialMaker.FilialMaker;
 import Tools.Visual.Controller;
+import Tools.Visual.WindowLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,34 +17,33 @@ import java.util.ResourceBundle;
  */
 public class FilialMakerMainWindow extends Controller implements Initializable {
 
+    private Controle controle = new Controle();
+
     @FXML
     private TextField nome;
 
     @FXML
-    private TextField id;
-
-    @FXML
     public void criar(ActionEvent event){
+        if(this.nome.getText().length() > 0) {
+            this.controle.registrarFilial(this.nome.getText());
+        }
+        else{
+            WindowLoader.showError("Erro", "A filial precisa de um nome né...");
+        }
         this.limpar();
     }
 
     @FXML
     public void cancelar(ActionEvent event){
         this.limpar();
-        this.atualizarId();
     }
 
     public void limpar(){
         this.nome.setText("");
     }
 
-    public void atualizarId(){
-        //Solicita o id à matriz.
-        this.id.setText("" + 1);
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.atualizarId();
+        this.controle.conectar();
     }
 }

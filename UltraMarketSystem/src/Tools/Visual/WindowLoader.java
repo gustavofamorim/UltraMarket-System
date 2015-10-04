@@ -73,8 +73,32 @@ public class WindowLoader {
         erro.showAndWait();
     }
 
+    public static void showError(String titulo, String conteudo){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(conteudo);
+        alert.showAndWait();
+    }
+
     public static void showError(String titulo, String cabecalho, String conteudo){
         Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(titulo);
+        alert.setHeaderText(cabecalho);
+        alert.setContentText(conteudo);
+        alert.showAndWait();
+    }
+
+    public static void showMessage(String titulo, String conteudo){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(conteudo);
+        alert.showAndWait();
+    }
+
+    public static void showMessage(String titulo, String conteudo, String cabecalho){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titulo);
         alert.setHeaderText(cabecalho);
         alert.setContentText(conteudo);

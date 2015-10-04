@@ -4,6 +4,7 @@ import Filial.Controle.Controle;
 import Filial.Modelo.Cliente;
 import Filial.Modelo.Produto;
 import Filial.Modelo.Venda.ItemVenda;
+import Filial.Visao.UsaCamadaControle;
 import Tools.Visual.Controller;
 import Tools.Visual.WindowLoader;
 import javafx.event.ActionEvent;
@@ -20,7 +21,9 @@ import java.util.ResourceBundle;
 /**
  * Created by Gustavo Freitas on 02/10/2015.
  */
-public class NovaVendaController extends Controller {
+public class NovaVendaController extends Controller implements UsaCamadaControle{
+
+    private Controle controle;
 
     @FXML
     private ListView<Produto> itens;
@@ -68,26 +71,36 @@ public class NovaVendaController extends Controller {
 
     @FXML
     private void finalizar(ActionEvent event){
-
-        if(this.itensAdicionados.getItems().size() == 0){
-            WindowLoader.showError("Venda sem itens.", "Adicione itens para prosseguir.", "");
+        if(this.controle == null){
+            throw new NullPointerException("O controlador não foi setado.");
         }
         else {
-            try {
-                Double desconto = Double.parseDouble(this.desconto.getText().replace(",", "."));
-                Double valorPago = Double.parseDouble(this.valorPago.getText().replace(",", "."));
-                Controle.novaVenda(this.itensAdicionados.getItems(), valorPago, desconto, this.clientes.getSelectionModel().getSelectedItem());
-            } catch (NumberFormatException e) {
-                WindowLoader.showError("Entrada Incorreta", "Desconto e Valor Pago devem ser números.", "");
-            }
+            if (this.itensAdicionados.getItems().size() == 0) {
+                WindowLoader.showError("Venda sem itens.", "Adicione itens para prosseguir.", "");
+            } else {
+                try {
+                    Double desconto = Double.parseDouble(this.desconto.getText().replace(",", "."));
+                    Double valorPago = Double.parseDouble(this.valorPago.getText().replace(",", "."));
+                    this.controle.novaVenda(this.itensAdicionados.getItems(), valorPago, desconto, this.clientes.getSelectionModel().getSelectedItem());
+                } catch (NumberFormatException e) {
+                    WindowLoader.showError("Entrada Incorreta", "Desconto e Valor Pago devem ser números.", "");
+                }
 
-            this.limpar();
+                this.limpar();
+            }
         }
     }
 
     @FXML
     private void cancelar(ActionEvent event){
         this.limpar();
+    }
+
+    @FXML
+    private void updateEvent(){
+        if(this.clientes.getItems().size() == 0) {
+            this.update();
+        }
     }
 
     public void limpar(){
@@ -97,9 +110,23 @@ public class NovaVendaController extends Controller {
         this.clientes.getSelectionModel().clearSelection();
     }
 
+    public void update(){
+        this.itens.getItems().addAll(this.controle.obterTodosProduto());
+        this.clientes.getItems().addAll(this.controle.obterTodosCliente());
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.itens.getItems().addAll(Controle.obterTodosProduto());
-        this.clientes.getItems().addAll(Controle.obterTodosCliente());
+
+    }
+
+    @Override
+    public Controle getControle() {
+        return (this.controle);
+    }
+
+    @Override
+    public void setControle(Controle controle){
+        this.controle = controle;
     }
 }

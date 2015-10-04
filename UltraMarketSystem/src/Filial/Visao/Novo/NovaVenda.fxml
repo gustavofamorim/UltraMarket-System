@@ -38,6 +38,6 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <ComboBox fx:id="clientes" layoutX="80.0" layoutY="301.0" prefWidth="150.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="295.0" />
+      <ComboBox fx:id="clientes" layoutX="80.0" layoutY="301.0" onMouseClicked="#updateEvent" prefWidth="150.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="295.0" />
    </children>
 </AnchorPane>

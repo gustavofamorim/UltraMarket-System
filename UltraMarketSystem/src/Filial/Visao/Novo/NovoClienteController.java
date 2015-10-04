@@ -1,6 +1,7 @@
 package Filial.Visao.Novo;
 
 import Filial.Controle.Controle;
+import Filial.Visao.UsaCamadaControle;
 import Tools.Visual.Controller;
 import Tools.Visual.WindowLoader;
 import javafx.event.ActionEvent;
@@ -14,7 +15,9 @@ import java.util.ResourceBundle;
 /**
  * Created by Gustavo Freitas on 03/10/2015.
  */
-public class NovoClienteController extends Controller implements Initializable {
+public class NovoClienteController extends Controller implements Initializable, UsaCamadaControle {
+
+    private Controle controle;
 
     @FXML
     private TextField nome;
@@ -24,12 +27,16 @@ public class NovoClienteController extends Controller implements Initializable {
 
     @FXML
     private void cadastrar(ActionEvent event){
-        if(this.nome.getText().length() == 0 && this.CPF.getText().length() == 0){
-            WindowLoader.showError("Preencha todos os campos.", "É necessário que todos os campos estejam preenchidos.", "");
+        if(this.controle == null){
+            throw new NullPointerException("O controlador não foi setado.");
         }
         else {
-            Controle.salvarCliente(this.nome.getText(), this.CPF.getText());
-            this.limpar();
+            if (this.nome.getText().length() == 0 && this.CPF.getText().length() == 0) {
+                WindowLoader.showError("Preencha todos os campos.", "É necessário que todos os campos estejam preenchidos.", "");
+            } else {
+                this.controle.salvarCliente(this.nome.getText(), this.CPF.getText());
+                this.limpar();
+            }
         }
     }
 
@@ -45,7 +52,15 @@ public class NovoClienteController extends Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
     }
 
+    @Override
+    public Controle getControle() {
+        return (this.controle);
+    }
+
+    @Override
+    public void setControle(Controle controle) {
+        this.controle = controle;
+    }
 }

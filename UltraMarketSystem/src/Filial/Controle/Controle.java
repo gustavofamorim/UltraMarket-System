@@ -14,25 +14,25 @@ import java.util.Collection;
  */
 public class Controle {
 
-    private static BankSimulator banco = new BankSimulator();
+    private BankSimulator banco = new BankSimulator();
 
-    public static void salvarProduto(String nome, Double valor){
+    public void salvarProduto(String nome, Double valor){
         banco.insertIntoProduto(new Produto(nome, valor));
     }
 
-    public static void salvarCliente(String nome, String CPF){
+    public void salvarCliente(String nome, String CPF){
         banco.insertIntoCliente(new Cliente(nome, CPF));
     }
 
-    public static ArrayList<Produto> obterTodosProduto(){
+    public ArrayList<Produto> obterTodosProduto(){
         return (banco.selectAllFromProduto());
     }
 
-    public static ArrayList<Cliente> obterTodosCliente(){
+    public ArrayList<Cliente> obterTodosCliente(){
         return (banco.selectAllFromCliente());
     }
 
-    public static void novaVenda(Collection<ItemVenda> itens, Double pagamento, Double desconto, Cliente cliente){
+    public void novaVenda(Collection<ItemVenda> itens, Double pagamento, Double desconto, Cliente cliente){
 
         desconto /= 100;
 

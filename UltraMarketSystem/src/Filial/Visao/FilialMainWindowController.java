@@ -1,5 +1,6 @@
 package Filial.Visao;
 
+import Filial.Controle.Controle;
 import Tools.Visual.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,7 +12,9 @@ import java.util.ResourceBundle;
 /**
  * Created by Gustavo Freitas on 03/10/2015.
  */
-public class FilialMainWindowController extends Controller implements Initializable, AcceptMessage<String> {
+public class FilialMainWindowController extends Controller implements Initializable, AcceptMessage<String>, UsaCamadaControle {
+
+    private Controle controle;
 
     @FXML
     private MenuLateralController menuLateralController;
@@ -40,11 +43,23 @@ public class FilialMainWindowController extends Controller implements Initializa
                 break;
         }
         if(controlador != null) {
+            controlador.setMyParent(this);
+            ((UsaCamadaControle)controlador).setControle(this.controle);
             this.painel.getChildren().clear();
             this.painel.getChildren().add(controlador.getMyPane());
         }
         else{
             WindowLoader.showError("Erro ao carregar painel", "Erro ao carregar painel", "Desconhecido.");
         }
+    }
+
+    @Override
+    public void setControle(Controle controle) {
+        this.controle = controle;
+    }
+
+    @Override
+    public Controle getControle() {
+        return (this.controle);
     }
 }
