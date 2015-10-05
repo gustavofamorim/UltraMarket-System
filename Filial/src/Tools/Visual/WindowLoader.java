@@ -76,7 +76,7 @@ public class WindowLoader {
     public static void showError(String titulo, String conteudo){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(titulo);
-        alert.setHeaderText(null);
+        alert.setHeaderText(" ");
         alert.setContentText(conteudo);
         alert.showAndWait();
     }

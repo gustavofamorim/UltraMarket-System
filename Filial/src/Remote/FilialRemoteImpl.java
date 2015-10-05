@@ -1,5 +1,6 @@
-package Remote.FilialRemote;
+package Remote;
 
+import Controle.Controle;
 import Modelo.Cliente;
 import Modelo.Filial;
 
@@ -12,15 +13,18 @@ import java.util.Collection;
  */
 public class FilialRemoteImpl extends UnicastRemoteObject implements FilialRemote{
 
+    private Controle controle = null;
     private Filial filialInfo = null;
 
-    public FilialRemoteImpl() throws RemoteException{
-
+    public FilialRemoteImpl(Filial filial, Controle controle) throws RemoteException{
+        this.filialInfo = filial;
+        this.controle = controle;
     }
 
     @Override
     public Cliente existeCliente(String cpf) throws RemoteException{
-        return null;
+        //return (this.controle.buscarCliente(cpf));
+        return (null);
     }
 
     @Override

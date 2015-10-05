@@ -59,7 +59,6 @@ public class FilialMainWindowController extends Controller implements Initializa
 
     @Override
     public void setControle(Controle controle) {
-        System.out.println(this.controle != null);
         this.controle = controle;
     }
 

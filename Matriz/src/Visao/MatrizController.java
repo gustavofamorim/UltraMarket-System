@@ -1,7 +1,7 @@
 package Visao;
 
 import Controle.Controle;
-import Modelo.MatrizRemote;
+import Remote.MatrizRemote;
 import Tools.Visual.Controller;
 import Tools.Visual.UsaCamadaControle;
 import javafx.collections.FXCollections;

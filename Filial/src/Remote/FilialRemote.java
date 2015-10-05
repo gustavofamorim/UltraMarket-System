@@ -1,4 +1,4 @@
-package Remote.FilialRemote;
+package Remote;
 
 import Modelo.Cliente;
 
@@ -11,9 +11,12 @@ import java.util.Collection;
  */
 public interface FilialRemote extends Remote {
 
+    public static String OBJECT_NAME = "filial";
+
     public Cliente existeCliente(String cpf) throws RemoteException;
     public Collection<Cliente> listarTodosOsClientes() throws RemoteException;
 
     public Integer getId() throws RemoteException;
     public String getNome() throws RemoteException;
+
 }

@@ -1,4 +1,4 @@
-package Modelo.FilialRemote;
+package Remote;
 
 import Modelo.Cliente;
 

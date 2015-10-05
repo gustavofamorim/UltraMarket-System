@@ -1,19 +1,14 @@
 package Visao.Novo;
 
 import Controle.Controle;
-import Modelo.Cliente;
 import Modelo.Produto;
 import Modelo.Venda.ItemVenda;
 import Tools.Visual.UsaCamadaControle;
 import Tools.Visual.Controller;
 import Tools.Visual.WindowLoader;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.util.Optional;
@@ -39,7 +34,10 @@ public class NovaVendaController extends Controller implements UsaCamadaControle
     private TextField valorPago;
 
     @FXML
-    private ComboBox<Cliente> clientes;
+    private TextField cpfCliente;
+
+    @FXML
+    private Label resultadoBusca;
 
     @FXML
     private void addItem(ActionEvent event){
@@ -83,7 +81,7 @@ public class NovaVendaController extends Controller implements UsaCamadaControle
                 try {
                     Double desconto = Double.parseDouble(this.desconto.getText().replace(",", "."));
                     Double valorPago = Double.parseDouble(this.valorPago.getText().replace(",", "."));
-                    this.controle.novaVenda(this.itensAdicionados.getItems(), valorPago, desconto, this.clientes.getSelectionModel().getSelectedItem());
+                    //this.controle.novaVenda(this.itensAdicionados.getItems(), valorPago, desconto, this.clientes.getSelectionModel().getSelectedItem());
                 } catch (NumberFormatException e) {
                     WindowLoader.showError("Entrada Incorreta", "Desconto e Valor Pago devem ser números.", "");
                 }
@@ -102,12 +100,17 @@ public class NovaVendaController extends Controller implements UsaCamadaControle
         this.itensAdicionados.getItems().clear();
         this.desconto.setText("");
         this.valorPago.setText("");
-        this.clientes.getSelectionModel().clearSelection();
     }
 
     public void update(){
         this.itens.getItems().addAll(this.controle.obterTodosProduto());
-        this.clientes.getItems().addAll(this.controle.obterTodosCliente());
+    }
+
+    @FXML
+    private void buscarCliente(ActionEvent event){
+        if(this.cpfCliente.getText().length() > 0){
+
+        }
     }
 
     @Override

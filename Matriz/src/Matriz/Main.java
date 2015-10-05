@@ -1,12 +1,6 @@
 package Matriz;
 
-import Modelo.MatrizRemote;
-import Modelo.MatrizRemoteImpl;
-import Tools.Visual.WindowLoader;
-import javafx.application.Application;
 import javafx.stage.Stage;
-import java.rmi.Naming;
-import java.rmi.registry.Registry;
 
 import static java.rmi.registry.LocateRegistry.createRegistry;
 import static java.rmi.registry.LocateRegistry.getRegistry;

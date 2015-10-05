@@ -1,8 +1,6 @@
-package Remote.MatrizRemote;
+package Remote;
 
 import Modelo.Filial;
-import Modelo.Cliente;
-import Remote.FilialRemote.FilialRemote;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -16,10 +14,10 @@ public interface MatrizRemote extends Remote{
     public static final String HOST_NAME = "localhost";
     public static final String OBJECT_NAME = "matriz";
 
-    public Filial requisitarLogon(FilialRemote filial, String nome) throws RemoteException;
+    public int requisitarLogon(Filial filial) throws RemoteException;
 
-    public boolean requisitarLogOff(FilialRemote filial) throws RemoteException;
+    public boolean requisitarLogOff(Filial filial) throws RemoteException;
 
-    public Cliente buscarCliente(String cpf) throws RemoteException;
+    //public Cliente buscarCliente(String cpf) throws RemoteException;
 
 }

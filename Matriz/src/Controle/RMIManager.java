@@ -1,7 +1,7 @@
 package Controle;
 
-import Modelo.MatrizRemote;
-import Modelo.MatrizRemoteImpl;
+import Remote.MatrizRemote;
+import Remote.MatrizRemoteImpl;
 import Tools.Visual.WindowLoader;
 
 import java.rmi.Naming;

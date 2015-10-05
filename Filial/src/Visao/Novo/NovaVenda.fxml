@@ -38,6 +38,13 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <ComboBox fx:id="clientes" layoutX="80.0" layoutY="301.0" prefWidth="150.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="295.0" />
+      <Button mnemonicParsing="false" onAction="#buscarCliente" style="-fx-color: blue;" text="Buscar" AnchorPane.leftAnchor="440.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="325.0" />
+      <TextField fx:id="cpfCliente" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="325.0" />
+      <Label fx:id="resultadoBusca" text="Nome:" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="360.0" />
+      <Label text="CPF:" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="330.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

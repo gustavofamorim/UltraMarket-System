@@ -4,13 +4,16 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane minWidth="300.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Visao.FilialMakerMainWindow">
+<AnchorPane minWidth="350.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Visao.FilialMakerMainWindow">
    <children>
+      <Button mnemonicParsing="false" onAction="#selecionarExecutavel" text="Abrir" AnchorPane.leftAnchor="290.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
       <Button layoutX="224.0" layoutY="245.0" minWidth="90.0" mnemonicParsing="false" onAction="#criar" style="-fx-color: green;" text="Criar e Ativar" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
       <Button layoutX="204.0" layoutY="291.0" minWidth="90.0" mnemonicParsing="false" onAction="#cancelar" style="-fx-color: red;" text="Cancelar" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="110.0" />
-      <Label layoutX="14.0" layoutY="14.0" text="Nome:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="15.0" />
-      <TextField fx:id="nome" layoutX="83.0" layoutY="15.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
-      <TextField fx:id="porta" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="45.0" />
-      <Label text="Porta:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="50.0" />
+      <Label text="Executável:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="15.0" />
+      <Label layoutX="14.0" layoutY="14.0" text="Nome:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="50.0" />
+      <Label text="Porta:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="85.0" />
+      <TextField fx:id="local" editable="false" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="10.0" />
+      <TextField fx:id="nome" layoutX="83.0" layoutY="15.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="45.0" />
+      <TextField fx:id="porta" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0" />
    </children>
 </AnchorPane>
