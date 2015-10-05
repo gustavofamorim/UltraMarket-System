@@ -8,7 +8,10 @@ import Modelo.Venda.ItemVenda;
 import Modelo.Venda.Venda;
 import Modelo.Venda.VendaBuilder;
 import Remote.FilialRemote;
+import Tools.Visual.WindowLoader;
 
+import java.net.MalformedURLException;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -24,21 +27,28 @@ public class Controle {
     private final RMIServerManager rmiServerManager = RMIServerManager.getInstance();
 
 
-    public Controle(String nome, String hostName, Integer porta) throws RemoteException {
+    public Controle(String nome, String hostName, Integer porta) throws RemoteException, MalformedURLException, NotBoundException {
 
         this.filial = new Filial(nome, hostName, porta, FilialRemote.OBJECT_NAME);
-
-        try {
-            Integer id = this.rmiClientManager.getMatrizRemote().requisitarLogon(this.filial);
-            this.filial.setId(id);
-        } catch (RemoteException e) {
-            throw (e);
-        }
+        Integer id = this.rmiClientManager.getMatrizRemote().requisitarLogon(this.filial);
+        this.filial.setId(id);
 
         //this.rmiServerManager.iniciar(new FilialRemoteImpl(this.filial, this));
     }
 
-    
+    public Cliente buscarCliente(String cpf) {
+        Cliente result = this.banco.selectFromClienteWhereCpfEquals(cpf);
+
+        if(result == null){
+            try {
+                result = this.rmiClientManager.getMatrizRemote().buscarCliente(cpf);
+            } catch (Exception e) {
+                WindowLoader.showException("Erro", "Erro ao se comunicar com o servidor.", e);
+            }
+        }
+
+        return (result);
+    }
 
     public void salvarProduto(String nome, Double valor){
         banco.insertIntoProduto(new Produto(nome, valor));

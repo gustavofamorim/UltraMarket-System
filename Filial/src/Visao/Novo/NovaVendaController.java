@@ -1,10 +1,12 @@
 package Visao.Novo;
 
 import Controle.Controle;
+import Modelo.Cliente;
 import Modelo.Produto;
 import Modelo.Venda.ItemVenda;
 import Tools.Visual.UsaCamadaControle;
 import Tools.Visual.Controller;
+import Tools.Visual.WindowController;
 import Tools.Visual.WindowLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +21,7 @@ import java.util.ResourceBundle;
  */
 public class NovaVendaController extends Controller implements UsaCamadaControle<Controle>{
 
+    private Cliente cliente = null;
     private Controle controle = null;
 
     @FXML
@@ -81,7 +84,7 @@ public class NovaVendaController extends Controller implements UsaCamadaControle
                 try {
                     Double desconto = Double.parseDouble(this.desconto.getText().replace(",", "."));
                     Double valorPago = Double.parseDouble(this.valorPago.getText().replace(",", "."));
-                    //this.controle.novaVenda(this.itensAdicionados.getItems(), valorPago, desconto, this.clientes.getSelectionModel().getSelectedItem());
+                    this.controle.novaVenda(this.itensAdicionados.getItems(), valorPago, desconto, null);
                 } catch (NumberFormatException e) {
                     WindowLoader.showError("Entrada Incorreta", "Desconto e Valor Pago devem ser números.", "");
                 }
@@ -109,7 +112,16 @@ public class NovaVendaController extends Controller implements UsaCamadaControle
     @FXML
     private void buscarCliente(ActionEvent event){
         if(this.cpfCliente.getText().length() > 0){
+            this.cliente = this.controle.buscarCliente(this.cpfCliente.getText());
 
+            if(this.cliente == null){
+                WindowLoader.showMessage("Cliente não cadastrado", "O cliente não está cadastrado.\nPor favor cadastre-o.");
+                WindowController janela = WindowLoader.loadWindow("/Visao/Novo/NovoCliente.fxml");
+                ((UsaCamadaControle)janela).setControle(this.controle);
+                janela.showAndWait();
+                this.cliente = this.controle.obterTodosCliente().get(this.controle.obterTodosCliente().size());
+            }
+            this.resultadoBusca.setText("Nome: " + this.cliente.getNome());
         }
     }
 

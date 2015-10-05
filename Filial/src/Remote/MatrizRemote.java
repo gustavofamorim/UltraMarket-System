@@ -1,5 +1,6 @@
 package Remote;
 
+import Modelo.Cliente;
 import Modelo.Filial;
 
 import java.rmi.Remote;
@@ -18,6 +19,6 @@ public interface MatrizRemote extends Remote{
 
     public boolean requisitarLogOff(Filial filial) throws RemoteException;
 
-    //public Cliente buscarCliente(String cpf) throws RemoteException;
+    public Cliente buscarCliente(String cpf) throws RemoteException;
 
 }

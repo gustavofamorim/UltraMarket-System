@@ -39,4 +39,13 @@ public class BankSimulator {
     public ArrayList<Venda> selectAllFromVenda(){
         return (this.vendas);
     }
+
+    public Cliente selectFromClienteWhereCpfEquals(String cpf){
+        for(Cliente c : this.clientes){
+            if(c.getCPF().equals(cpf)){
+                return (c);
+            }
+        }
+        return (null);
+    }
 }
