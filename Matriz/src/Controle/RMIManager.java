@@ -28,22 +28,22 @@ public class RMIManager {
         return instance;
     }
 
-    public boolean iniciar() {
+    public boolean rebind(int porta, String objectName) {
         try {
-            registry = createRegistry(MatrizRemote.PORTA);
+            registry = createRegistry(porta);
         } catch (RemoteException ex) {
             try {
                 System.out.println("Registro já foi criado, tentar conectar.");
-                registry = getRegistry(MatrizRemote.PORTA);
+                registry = getRegistry(porta);
             } catch (RemoteException e) {
-                WindowLoader.showMessage("Erro ao iniciar servidor Matriz.", "Falha ao inicar servidor RMI.");
+                WindowLoader.showMessage("Erro ao iniciar servidor.", "Falha ao inicar servidor RMI.");
                 e.printStackTrace();
                 ex.printStackTrace();
             }
         }
         try {
             MatrizRemote matriz = new MatrizRemoteImpl();
-            Naming.rebind(MatrizRemote.OBJECT_NAME, matriz);
+            Naming.rebind(objectName, matriz);
             return true;
         } catch (Exception e){
             WindowLoader.showException("Erro ao iniciar servidor Matriz.", "Erro na inicializa��o do servidor Matriz.", e);
@@ -51,13 +51,24 @@ public class RMIManager {
         }
     }
 
-    public boolean finalizar() {
+    public boolean unbind(String objectName) {
         try {
-            registry.unbind(MatrizRemote.OBJECT_NAME);
+            registry.unbind(objectName);
             return true;
         } catch (RemoteException | NotBoundException e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    public Object lookup(String hostname, int porta, String objectName) {
+        try {
+            MatrizRemote matriz = new MatrizRemoteImpl();
+            Object object = Naming.lookup("rmi://" + hostName + "/" + objeto);
+            return Naming.lookup("rmi://"+hostname+":"+porta+"/"+objectName);
+        } catch (Exception e){
+            WindowLoader.showException("Erro ao iniciar servidor Matriz.", "Erro na inicializa��o do servidor Matriz.", e);
+            return null;
         }
     }
 }

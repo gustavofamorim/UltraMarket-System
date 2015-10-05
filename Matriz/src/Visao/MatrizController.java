@@ -1,7 +1,6 @@
 package Visao;
 
 import Controle.Controle;
-import Modelo.Filial;
 import Modelo.MatrizRemote;
 import Tools.Visual.Controller;
 import Tools.Visual.UsaCamadaControle;
@@ -57,7 +56,7 @@ public class MatrizController extends Controller implements UsaCamadaControle<Co
     private void iniciarClick() {
         iniciar.setDisable(true);
         finalizar.setDisable(false);
-        rmiManager.iniciar();
+        rmiManager.iniciar(MatrizRemote.PORTA, MatrizRemote.OBJECT_NAME);
         status.setText("Servidor iniciado na porta: " + MatrizRemote.PORTA);
         status.setTextFill(Color.GREEN);
     }
@@ -66,7 +65,7 @@ public class MatrizController extends Controller implements UsaCamadaControle<Co
     private void finalizarClick() {
         iniciar.setDisable(false);
         finalizar.setDisable(true);
-        rmiManager.finalizar();
+        rmiManager.finalizar(MatrizRemote.OBJECT_NAME);
         status.setText("Não iniciado");
         status.setTextFill(Color.RED);
     }

@@ -7,6 +7,8 @@ public class Filial {
 
     private Integer id;
     private String nome;
+    private String hostname;
+    private int porta;
 
     public Integer getId() {
         return id;
@@ -22,5 +24,21 @@ public class Filial {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getHostname() {
+        return hostname;
+    }
+
+    public void setHostname(String hostname) {
+        this.hostname = hostname;
+    }
+
+    public int getPorta() {
+        return porta;
+    }
+
+    public void setPorta(int porta) {
+        this.porta = porta;
     }
 }

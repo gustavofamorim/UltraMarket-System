@@ -10,23 +10,33 @@ public class FilialBuilder implements Builder<Filial>{
     private Filial filial = new Filial();
 
     public void setId(int id){
-        this.filial.setId(id);
+        filial.setId(id);
     }
 
     public void setNome(String nome){
-        this.filial.setNome(nome);
+        filial.setNome(nome);
+    }
+
+    public void setHostname(String hostname){
+        filial.setHostname(hostname);
+    }
+
+    public void setPorta(int porta){
+        filial.setPorta(porta);
     }
 
     @Override
     public Filial getInstance() {
-        Filial tmp = this.filial;
-        this.filial = new Filial();
+        Filial tmp = filial;
+        filial = new Filial();
         return tmp;
     }
 
-    public Filial getInstance(Integer id, String nome) {
-        this.setId(id);
-        this.setNome(nome);
+    public Filial getInstance(Integer id, String nome, String hostname, int porta) {
+        setId(id);
+        setNome(nome);
+        setHostname(hostname);
+        setPorta(porta);
         return this.getInstance();
     }
 }

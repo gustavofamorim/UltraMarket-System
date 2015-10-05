@@ -1,10 +1,12 @@
 package Modelo;
 
+import Modelo.FilialRemote.FilialBuilder;
 import Modelo.FilialRemote.FilialRemote;
 import Modelo.FilialRemote.Filial;
 
 
 import java.rmi.RemoteException;
+import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
 
@@ -14,7 +16,7 @@ import java.util.HashMap;
 public class MatrizRemoteImpl extends UnicastRemoteObject implements MatrizRemote {
 
     int lastId = 0;
-    HashMap<Integer, FilialRemote> filiaisOnline = new HashMap<>();
+    HashMap<Integer, Filial> filiaisOnline = new HashMap<>();
 
     public MatrizRemoteImpl() throws RemoteException {
 
@@ -22,15 +24,14 @@ public class MatrizRemoteImpl extends UnicastRemoteObject implements MatrizRemot
 
     @Override
     public Filial requisitarLogon(String hostname, Integer porta) throws RemoteException {
-/*
+
         FilialBuilder builder = new FilialBuilder();
-        Filial novaFilial = builder.getInstance(this.lastId, nome);
+        Filial novaFilial = builder.getInstance(lastId, "Filial " + lastId, hostname, porta);
 
-        this.filiaisOnline.put(this.lastId, filial);
-        this.lastId++;
+        filiaisOnline.put(lastId, novaFilial);
+        lastId++;
 
-        return (novaFilial);*/
-        return (null);
+        return (novaFilial);
     }
 
     @Override
@@ -40,7 +41,7 @@ public class MatrizRemoteImpl extends UnicastRemoteObject implements MatrizRemot
             this.filiaisOnline.remove(filial.getId());
             return (true);
         }
-
+        filiaisOnline.get(0);
         return false;
     }
 
@@ -48,8 +49,10 @@ public class MatrizRemoteImpl extends UnicastRemoteObject implements MatrizRemot
     public Cliente buscarCliente (String cpf)throws RemoteException {
 
         Cliente cliente;
-
-        for(FilialRemote filial : this.filiaisOnline.values()){
+        FilialRemote filialRemote;
+        Registry registry;
+        for(Filial filial : this.filiaisOnline.values()){
+            filialRemote = ;
             if((cliente = filial.existeCliente(cpf)) != null){
                 return (cliente);
             }
