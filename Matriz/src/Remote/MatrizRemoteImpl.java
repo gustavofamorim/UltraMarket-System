@@ -1,6 +1,7 @@
 package Remote;
 
 import Modelo.Filial;
+import Visao.MatrizController;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -11,28 +12,21 @@ import java.util.HashMap;
  */
 public class MatrizRemoteImpl extends UnicastRemoteObject implements MatrizRemote {
 
-    int lastId = 0;
-    HashMap<Integer, Filial> filiaisOnline = new HashMap<>();
-
-    public MatrizRemoteImpl() throws RemoteException {
-
-    }
+    public MatrizRemoteImpl() throws RemoteException {}
 
     @Override
     public int requisitarLogon(Filial filial) throws RemoteException {
-        filial.setId(this.lastId);
-        this.filiaisOnline.put(this.lastId, filial);
-        this.lastId++;
+        MatrizController.filiais.add(filial);
         System.out.println("Filial se conectou: " + filial.getNome());
         return (filial.getId());
     }
 
     @Override
     public boolean requisitarLogOff(Filial filial) throws RemoteException {
-        if(this.filiaisOnline.containsKey(filial.getId())){
-            this.filiaisOnline.remove(filial.getId());
-            return (true);
-        }
+//        if(filiaisOnline.containsKey(filial.getId())){
+//            filiaisOnline.remove(filial.getId());
+//            return (true);
+//        }
         return false;
     }
 }

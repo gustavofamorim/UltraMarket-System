@@ -44,4 +44,13 @@ public class Filial implements Serializable{
     public String getObjectName() {
         return OBJECT_NAME;
     }
+
+    @Override
+    public String toString() {
+        return id + " | "
+                + nome + " | "
+                + HOST_NAME + " | "
+                + SERVER_PORT + " | "
+                + OBJECT_NAME;
+    }
 }

@@ -1,6 +1,7 @@
 package Visao;
 
 import Controle.Controle;
+import Modelo.Filial;
 import Remote.MatrizRemote;
 import Tools.Visual.Controller;
 import Tools.Visual.UsaCamadaControle;
@@ -20,6 +21,7 @@ import java.util.ResourceBundle;
  * Created by Gustavo Freitas on 04/10/2015.
  */
 public class MatrizController extends Controller implements UsaCamadaControle<Controle> {
+    public static ObservableList<Filial> filiais = FXCollections.observableArrayList();
 
     private Controle controle;
     private RMIManager rmiManager;
@@ -29,7 +31,7 @@ public class MatrizController extends Controller implements UsaCamadaControle<Co
     @FXML
     private Button finalizar;
     @FXML
-    private ListView<String> lista;
+    private ListView<Filial> lista;
     @FXML
     private Label status;
 
@@ -37,9 +39,7 @@ public class MatrizController extends Controller implements UsaCamadaControle<Co
     public void initialize(URL location, ResourceBundle resources) {
         rmiManager = RMIManager.getInstance();
         finalizar.setDisable(true);
-        ObservableList<String> filiais = FXCollections.observableArrayList();
-        filiais.add("Nome");
-        lista.setItems(filiais);
+        lista.setItems(MatrizController.filiais);
     }
 
     @Override
