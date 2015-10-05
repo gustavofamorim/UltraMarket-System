@@ -30,6 +30,7 @@ public class Controle {
     public Controle(String nome, String hostName, Integer porta) throws RemoteException, MalformedURLException, NotBoundException {
 
         this.filial = new Filial(nome, hostName, porta, FilialRemote.OBJECT_NAME);
+        System.out.println(this.filial);
         Integer id = this.rmiClientManager.getMatrizRemote().requisitarLogon(this.filial);
         this.filial.setId(id);
 

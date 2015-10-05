@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class Filial implements Serializable{
 
     private Integer id;
-    private static String nome;
+    private String nome;
 
     private String HOST_NAME;
     private Integer SERVER_PORT;

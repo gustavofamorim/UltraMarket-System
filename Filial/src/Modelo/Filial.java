@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class Filial implements Serializable{
 
     private Integer id;
-    private static String nome;
+    private String nome;
 
     private String HOST_NAME;
     private Integer SERVER_PORT;
@@ -43,5 +43,14 @@ public class Filial implements Serializable{
 
     public String getObjectName() {
         return OBJECT_NAME;
+    }
+
+    @Override
+    public String toString() {
+        return id + " | "
+                + nome + " | "
+                + HOST_NAME + " | "
+                + SERVER_PORT + " | "
+                + OBJECT_NAME;
     }
 }
