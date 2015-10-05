@@ -52,10 +52,9 @@ public class MatrizRemoteImpl extends UnicastRemoteObject implements MatrizRemot
         FilialRemote filialRemote;
         Registry registry;
         for(Filial filial : this.filiaisOnline.values()){
-            filialRemote = ;
-            if((cliente = filial.existeCliente(cpf)) != null){
-                return (cliente);
-            }
+//            if((cliente = filial.existeCliente(cpf)) != null){
+//                return (cliente);
+//            }
         }
 
         return null;
