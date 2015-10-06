@@ -36,6 +36,9 @@ public class NovoClienteController extends Controller implements Initializable, 
             } else {
                 this.controle.salvarCliente(this.nome.getText(), this.CPF.getText());
                 this.limpar();
+                if(this.getMyStage() != null){
+                    this.getMyStage().close();
+                }
             }
         }
     }
@@ -43,6 +46,9 @@ public class NovoClienteController extends Controller implements Initializable, 
     @FXML
     private void cancelar(ActionEvent event){
         this.limpar();
+        if(this.getMyStage() != null){
+            this.getMyStage().close();
+        }
     }
 
     public void limpar(){

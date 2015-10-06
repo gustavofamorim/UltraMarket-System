@@ -43,6 +43,9 @@ public class NovaVendaController extends Controller implements UsaCamadaControle
     private Label resultadoBusca;
 
     @FXML
+    private Label debitosCliente;
+
+    @FXML
     private void addItem(ActionEvent event){
         Produto selecionado = this.itens.getSelectionModel().getSelectedItem();
         if(selecionado != null){
@@ -117,11 +120,13 @@ public class NovaVendaController extends Controller implements UsaCamadaControle
             if(this.cliente == null){
                 WindowLoader.showMessage("Cliente não cadastrado", "O cliente não está cadastrado.\nPor favor cadastre-o.");
                 WindowController janela = WindowLoader.loadWindow("/Visao/Novo/NovoCliente.fxml");
-                ((UsaCamadaControle)janela).setControle(this.controle);
+                ((UsaCamadaControle)janela.getInternalController()).setControle(this.controle);
+                janela.getInternalController().setMyStage(janela);
                 janela.showAndWait();
-                this.cliente = this.controle.obterTodosCliente().get(this.controle.obterTodosCliente().size());
+                this.cliente = this.controle.obterTodosCliente().get(this.controle.obterTodosCliente().size() - 1);
             }
             this.resultadoBusca.setText("Nome: " + this.cliente.getNome());
+            this.debitosCliente.setText("Débito: " + this.cliente.getDebito());
         }
     }
 

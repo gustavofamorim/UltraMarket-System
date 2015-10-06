@@ -5,7 +5,9 @@ import Tools.Visual.UsaCamadaControle;
 import Tools.Visual.WindowController;
 import Tools.Visual.WindowLoader;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.rmi.RemoteException;
 
@@ -19,7 +21,6 @@ public class Filial extends Application {
         String nome;
         Integer porta = -1;
         String hostName;
-        Controle controle = null;
 
         if(args.length < 3){
             showInputError();
@@ -42,16 +43,19 @@ public class Filial extends Application {
         nome = args[0];
         hostName = args[1];
         try{
-            controle = new Controle(nome, hostName, porta);
+            final Controle controle = new Controle(nome, hostName, porta);
+
+            WindowController janela = WindowLoader.loadWindow("/Visao/FilialMainWindow.fxml");
+            ((UsaCamadaControle) janela.getInternalController()).setControle(controle);
+            janela.setResizable(false);
+            janela.setOnCloseRequest(event -> {
+                controle.fecharConexao();
+            });
+            janela.show();
         }catch (Exception e){
             WindowLoader.showException("Erro ao iniciar controlador.", "Ocorreu um erro irrecuperável.", e);
             die();
         }
-
-        WindowController janela = WindowLoader.loadWindow("/Visao/FilialMainWindow.fxml");
-        ((UsaCamadaControle) janela.getInternalController()).setControle(controle);
-        janela.setResizable(false);
-        janela.show();
     }
 
     public static void main(String[] args) {

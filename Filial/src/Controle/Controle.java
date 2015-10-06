@@ -8,6 +8,7 @@ import Modelo.Venda.ItemVenda;
 import Modelo.Venda.Venda;
 import Modelo.Venda.VendaBuilder;
 import Remote.FilialRemote;
+import Remote.FilialRemoteImpl;
 import Tools.Visual.WindowLoader;
 
 import java.net.MalformedURLException;
@@ -27,14 +28,20 @@ public class Controle {
     private final RMIServerManager rmiServerManager = RMIServerManager.getInstance();
 
 
-    public Controle(String nome, String hostName, Integer porta) throws RemoteException, MalformedURLException, NotBoundException {
-
+    public Controle(String nome, String hostName, Integer porta) throws RemoteException, NotBoundException, MalformedURLException {
         this.filial = new Filial(nome, hostName, porta, FilialRemote.OBJECT_NAME);
-        System.out.println(this.filial);
+        this.iniciarConexao();
+    }
+
+    public void iniciarConexao() throws RemoteException, MalformedURLException, NotBoundException {
         Integer id = this.rmiClientManager.getMatrizRemote().requisitarLogon(this.filial);
         this.filial.setId(id);
+        this.rmiServerManager.iniciar(new FilialRemoteImpl(this.filial, this));
+    }
 
-        //this.rmiServerManager.iniciar(new FilialRemoteImpl(this.filial, this));
+    public void fecharConexao(){
+        this.rmiClientManager.desconectar();
+        this.rmiServerManager.finalizar();
     }
 
     public Cliente buscarCliente(String cpf) {
@@ -50,6 +57,11 @@ public class Controle {
 
         return (result);
     }
+
+    public Cliente buscarClienteRemote(String cpf) {
+        return (this.banco.selectFromClienteWhereCpfEquals(cpf));
+    }
+
 
     public void salvarProduto(String nome, Double valor){
         banco.insertIntoProduto(new Produto(nome, valor));

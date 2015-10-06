@@ -42,7 +42,7 @@
       <TextField fx:id="cpfCliente" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="325.0" />
       <Label fx:id="resultadoBusca" text="Nome:" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="360.0" />
       <CheckBox mnemonicParsing="false" text="Confirmar Cliente" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="400.0" />
-      <Label text="Débitos:" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="380.0" />
+      <Label fx:id="debitosCliente" text="Débitos:" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="380.0" />
       <Label text="CPF:" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="330.0">
          <font>
             <Font name="System Bold" size="12.0" />
