@@ -8,9 +8,10 @@
    <children>
       <TableView fx:id="dados" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="45.0">
         <columns>
-          <TableColumn fx:id="colId" maxWidth="100.0" minWidth="100.0" prefWidth="-1.0" text="Id" />
-          <TableColumn fx:id="colTotal" maxWidth="184.0" minWidth="184.0" prefWidth="184.0" resizable="false" text="Total" />
-            <TableColumn fx:id="colData" maxWidth="195.0" minWidth="195.0" prefWidth="195.0" text="Data e Hora" />
+          <TableColumn fx:id="colId" maxWidth="70.0" minWidth="70.0" prefWidth="-1.0" text="Id" />
+            <TableColumn fx:id="colStatus" maxWidth="100.0" minWidth="100.0" prefWidth="-1.0" text="Estado" />
+          <TableColumn fx:id="colTotal" maxWidth="150.0" minWidth="150.0" prefWidth="-1.0" resizable="false" text="Total" />
+            <TableColumn fx:id="colData" maxWidth="160.0" minWidth="160.0" prefWidth="-1.0" text="Data e Hora" />
         </columns>
       </TableView>
       <Button minWidth="100.0" mnemonicParsing="false" onAction="#cancelarVenda" style="-fx-color: yellow;" text="Cancelar" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="10.0" />

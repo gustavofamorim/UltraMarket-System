@@ -64,7 +64,6 @@ public class RMIManager {
     public Object lookup(String hostname, int porta, String objectName) {
         try {
             Registry reg = getRegistry(porta);
-            //return reg.lookup("rmi://"+hostname+"/"+objectName);
             return reg.lookup(objectName);
         } catch (Exception e){
             System.out.println("Erro ao se conectar com o servidor: " + e.getMessage());

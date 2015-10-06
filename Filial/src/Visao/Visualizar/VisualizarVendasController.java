@@ -38,10 +38,14 @@ public class VisualizarVendasController extends Controller implements UsaCamadaC
     @FXML
     private TableColumn colData;
 
+    @FXML
+    private TableColumn colStatus;
+
     private void update(){
         this.colId.setCellValueFactory(new PropertyValueFactory<>("cod"));
         this.colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
         this.colData.setCellValueFactory(new PropertyValueFactory<>("dataEHora"));
+        this.colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         this.dados.getItems().addAll(this.controle.getGestaoVenda().obterTodosVenda());
     }
 
@@ -58,6 +62,8 @@ public class VisualizarVendasController extends Controller implements UsaCamadaC
     private void cancelarVenda(ActionEvent event){
         this.controle.getGestaoVenda().cancelarVenda(this.dados.getSelectionModel().getSelectedItem());
         WindowLoader.showMessage("Venda cancelada", "A venda foi cancelada.\nO cliente foi ressarcido com o valor pago.");
+        this.dados.getItems().clear();
+        this.dados.getItems().addAll(this.controle.getGestaoVenda().obterTodosVenda());
     }
 
     @Override

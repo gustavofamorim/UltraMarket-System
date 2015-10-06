@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class MatrizRemoteImpl extends UnicastRemoteObject implements MatrizRemote {
 
-    int lastId = 0;
+    int lastId = 1;
 
     public MatrizRemoteImpl() throws RemoteException {}
 
@@ -36,6 +36,8 @@ public class MatrizRemoteImpl extends UnicastRemoteObject implements MatrizRemot
     public boolean requisitarLogOff(Integer idFilial) throws RemoteException {
         for(Filial filial : MatrizController.filiais){
             if(filial.getId().equals(idFilial)){
+                System.out.println("Filial se desconectou: " + filial.getNome());
+                //Adiciona a ação na thread FX para evitar erros dentro da thread principal.
                 Platform.runLater(()-> {
                     MatrizController.filiais.remove(filial);
                 });

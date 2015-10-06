@@ -25,7 +25,7 @@ public class FilialRemoteImpl extends UnicastRemoteObject implements FilialRemot
 
     @Override
     public Cliente existeCliente(String cpf) throws RemoteException{
-        return (this.controle.getGestaoCliente().buscarClienteRemote(cpf));
+        return (this.controle.getGestaoCliente().buscarClienteLocal(cpf));
     }
 
     @Override

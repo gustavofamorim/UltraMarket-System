@@ -98,7 +98,7 @@ public class FilialMakerMainWindow extends Controller implements Initializable {
     public void limpar(){
         this.porta.setText("");
         this.nome.setText("");
-        this.local.setText("");
+        //this.local.setText("");
         //this.local.setDisable(true);
     }
 

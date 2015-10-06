@@ -30,12 +30,12 @@ public class GestaoCliente {
         return (result);
     }
 
-    public Cliente buscarClienteRemote(String cpf) {
+    public Cliente buscarClienteLocal(String cpf) {
         return (this.mainController.banco.selectFromClienteWhereCpfEquals(cpf));
     }
 
     public boolean salvarCliente(String nome, String CPF){
-        if(this.mainController.getGestaoCliente().buscarClienteRemote(CPF) == null) {
+        if(this.mainController.getGestaoCliente().buscarCliente(CPF) == null) {
             this.mainController.banco.insertIntoCliente(new Cliente(nome, CPF));
             return (true);
         }

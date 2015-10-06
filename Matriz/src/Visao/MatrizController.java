@@ -5,6 +5,7 @@ import Modelo.Filial;
 import Remote.MatrizRemote;
 import Tools.Visual.Controller;
 import Tools.Visual.UsaCamadaControle;
+import Tools.Visual.WindowLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -50,6 +51,18 @@ public class MatrizController extends Controller implements UsaCamadaControle<Co
     @Override
     public void setControle(Controle controle) {
         this.controle = controle;
+    }
+
+    @FXML
+    private void informacoesClick(){
+        Filial selecionada = this.lista.getSelectionModel().getSelectedItem();
+
+        if(selecionada != null){
+            WindowLoader.showMessage("Filial " + selecionada.getNome(),
+                                     "ID: " + selecionada.getId() + "\nNome: " + selecionada.getNome() + "\nHostname: "
+                                     + selecionada.getHostName() + "\nPorta: " + selecionada.getServerPort() + "\nNome do objeto remoto: " + selecionada.getObjectName(),
+                                     "Dados da filial: " + selecionada.getNome());
+        }
     }
 
     @FXML
