@@ -11,6 +11,7 @@ import Tools.Visual.WindowLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.StageStyle;
 
 import java.net.URL;
 import java.util.Optional;
@@ -46,6 +47,25 @@ public class NovaVendaController extends Controller implements UsaCamadaControle
     private Label debitosCliente;
 
     @FXML
+    private ToggleButton buscaToggle;
+
+    @FXML
+    public void novoCliente(ActionEvent event){
+        WindowController janela = WindowLoader.loadWindow("/Visao/Novo/NovoCliente.fxml");
+        ((UsaCamadaControle)janela.getInternalController()).setControle(this.controle);
+        janela.getInternalController().setMyStage(janela);
+        ((NovoClienteController)janela.getInternalController()).cancelarButton.setDisable(true);
+        janela.initStyle(StageStyle.UNDECORATED);
+        janela.showAndWait();
+
+        if(this.controle.getGestaoCliente().obterTodosCliente().size() > 0){
+            this.cliente = this.controle.getGestaoCliente().obterTodosCliente().get(this.controle.getGestaoCliente().obterTodosCliente().size() - 1);
+            this.resultadoBusca.setText("Nome: " + this.cliente.getNome());
+            this.debitosCliente.setText("D√©bito: " + this.cliente.getDebito());
+        }
+    }
+
+    @FXML
     private void addItem(ActionEvent event){
         Produto selecionado = this.itens.getSelectionModel().getSelectedItem();
         if(selecionado != null){
@@ -66,7 +86,7 @@ public class NovaVendaController extends Controller implements UsaCamadaControle
                     }
                 }
                 catch (NumberFormatException e){
-                    WindowLoader.showError("Entrada Inv·lida.", "Quantidade È um campo numÈrico.", "");
+                    WindowLoader.showError("Entrada Inv√°lida.", "Quantidade √© um campo num√©rico.", "");
                 }
             }
 
@@ -77,23 +97,43 @@ public class NovaVendaController extends Controller implements UsaCamadaControle
     @FXML
     private void finalizar(ActionEvent event){
         if(this.controle == null){
-            throw new NullPointerException("O controlador n„o foi setado.");
+            throw new NullPointerException("O controlador n√£o foi setado.");
         }
         else {
-            if (this.itensAdicionados.getItems().size() == 0) {
+            if (this.itensAdicionados.getItems().size() == 0 || this.cliente == null) {
                 WindowLoader.showError("Venda sem itens.", "Adicione itens para prosseguir.", "");
             }
             else {
-                try {
-                    Double desconto = Double.parseDouble(this.desconto.getText().replace(",", "."));
-                    Double valorPago = Double.parseDouble(this.valorPago.getText().replace(",", "."));
-                    this.controle.novaVenda(this.itensAdicionados.getItems(), valorPago, desconto, null);
-                } catch (NumberFormatException e) {
-                    WindowLoader.showError("Entrada Incorreta", "Desconto e Valor Pago devem ser n˙meros.", "");
-                }
 
+                if(this.cliente.getDebito() > 0){
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("O cliente possui d√©bito");
+                    alert.setHeaderText("O cliente deve pagar o d√©bito.");
+                    alert.setContentText("Ele tem dinheiro dispon√≠vel?");
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if (result.get() == ButtonType.OK){
+                        this.execFinalizar();
+                    }
+                    else {
+                        this.limpar();
+                        WindowLoader.showMessage("Cancelada", "A venda foi cancelada por falta de grana.");
+                    }
+                }
+                else{
+                    this.execFinalizar();
+                }
                 this.limpar();
             }
+        }
+    }
+
+    private void execFinalizar(){
+        try {
+            Double desconto = Double.parseDouble(this.desconto.getText().replace(",", "."));
+            Double valorPago = Double.parseDouble(this.valorPago.getText().replace(",", "."));
+            this.controle.novaVenda(this.itensAdicionados.getItems(), valorPago, desconto, this.cliente);
+        } catch (NumberFormatException e) {
+            WindowLoader.showError("Entrada Incorreta", "Desconto e Valor Pago devem ser n√∫meros.", "");
         }
     }
 
@@ -106,6 +146,9 @@ public class NovaVendaController extends Controller implements UsaCamadaControle
         this.itensAdicionados.getItems().clear();
         this.desconto.setText("");
         this.valorPago.setText("");
+        this.cliente = null;
+        this.resultadoBusca.setText("Nome: ");
+        this.debitosCliente.setText("D√©bitos: ");
     }
 
     public void update(){
@@ -115,18 +158,15 @@ public class NovaVendaController extends Controller implements UsaCamadaControle
     @FXML
     private void buscarCliente(ActionEvent event){
         if(this.cpfCliente.getText().length() > 0){
-            this.cliente = this.controle.buscarCliente(this.cpfCliente.getText());
+            this.cliente = this.controle.getGestaoCliente().buscarCliente(this.cpfCliente.getText());
 
             if(this.cliente == null){
-                WindowLoader.showMessage("Cliente n„o cadastrado", "O cliente n„o est· cadastrado.\nPor favor cadastre-o.");
-                WindowController janela = WindowLoader.loadWindow("/Visao/Novo/NovoCliente.fxml");
-                ((UsaCamadaControle)janela.getInternalController()).setControle(this.controle);
-                janela.getInternalController().setMyStage(janela);
-                janela.showAndWait();
-                this.cliente = this.controle.obterTodosCliente().get(this.controle.obterTodosCliente().size() - 1);
+                WindowLoader.showMessage("N√£o cadastrado", "O cliente n√£o est√° cadastrado na nossa base de dados.\nCadastre-o.");
             }
-            this.resultadoBusca.setText("Nome: " + this.cliente.getNome());
-            this.debitosCliente.setText("DÈbito: " + this.cliente.getDebito());
+            else {
+                this.resultadoBusca.setText("Nome: " + this.cliente.getNome());
+                this.debitosCliente.setText("D√©bitos: " + this.cliente.getDebito());
+            }
         }
     }
 

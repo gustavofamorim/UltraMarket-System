@@ -11,6 +11,10 @@ import java.util.ArrayList;
  */
 public class BankSimulator {
 
+    private static Integer lastIdVendas = 0;
+    private static Integer lastIdProduto = 0;
+    private static Integer lastIdCliente = 0;
+
     ArrayList<Produto> produtos = new ArrayList<>();
     ArrayList<Venda> vendas = new ArrayList<>();
     ArrayList<Cliente> clientes = new ArrayList<>();
@@ -20,11 +24,14 @@ public class BankSimulator {
     }
 
     public void insertIntoCliente(Cliente c){
+
         this.clientes.add(c);
         System.out.println(c);
     }
 
     public void insertIntoVendas(Venda p){
+        p.setCod(this.lastIdVendas);
+        this.lastIdVendas++;
         this.vendas.add(p);
     }
 

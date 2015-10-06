@@ -2,6 +2,7 @@ package Visao.Visualizar;
 
 import Modelo.Venda.Venda;
 import Tools.Visual.Controller;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 
@@ -18,6 +19,11 @@ public class DetalheVendaController extends Controller {
 
     public void setDados(Venda venda){
         this.detalhesVenda.setText(venda.toString());
+    }
+
+    @FXML
+    public void fechar(ActionEvent event){
+        this.getMyStage().close();
     }
 
     @Override

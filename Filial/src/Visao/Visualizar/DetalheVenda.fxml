@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:controller="Visao.Visualizar.DetalheVendaController" minHeight="400.0" minWidth="300.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minHeight="400.0" minWidth="300.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Visao.Visualizar.DetalheVendaController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -22,6 +22,6 @@
             </TextArea>
          </children>
       </VBox>
-      <Button mnemonicParsing="false" style="-fx-color: red;" text="Fechar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Button mnemonicParsing="false" onAction="#fechar" style="-fx-color: red;" text="Fechar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
    </children>
 </AnchorPane>

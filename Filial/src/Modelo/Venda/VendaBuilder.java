@@ -45,12 +45,8 @@ public class VendaBuilder implements Builder<Venda> {
         if(this.venda.getItens().isEmpty()){
             return (false);
         }
-
-        if(valor >= venda.getTotalComDesconto()) {
-            this.venda.pagar(valor);
-            return (true);
-        }
-        return (false);
+        this.venda.pagar(valor);
+        return (true);
     }
 
     public void cliente(Cliente c){
@@ -59,7 +55,7 @@ public class VendaBuilder implements Builder<Venda> {
 
     public Venda getInstance(){
 
-        if(!this.venda.getItens().isEmpty() && this.venda.getValorPago() != -1.0) {
+        if(!this.venda.getItens().isEmpty()) {
             LocalDateTime dataEHora = LocalDateTime.now();
 
             DateTimeFormatter formatador = DateTimeFormatter

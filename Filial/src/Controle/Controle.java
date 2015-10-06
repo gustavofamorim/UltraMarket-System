@@ -10,6 +10,7 @@ import Modelo.Venda.VendaBuilder;
 import Remote.FilialRemote;
 import Remote.FilialRemoteImpl;
 import Tools.Visual.WindowLoader;
+import javafx.application.Platform;
 
 import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
@@ -23,10 +24,10 @@ import java.util.Collection;
 public class Controle {
 
     Filial filial = null;
-    private final BankSimulator banco = new BankSimulator();
-    private final RMIClientManager rmiClientManager = RMIClientManager.getInstance();
-    private final RMIServerManager rmiServerManager = RMIServerManager.getInstance();
-
+    protected final BankSimulator banco = new BankSimulator();
+    protected final RMIClientManager rmiClientManager = RMIClientManager.getInstance();
+    protected final RMIServerManager rmiServerManager = RMIServerManager.getInstance();
+    protected final GestaoCliente gestaoCliente = new GestaoCliente(this);
 
     public Controle(String nome, String hostName, Integer porta) throws RemoteException, NotBoundException, MalformedURLException {
         this.filial = new Filial(nome, hostName, porta, FilialRemote.OBJECT_NAME);
@@ -44,39 +45,12 @@ public class Controle {
         this.rmiServerManager.finalizar();
     }
 
-    public Cliente buscarCliente(String cpf) {
-        Cliente result = this.banco.selectFromClienteWhereCpfEquals(cpf);
-
-        if(result == null){
-            try {
-                result = this.rmiClientManager.getMatrizRemote().buscarCliente(cpf);
-            } catch (Exception e) {
-                WindowLoader.showException("Erro", "Erro ao se comunicar com o servidor.", e);
-            }
-        }
-
-        return (result);
-    }
-
-    public Cliente buscarClienteRemote(String cpf) {
-        return (this.banco.selectFromClienteWhereCpfEquals(cpf));
-    }
-
-
     public void salvarProduto(String nome, Double valor){
         banco.insertIntoProduto(new Produto(nome, valor));
     }
 
-    public void salvarCliente(String nome, String CPF){
-        banco.insertIntoCliente(new Cliente(nome, CPF));
-    }
-
     public ArrayList<Produto> obterTodosProduto(){
         return (banco.selectAllFromProduto());
-    }
-
-    public ArrayList<Cliente> obterTodosCliente(){
-        return (banco.selectAllFromCliente());
     }
 
     public ArrayList<Venda> obterTodosVenda(){
@@ -86,13 +60,15 @@ public class Controle {
     public void novaVenda(Collection<ItemVenda> itens, Double pagamento, Double desconto, Cliente cliente){
 
         desconto /= 100;
-
         VendaBuilder builder = new VendaBuilder();
         builder.addItens(itens);
         builder.darDesconto(desconto);
         builder.pagar(pagamento);
         builder.cliente(cliente);
-
         banco.insertIntoVendas(builder.getInstance());
+    }
+
+    public GestaoCliente getGestaoCliente() {
+        return gestaoCliente;
     }
 }

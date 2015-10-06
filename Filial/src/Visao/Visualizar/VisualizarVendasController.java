@@ -53,6 +53,7 @@ public class VisualizarVendasController extends Controller implements UsaCamadaC
         WindowController detalhes = WindowLoader.loadWindow("/Visao/Visualizar/DetalheVenda.fxml");
         ((DetalheVendaController)detalhes.getInternalController()).setDados(this.dados.getSelectionModel().getSelectedItem());
         detalhes.setResizable(false);
+        detalhes.getInternalController().setMyStage(detalhes);
         detalhes.showAndWait();
     }
 

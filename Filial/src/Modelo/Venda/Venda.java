@@ -49,7 +49,7 @@ public class Venda {
             this.totalComDesconto = this.total * (1.0 - porcentagem);
         }
         else{
-            throw new IllegalArgumentException("Porcentagem além do permitido.");
+            throw new IllegalArgumentException("Porcentagem alï¿½m do permitido.");
         }
     }
 
@@ -96,6 +96,10 @@ public class Venda {
 
     public int getCod() {
         return cod;
+    }
+
+    public void setCod(int cod) {
+        this.cod = cod;
     }
 
     @Override

@@ -7,6 +7,7 @@ import Visao.MatrizController;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 /**
  * Created by Gustavo Freitas on 03/10/2015.
@@ -35,10 +36,12 @@ public class MatrizRemoteImpl extends UnicastRemoteObject implements MatrizRemot
     public Cliente buscarCliente(Integer idFilial, String cpf) throws RemoteException {
         Cliente cliente;
         for (Filial filial : MatrizController.filiais) {
-            FilialRemote filialRemote = (FilialRemote) RMIManager.getInstance().lookup(filial.getHostName(), filial.getServerPort(), filial.getObjectName());
-            cliente = filialRemote.existeCliente(cpf);
-            if (cliente != null) {
-                return cliente;
+            if(!filial.getId().equals(idFilial)) {
+                FilialRemote filialRemote = (FilialRemote) RMIManager.getInstance().lookup(filial.getHostName(), filial.getServerPort(), filial.getObjectName());
+                cliente = filialRemote.existeCliente(cpf);
+                if (cliente != null) {
+                    return cliente;
+                }
             }
         }
         return null;

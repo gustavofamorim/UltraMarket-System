@@ -7,6 +7,7 @@ import Tools.Visual.WindowLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
@@ -26,6 +27,9 @@ public class NovoClienteController extends Controller implements Initializable, 
     private TextField CPF;
 
     @FXML
+    public Button cancelarButton;
+
+    @FXML
     private void cadastrar(ActionEvent event){
         if(this.controle == null){
             throw new NullPointerException("O controlador não foi setado.");
@@ -34,7 +38,7 @@ public class NovoClienteController extends Controller implements Initializable, 
             if (this.nome.getText().length() == 0 && this.CPF.getText().length() == 0) {
                 WindowLoader.showError("Preencha todos os campos.", "É necessário que todos os campos estejam preenchidos.", "");
             } else {
-                this.controle.salvarCliente(this.nome.getText(), this.CPF.getText());
+                this.controle.getGestaoCliente().salvarCliente(this.nome.getText(), this.CPF.getText());
                 this.limpar();
                 if(this.getMyStage() != null){
                     this.getMyStage().close();

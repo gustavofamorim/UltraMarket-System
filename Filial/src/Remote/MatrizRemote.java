@@ -19,6 +19,5 @@ public interface MatrizRemote extends Remote{
 
     public boolean requisitarLogOff(Filial filial) throws RemoteException;
 
-    public Cliente buscarCliente(String cpf) throws RemoteException;
-
+    public Cliente buscarCliente(Integer idFilial, String cpf) throws RemoteException;
 }

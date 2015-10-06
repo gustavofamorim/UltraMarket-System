@@ -46,7 +46,7 @@ public class RMIManager {
             Naming.rebind(objectName, matriz);
             return true;
         } catch (Exception e){
-            WindowLoader.showException("Erro ao iniciar servidor Matriz.", "Erro na inicializa��o do servidor Matriz.", e);
+            WindowLoader.showException("Erro ao iniciar servidor Matriz.", "Erro na inicialização do servidor Matriz.", e);
             return false;
         }
     }
@@ -67,7 +67,7 @@ public class RMIManager {
             //Object object = Naming.lookup("rmi://" + hostName + "/" + objeto);
             return Naming.lookup("rmi://"+hostname+":"+porta+"/"+objectName);
         } catch (Exception e){
-            WindowLoader.showException("Erro ao iniciar servidor Matriz.", "Erro na inicializa��o do servidor Matriz.", e);
+            WindowLoader.showException("Erro ao iniciar servidor Matriz.", "Erro na inicialização do servidor Matriz.", e);
             return null;
         }
     }
