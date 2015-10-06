@@ -30,7 +30,7 @@ public class Controle {
     protected final GestaoCliente gestaoCliente = new GestaoCliente(this);
 
     public Controle(String nome, String hostName, Integer porta) throws RemoteException, NotBoundException, MalformedURLException {
-        this.filial = new Filial(nome, hostName, porta, FilialRemote.OBJECT_NAME);
+        this.filial = new Filial(nome, hostName, porta, nome);
         this.iniciarConexao();
     }
 
@@ -42,7 +42,7 @@ public class Controle {
 
     public void fecharConexao(){
         this.rmiClientManager.desconectar();
-        this.rmiServerManager.finalizar();
+        this.rmiServerManager.finalizar(this.filial.getObjectName());
     }
 
     public void salvarProduto(String nome, Double valor){

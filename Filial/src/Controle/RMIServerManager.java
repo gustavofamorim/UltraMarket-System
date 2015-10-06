@@ -37,24 +37,23 @@ public class RMIServerManager {
                 System.out.println("Registro já foi criado, tentar conectar.");
                 registry = getRegistry(filialRemote.getFilialInfo().getServerPort());
             } catch (RemoteException e) {
-                WindowLoader.showMessage("Erro ao iniciar servidor Matriz.", "Falha ao inicar servidor RMI.");
+                WindowLoader.showMessage("Erro ao iniciar servidor.", "Falha ao inicar servidor RMI.");
                 e.printStackTrace();
                 ex.printStackTrace();
             }
         }
         try {
-            Naming.rebind(FilialRemote.OBJECT_NAME, filialRemote);
+            Naming.rebind(filialRemote.getFilialInfo().getObjectName(), filialRemote);
             return true;
         } catch (Exception e){
-            WindowLoader.showException("Erro ao iniciar servidor Filial.", "Erro na inicialização do servidor.", e);
-            e.printStackTrace();
+            WindowLoader.showException("Erro ao iniciar servidor Filial.", "Erro na inicialização do servidor filial.", e);
             return false;
         }
     }
 
-    public boolean finalizar() {
+    public boolean finalizar(String filialRemote) {
         try {
-            registry.unbind(FilialRemote.OBJECT_NAME);
+            registry.unbind(filialRemote);
             return true;
         } catch (RemoteException | NotBoundException e) {
             e.printStackTrace();

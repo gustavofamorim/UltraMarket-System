@@ -1,9 +1,11 @@
 package Modelo;
 
+import java.io.Serializable;
+
 /**
  * Created by Gustavo Freitas on 02/10/2015.
  */
-public class Cliente {
+public class Cliente implements Serializable{
 
     private String nome;
     private String CPF;

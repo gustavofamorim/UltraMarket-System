@@ -55,7 +55,7 @@ public class FilialMakerMainWindow extends Controller implements Initializable {
         if(this.nome.getText().length() > 0 && porta != null && this.local.getText().length() > 0){
             //Inicia a filial
             try {
-                Process processo = Runtime.getRuntime().exec("java -jar " + this.local.getText() + " " + nome.getText() + " localhost " + porta);
+                Process processo = Runtime.getRuntime().exec("java -jar " + this.local.getText() + " " + nome.getText() + " localhost " + "1099");
                 BufferedReader processOutput = new BufferedReader(new InputStreamReader(processo.getInputStream()));
 
                 Thread printResult = new Thread(() -> {

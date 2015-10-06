@@ -79,7 +79,7 @@
                <content>
                   <VBox spacing="2.0" styleClass="fundo-verde">
                      <children>
-                        <Button fx:id="visualizar_venda" minWidth="200.0" mnemonicParsing="false" onAction="#opcaoPainel" text="Venda">
+                        <Button fx:id="visualizar_vendas" minWidth="200.0" mnemonicParsing="false" onAction="#opcaoPainel" text="Venda">
                            <styleClass>
                               <String fx:value="texto-tipo-negrito" />
                               <String fx:value="botao" />

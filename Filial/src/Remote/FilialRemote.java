@@ -11,8 +11,6 @@ import java.util.Collection;
  */
 public interface FilialRemote extends Remote {
 
-    public static String OBJECT_NAME = "filial";
-
     public Cliente existeCliente(String cpf) throws RemoteException;
     public Collection<Cliente> listarTodosOsClientes() throws RemoteException;
 

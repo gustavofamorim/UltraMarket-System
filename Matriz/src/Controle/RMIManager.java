@@ -63,11 +63,11 @@ public class RMIManager {
 
     public Object lookup(String hostname, int porta, String objectName) {
         try {
-            MatrizRemote matriz = new MatrizRemoteImpl();
-            //Object object = Naming.lookup("rmi://" + hostName + "/" + objeto);
-            return Naming.lookup("rmi://"+hostname+":"+porta+"/"+objectName);
+            Registry reg = getRegistry(porta);
+            //return reg.lookup("rmi://"+hostname+"/"+objectName);
+            return reg.lookup(objectName);
         } catch (Exception e){
-            WindowLoader.showException("Erro ao iniciar servidor Matriz.", "Erro na inicialização do servidor Matriz.", e);
+            System.out.println("Erro ao se conectar com o servidor: " + e.getMessage());
             return null;
         }
     }

@@ -1,6 +1,7 @@
 package Visao.Visualizar;
 
 import Controle.Controle;
+import Modelo.Cliente;
 import Modelo.Venda.Venda;
 import Tools.Visual.Controller;
 import Tools.Visual.UsaCamadaControle;
@@ -26,35 +27,22 @@ public class VisualizarVendasController extends Controller implements UsaCamadaC
     private Controle controle;
 
     @FXML
-    private TableView<Venda> dados;
+    private TableView<Cliente> dados;
 
     @FXML
-    private TableColumn colId;
+    private TableColumn colNome;
 
     @FXML
-    private TableColumn colTotal;
+    private TableColumn colDebito;
 
     @FXML
-    private TableColumn colData;
-
-
-    @FXML
-    private Button detalhes;
+    private TableColumn colCPF;
 
     private void update(){
-        this.colId.setCellValueFactory(new PropertyValueFactory<>("cod"));
-        this.colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
-        this.colData.setCellValueFactory(new PropertyValueFactory<>("dataEHora"));
-        this.dados.getItems().addAll(this.controle.obterTodosVenda());
-    }
-
-    @FXML
-    private void verDetalhes(ActionEvent event){
-        WindowController detalhes = WindowLoader.loadWindow("/Visao/Visualizar/DetalheVenda.fxml");
-        ((DetalheVendaController)detalhes.getInternalController()).setDados(this.dados.getSelectionModel().getSelectedItem());
-        detalhes.setResizable(false);
-        detalhes.getInternalController().setMyStage(detalhes);
-        detalhes.showAndWait();
+        this.colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        this.colDebito.setCellValueFactory(new PropertyValueFactory<>("debito"));
+        this.colCPF.setCellValueFactory(new PropertyValueFactory<>("CPF"));
+        this.dados.getItems().addAll(this.controle.getGestaoCliente().obterTodosCliente());
     }
 
     @Override

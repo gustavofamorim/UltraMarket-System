@@ -4,6 +4,7 @@ import Controle.RMIManager;
 import Modelo.Cliente;
 import Modelo.Filial;
 import Visao.MatrizController;
+import javafx.application.Platform;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -20,7 +21,11 @@ public class MatrizRemoteImpl extends UnicastRemoteObject implements MatrizRemot
 
     @Override
     public int requisitarLogon(Filial filial) throws RemoteException {
-        MatrizController.filiais.add(filial);
+        //Adiciona a ação na thread FX para evitar erros dentro da thread principal.
+        Platform.runLater(()->{
+            MatrizController.filiais.add(filial);
+        });
+
         filial.setId(this.lastId);
         this.lastId++;
         System.out.println("Filial se conectou: " + filial.getNome());

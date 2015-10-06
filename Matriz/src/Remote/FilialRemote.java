@@ -12,10 +12,9 @@ import java.util.Collection;
 public interface FilialRemote extends Remote {
 
     public Cliente existeCliente(String cpf) throws RemoteException;
-    public Cliente getCliente(String cpf) throws RemoteException;
-    public Cliente getCliente(Integer id) throws RemoteException;
     public Collection<Cliente> listarTodosOsClientes() throws RemoteException;
 
     public Integer getId() throws RemoteException;
     public String getNome() throws RemoteException;
+
 }
