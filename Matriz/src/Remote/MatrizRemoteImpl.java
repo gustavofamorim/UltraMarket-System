@@ -1,5 +1,7 @@
 package Remote;
 
+import Controle.RMIManager;
+import Modelo.Cliente;
 import Modelo.Filial;
 import Visao.MatrizController;
 
@@ -27,5 +29,18 @@ public class MatrizRemoteImpl extends UnicastRemoteObject implements MatrizRemot
     @Override
     public boolean requisitarLogOff(Filial filial) throws RemoteException {
         return MatrizController.filiais.remove(filial);
+    }
+
+    @Override
+    public Cliente buscarCliente(Integer idFilial, String cpf) throws RemoteException {
+        Cliente cliente;
+        for (Filial filial : MatrizController.filiais) {
+            FilialRemote filialRemote = (FilialRemote) RMIManager.getInstance().lookup(filial.getHostName(), filial.getServerPort(), filial.getObjectName());
+            cliente = filialRemote.existeCliente(cpf);
+            if (cliente != null) {
+                return cliente;
+            }
+        }
+        return null;
     }
 }
