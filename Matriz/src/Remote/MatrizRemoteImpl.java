@@ -26,10 +26,6 @@ public class MatrizRemoteImpl extends UnicastRemoteObject implements MatrizRemot
 
     @Override
     public boolean requisitarLogOff(Filial filial) throws RemoteException {
-//        if(filiaisOnline.containsKey(filial.getId())){
-//            filiaisOnline.remove(filial.getId());
-//            return (true);
-//        }
-        return false;
+        return MatrizController.filiais.remove(filial);
     }
 }
