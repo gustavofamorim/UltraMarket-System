@@ -61,7 +61,7 @@ public class NovaVendaController extends Controller implements UsaCamadaControle
         if(this.controle.getGestaoCliente().obterTodosCliente().size() > 0){
             this.cliente = this.controle.getGestaoCliente().obterTodosCliente().get(this.controle.getGestaoCliente().obterTodosCliente().size() - 1);
             this.resultadoBusca.setText("Nome: " + this.cliente.getNome());
-            this.debitosCliente.setText("Débito: " + this.cliente.getDebito());
+            this.debitosCliente.setText("Débito: " + this.cliente.getSaldo());
         }
     }
 
@@ -105,7 +105,7 @@ public class NovaVendaController extends Controller implements UsaCamadaControle
             }
             else {
 
-                if(this.cliente.getDebito() > 0){
+                if(this.cliente.getSaldo() > 0){
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                     alert.setTitle("O cliente possui débito");
                     alert.setHeaderText("O cliente deve pagar o débito.");
@@ -131,7 +131,7 @@ public class NovaVendaController extends Controller implements UsaCamadaControle
         try {
             Double desconto = Double.parseDouble(this.desconto.getText().replace(",", "."));
             Double valorPago = Double.parseDouble(this.valorPago.getText().replace(",", "."));
-            this.controle.novaVenda(this.itensAdicionados.getItems(), valorPago, desconto, this.cliente);
+            this.controle.getGestaoVenda().novaVenda(this.itensAdicionados.getItems(), valorPago, desconto, this.cliente);
         } catch (NumberFormatException e) {
             WindowLoader.showError("Entrada Incorreta", "Desconto e Valor Pago devem ser números.", "");
         }
@@ -152,7 +152,7 @@ public class NovaVendaController extends Controller implements UsaCamadaControle
     }
 
     public void update(){
-        this.itens.getItems().addAll(this.controle.obterTodosProduto());
+        this.itens.getItems().addAll(this.controle.getGestaoProduto().obterTodosProduto());
     }
 
     @FXML
@@ -165,7 +165,7 @@ public class NovaVendaController extends Controller implements UsaCamadaControle
             }
             else {
                 this.resultadoBusca.setText("Nome: " + this.cliente.getNome());
-                this.debitosCliente.setText("Débitos: " + this.cliente.getDebito());
+                this.debitosCliente.setText("Débitos: " + this.cliente.getSaldo());
             }
         }
     }

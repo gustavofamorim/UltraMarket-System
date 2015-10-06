@@ -56,7 +56,7 @@ public class RMIServerManager {
             registry.unbind(filialRemote);
             return true;
         } catch (RemoteException | NotBoundException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             return false;
         }
     }

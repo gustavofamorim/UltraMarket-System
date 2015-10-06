@@ -13,6 +13,7 @@
             <TableColumn fx:id="colData" maxWidth="195.0" minWidth="195.0" prefWidth="195.0" text="Data e Hora" />
         </columns>
       </TableView>
-      <Button fx:id="detalhes" minWidth="100.0" mnemonicParsing="false" onAction="#verDetalhes" style="-fx-color: green;" text="Detalhes" AnchorPane.leftAnchor="390.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <Button minWidth="100.0" mnemonicParsing="false" onAction="#cancelarVenda" style="-fx-color: yellow;" text="Cancelar" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="10.0" />
+      <Button fx:id="detalhes" minWidth="100.0" mnemonicParsing="false" onAction="#verDetalhes" style="-fx-color: green;" text="Detalhes" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
    </children>
 </AnchorPane>

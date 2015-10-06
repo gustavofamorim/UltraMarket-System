@@ -4,15 +4,16 @@ import Modelo.Cliente;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  * Created by Gustavo Freitas on 02/10/2015.
  */
 public class Venda {
 
-    private int cod;
+    public static enum STATUS_VENDA{CONFIRMADA, CANCELADA};
 
+    private int cod;
+    private STATUS_VENDA status;
     private Double total = 0.0;
     private Double totalComDesconto = -1.0;
 
@@ -50,7 +51,7 @@ public class Venda {
             this.totalComDesconto = this.total * (1.0 - porcentagem);
         }
         else{
-            throw new IllegalArgumentException("Porcentagem além do permitido.");
+            throw new IllegalArgumentException("Porcentagem alï¿½m do permitido.");
         }
     }
 
@@ -95,9 +96,25 @@ public class Venda {
         this.cliente = cliente;
     }
 
+    public int getCod() {
+        return cod;
+    }
+
+    public void setCod(int cod) {
+        this.cod = cod;
+    }
+
+    public STATUS_VENDA getStatus() {
+        return status;
+    }
+
+    public void setStatus(STATUS_VENDA status) {
+        this.status = status;
+    }
+
     @Override
     public String toString(){
-        String str = "Venda: " + this.cod + "\n";
+        String str = "ID da Venda: " + this.cod + "\n";
 
         str += "---------------------------------------\n";
         str += "| Produto        QTD     Total        |\n";
@@ -108,6 +125,7 @@ public class Venda {
 
         str += "---------------------------------------\n";
         str += "\n";
+        str += "Status:             " + this.status.name() + "\n";
         str += "Total:              " + this.total + "\n";
         str += "Total Com Desconto: " + this.totalComDesconto + "\n";
         str += "Pago:               " + this.valorPago + "\n";

@@ -42,17 +42,18 @@ public class FilialMakerMainWindow extends Controller implements Initializable {
     @FXML
     public void criar(ActionEvent event){
 
-        Integer porta = null;
+        //Integer porta = null;
 
-        try {
-            porta = Integer.parseInt(this.porta.getText());
-        }
-        catch (NumberFormatException e){
-            WindowLoader.showError("Dados Inválidos", "A porta é inválida.");
-            porta = null;
-        }
+        //try {
+        //    porta = Integer.parseInt(this.porta.getText());
+        //}
+        //catch (NumberFormatException e){
+        //    WindowLoader.showError("Dados Inválidos", "A porta é inválida.");
+        //    porta = null;
+        //}
 
-        if(this.nome.getText().length() > 0 && porta != null && this.local.getText().length() > 0){
+        //if(this.nome.getText().length() > 0 && porta != null && this.local.getText().length() > 0){
+        if(this.nome.getText().length() > 0 && this.local.getText().length() > 0){
             //Inicia a filial
             try {
                 Process processo = Runtime.getRuntime().exec("java -jar " + this.local.getText() + " " + nome.getText() + " localhost " + "1099");
@@ -97,12 +98,13 @@ public class FilialMakerMainWindow extends Controller implements Initializable {
     public void limpar(){
         this.porta.setText("");
         this.nome.setText("");
-        //this.local.setText("");
+        this.local.setText("");
         //this.local.setDisable(true);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.local.setDisable(true);
+        this.porta.setDisable(true);
     }
 }

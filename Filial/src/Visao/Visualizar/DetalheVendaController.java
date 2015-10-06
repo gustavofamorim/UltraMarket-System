@@ -28,6 +28,6 @@ public class DetalheVendaController extends Controller {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        this.detalhesVenda.setStyle("-fx-font-family: Monospaced");
     }
 }

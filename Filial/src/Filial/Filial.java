@@ -50,6 +50,7 @@ public class Filial extends Application {
             janela.setResizable(false);
             janela.setOnCloseRequest(event -> {
                 controle.fecharConexao();
+                die();
             });
             janela.show();
         }catch (Exception e){

@@ -68,5 +68,6 @@ public class MatrizController extends Controller implements UsaCamadaControle<Co
         rmiManager.unbind(MatrizRemote.OBJECT_NAME);
         status.setText("Não iniciado");
         status.setTextFill(Color.RED);
+        MatrizController.filiais.clear();
     }
 }

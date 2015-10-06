@@ -10,8 +10,10 @@ import java.util.ArrayList;
  */
 public class Venda {
 
-    private int cod;
+    public static enum STATUS_VENDA{CONFIRMADA, CANCELADA};
 
+    private int cod;
+    private STATUS_VENDA status;
     private Double total = 0.0;
     private Double totalComDesconto = -1.0;
 
@@ -102,9 +104,17 @@ public class Venda {
         this.cod = cod;
     }
 
+    public STATUS_VENDA getStatus() {
+        return status;
+    }
+
+    public void setStatus(STATUS_VENDA status) {
+        this.status = status;
+    }
+
     @Override
     public String toString(){
-        String str = "Venda: " + this.cod + "\n";
+        String str = "ID da Venda: " + this.cod + "\n";
 
         str += "---------------------------------------\n";
         str += "| Produto        QTD     Total        |\n";
@@ -115,6 +125,7 @@ public class Venda {
 
         str += "---------------------------------------\n";
         str += "\n";
+        str += "Status:             " + this.status.name() + "\n";
         str += "Total:              " + this.total + "\n";
         str += "Total Com Desconto: " + this.totalComDesconto + "\n";
         str += "Pago:               " + this.valorPago + "\n";

@@ -45,9 +45,9 @@ public class FilialMainWindowController extends Controller implements Initializa
             case "visualizar_vendas":
                 controlador = PaneLoader.load("/Visao/Visualizar/VisualizarVendas.fxml");
                 break;
-            //case "visualizar_produtos":
-            //    controlador = PaneLoader.load("/Visao/Visualizar/VisualizarClientes.fxml");
-            //    break;
+            case "visualizar_produtos":
+                controlador = PaneLoader.load("/Visao/Visualizar/VisualizarProdutos.fxml");
+                break;
             case "visualizar_clientes":
                 controlador = PaneLoader.load("/Visao/Visualizar/VisualizarClientes.fxml");
                 break;

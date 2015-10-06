@@ -41,6 +41,12 @@ public class RMIClientManager {
     }
 
     public boolean desconectar() {
+        try {
+            this.getMatrizRemote().requisitarLogOff(Controle.filial.getId());
+        }
+        catch (RemoteException | NotBoundException | MalformedURLException e) {
+            //e.printStackTrace();
+        }
         RMIClientManager.matriz = null;
         return (true);
     }

@@ -31,7 +31,7 @@ public class NovoProdutoController extends Controller implements UsaCamadaContro
         Double valor = null;
 
         if(this.controle == null){
-            throw new NullPointerException("O controlador n„o foi setado.");
+            throw new NullPointerException("O controlador n√£o foi setado.");
         }
         else {
 
@@ -39,14 +39,14 @@ public class NovoProdutoController extends Controller implements UsaCamadaContro
                 valor = Double.parseDouble(this.valor.getText().replace(",", "."));
             }
             catch(NumberFormatException e){
-                WindowLoader.showMessage("Entrada Inv·lida", "Valor È um campo numÈrico.");
+                WindowLoader.showMessage("Entrada Inv√°lida", "Valor √© um campo num√©rico.");
                 valor = null;
             }
 
             if (this.nome.getText().length() == 0 && this.valor.getText().length() == 0 && valor > 0) {
-                WindowLoader.showError("Preencha todos os campos.", "… necess·rio que todos os campos estejam preenchidos corretamente.");
+                WindowLoader.showError("Preencha todos os campos.", "√â necess√°rio que todos os campos estejam preenchidos corretamente.");
             } else {
-                this.controle.salvarProduto(this.nome.getText(), valor);
+                this.controle.getGestaoProduto().salvarProduto(this.nome.getText(), valor);
                 this.limpar();
             }
         }

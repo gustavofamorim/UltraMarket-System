@@ -33,8 +33,16 @@ public class MatrizRemoteImpl extends UnicastRemoteObject implements MatrizRemot
     }
 
     @Override
-    public boolean requisitarLogOff(Filial filial) throws RemoteException {
-        return MatrizController.filiais.remove(filial);
+    public boolean requisitarLogOff(Integer idFilial) throws RemoteException {
+        for(Filial filial : MatrizController.filiais){
+            if(filial.getId().equals(idFilial)){
+                Platform.runLater(()-> {
+                    MatrizController.filiais.remove(filial);
+                });
+                return (true);
+            }
+        }
+        return (false);
     }
 
     @Override
@@ -43,9 +51,11 @@ public class MatrizRemoteImpl extends UnicastRemoteObject implements MatrizRemot
         for (Filial filial : MatrizController.filiais) {
             if(!filial.getId().equals(idFilial)) {
                 FilialRemote filialRemote = (FilialRemote) RMIManager.getInstance().lookup(filial.getHostName(), filial.getServerPort(), filial.getObjectName());
-                cliente = filialRemote.existeCliente(cpf);
-                if (cliente != null) {
-                    return cliente;
+                if(filialRemote != null) {
+                    cliente = filialRemote.existeCliente(cpf);
+                    if (cliente != null) {
+                        return cliente;
+                    }
                 }
             }
         }

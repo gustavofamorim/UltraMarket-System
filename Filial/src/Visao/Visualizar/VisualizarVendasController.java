@@ -27,22 +27,37 @@ public class VisualizarVendasController extends Controller implements UsaCamadaC
     private Controle controle;
 
     @FXML
-    private TableView<Cliente> dados;
+    private TableView<Venda> dados;
 
     @FXML
-    private TableColumn colNome;
+    private TableColumn colId;
 
     @FXML
-    private TableColumn colDebito;
+    private TableColumn colTotal;
 
     @FXML
-    private TableColumn colCPF;
+    private TableColumn colData;
 
     private void update(){
-        this.colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        this.colDebito.setCellValueFactory(new PropertyValueFactory<>("debito"));
-        this.colCPF.setCellValueFactory(new PropertyValueFactory<>("CPF"));
-        this.dados.getItems().addAll(this.controle.getGestaoCliente().obterTodosCliente());
+        this.colId.setCellValueFactory(new PropertyValueFactory<>("cod"));
+        this.colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
+        this.colData.setCellValueFactory(new PropertyValueFactory<>("dataEHora"));
+        this.dados.getItems().addAll(this.controle.getGestaoVenda().obterTodosVenda());
+    }
+
+    @FXML
+    private void verDetalhes(ActionEvent event){
+        WindowController detalhes = WindowLoader.loadWindow("/Visao/Visualizar/DetalheVenda.fxml");
+        ((DetalheVendaController)detalhes.getInternalController()).setDados(this.dados.getSelectionModel().getSelectedItem());
+        detalhes.setResizable(false);
+        detalhes.getInternalController().setMyStage(detalhes);
+        detalhes.showAndWait();
+    }
+
+    @FXML
+    private void cancelarVenda(ActionEvent event){
+        this.controle.getGestaoVenda().cancelarVenda(this.dados.getSelectionModel().getSelectedItem());
+        WindowLoader.showMessage("Venda cancelada", "A venda foi cancelada.\nO cliente foi ressarcido com o valor pago.");
     }
 
     @Override

@@ -32,16 +32,21 @@ public class NovoClienteController extends Controller implements Initializable, 
     @FXML
     private void cadastrar(ActionEvent event){
         if(this.controle == null){
-            throw new NullPointerException("O controlador n�o foi setado.");
+            throw new NullPointerException("O controlador não foi setado.");
         }
         else {
             if (this.nome.getText().length() == 0 && this.CPF.getText().length() == 0) {
-                WindowLoader.showError("Preencha todos os campos.", "� necess�rio que todos os campos estejam preenchidos.", "");
-            } else {
-                this.controle.getGestaoCliente().salvarCliente(this.nome.getText(), this.CPF.getText());
-                this.limpar();
-                if(this.getMyStage() != null){
-                    this.getMyStage().close();
+                WindowLoader.showError("Preencha todos os campos.", "É necessário que todos os campos estejam preenchidos.", "");
+            }
+            else {
+                if(this.controle.getGestaoCliente().salvarCliente(this.nome.getText(), this.CPF.getText())) {
+                    this.limpar();
+                    if (this.getMyStage() != null) {
+                        this.getMyStage().close();
+                    }
+                }
+                else{
+                    WindowLoader.showMessage("Cliente já cadastrado.", "Esse cliente já está cadastrado na base de dados.");
                 }
             }
         }

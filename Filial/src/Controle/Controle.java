@@ -23,11 +23,14 @@ import java.util.Collection;
  */
 public class Controle {
 
-    Filial filial = null;
+    public static Filial filial = null;
     protected final BankSimulator banco = new BankSimulator();
     protected final RMIClientManager rmiClientManager = RMIClientManager.getInstance();
     protected final RMIServerManager rmiServerManager = RMIServerManager.getInstance();
+
     protected final GestaoCliente gestaoCliente = new GestaoCliente(this);
+    protected final GestaoVenda gestaoVenda = new GestaoVenda(this);
+    protected final GestaoProduto gestaoProduto = new GestaoProduto(this);
 
     public Controle(String nome, String hostName, Integer porta) throws RemoteException, NotBoundException, MalformedURLException {
         this.filial = new Filial(nome, hostName, porta, nome);
@@ -45,30 +48,15 @@ public class Controle {
         this.rmiServerManager.finalizar(this.filial.getObjectName());
     }
 
-    public void salvarProduto(String nome, Double valor){
-        banco.insertIntoProduto(new Produto(nome, valor));
-    }
-
-    public ArrayList<Produto> obterTodosProduto(){
-        return (banco.selectAllFromProduto());
-    }
-
-    public ArrayList<Venda> obterTodosVenda(){
-        return (banco.selectAllFromVenda());
-    }
-
-    public void novaVenda(Collection<ItemVenda> itens, Double pagamento, Double desconto, Cliente cliente){
-
-        desconto /= 100;
-        VendaBuilder builder = new VendaBuilder();
-        builder.addItens(itens);
-        builder.darDesconto(desconto);
-        builder.pagar(pagamento);
-        builder.cliente(cliente);
-        banco.insertIntoVendas(builder.getInstance());
-    }
-
     public GestaoCliente getGestaoCliente() {
         return gestaoCliente;
+    }
+
+    public GestaoProduto getGestaoProduto() {
+        return gestaoProduto;
+    }
+
+    public GestaoVenda getGestaoVenda() {
+        return gestaoVenda;
     }
 }

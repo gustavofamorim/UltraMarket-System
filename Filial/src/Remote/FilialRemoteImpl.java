@@ -3,6 +3,8 @@ package Remote;
 import Controle.Controle;
 import Modelo.Cliente;
 import Modelo.Filial;
+import Modelo.Produto;
+import Modelo.Venda.Venda;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -28,7 +30,17 @@ public class FilialRemoteImpl extends UnicastRemoteObject implements FilialRemot
 
     @Override
     public Collection<Cliente> listarTodosOsClientes() throws RemoteException{
-        return null;
+        return (this.controle.getGestaoCliente().obterTodosCliente());
+    }
+
+    @Override
+    public Collection<Venda> listarTodasAsVendas() throws RemoteException {
+        return (this.controle.getGestaoVenda().obterTodosVenda());
+    }
+
+    @Override
+    public Collection<Produto> listarTodasOsProdutos() throws RemoteException {
+        return (this.controle.getGestaoProduto().obterTodosProduto());
     }
 
     @Override
