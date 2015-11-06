@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 import java.rmi.RemoteException;
+import javafx.application.Platform;
 
 public class Filial extends Application {
 
@@ -24,7 +25,7 @@ public class Filial extends Application {
 
         if(args.length < 3){
             showInputError();
-            die();
+            Platform.exit();
         }
 
         try{
@@ -32,16 +33,17 @@ public class Filial extends Application {
         }
         catch (NumberFormatException e){
             showInputError();
-            die();
+            Platform.exit();
         }
 
         if(porta <= 1024){
             showInputError();
-            die();
+            Platform.exit();
         }
 
         nome = args[0];
         hostName = args[1];
+
         try{
             final Controle controle = new Controle(nome, hostName, porta);
 
@@ -50,12 +52,12 @@ public class Filial extends Application {
             janela.setResizable(false);
             janela.setOnCloseRequest(event -> {
                 controle.fecharConexao();
-                die();
+                Platform.exit();
             });
             janela.show();
         }catch (Exception e){
             WindowLoader.showException("Erro ao iniciar controlador.", "Ocorreu um erro irrecuperável.", e);
-            die();
+            Platform.exit();
         }
     }
 
@@ -72,9 +74,5 @@ public class Filial extends Application {
 
     private void showInputError(){
         WindowLoader.showError("Argumento Inválido", "Os argumentos obtidos não são válidos.", "Invoque o programa com a seguinte combinação:\n <Nome da Filial> <Porta>");
-    }
-
-    private void die(){
-        System.exit(-1);
     }
 }
