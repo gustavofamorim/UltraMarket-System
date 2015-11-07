@@ -34,7 +34,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Produto extends TableImpl<ProdutoRecord> {
 
-	private static final long serialVersionUID = -2084441155;
+	private static final long serialVersionUID = 1299962479;
 
 	/**
 	 * The reference instance of <code>matrizdb.produto</code>
@@ -63,11 +63,6 @@ public class Produto extends TableImpl<ProdutoRecord> {
 	 * The column <code>matrizdb.produto.valor</code>.
 	 */
 	public final TableField<ProdutoRecord, Double> VALOR = createField("valor", org.jooq.impl.SQLDataType.DOUBLE.nullable(false), this, "");
-
-	/**
-	 * The column <code>matrizdb.produto.qtddisponivel</code>.
-	 */
-	public final TableField<ProdutoRecord, Integer> QTDDISPONIVEL = createField("qtddisponivel", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
 	 * The column <code>matrizdb.produto.apagado</code>.

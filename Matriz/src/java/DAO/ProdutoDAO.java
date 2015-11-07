@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import org.jooq.Record4;
 import org.jooq.Result;
 
 /**
@@ -25,8 +26,8 @@ public class ProdutoDAO implements DAO<Produto> {
     @Override
     public boolean novo(Produto novo) throws ClassNotFoundException, SQLException, IOException {
         
-        ProdutoRecord created = GerenciadorBD.getContext().insertInto(PRODUTO, PRODUTO.NOME, PRODUTO.QTDDISPONIVEL, PRODUTO.VALOR, PRODUTO.APAGADO)
-                                                          .values(novo.getNome(), novo.getQtdDisponivel(), novo.getValor(), (byte) 0)
+        ProdutoRecord created = GerenciadorBD.getContext().insertInto(PRODUTO, PRODUTO.NOME, PRODUTO.VALOR, PRODUTO.APAGADO)
+                                                          .values(novo.getNome(), novo.getValor(), (byte) 0)
                                                           .returning().fetchOne();
 
         if(created != null){
@@ -39,8 +40,8 @@ public class ProdutoDAO implements DAO<Produto> {
 
     public boolean novo(Produto novo, int idFilial) throws ClassNotFoundException, SQLException, IOException {
         
-        ProdutoRecord created = GerenciadorBD.getContext().insertInto(PRODUTO, PRODUTO.NOME, PRODUTO.QTDDISPONIVEL, PRODUTO.VALOR, PRODUTO.APAGADO)
-                                                          .values(novo.getNome(), novo.getQtdDisponivel(), novo.getValor(), (byte) 0)
+        ProdutoRecord created = GerenciadorBD.getContext().insertInto(PRODUTO, PRODUTO.NOME, PRODUTO.VALOR, PRODUTO.APAGADO)
+                                                          .values(novo.getNome(), novo.getValor(), (byte) 0)
                                                           .returning().fetchOne();
 
         if(created != null){
@@ -66,7 +67,7 @@ public class ProdutoDAO implements DAO<Produto> {
                                                          .fetchOne();
         
         if(result != null){
-            loaded = new Produto(result.getIdproduto(), result.getNome(), result.getValor(), result.getQtddisponivel());
+            loaded = new Produto(result.getIdproduto(), result.getNome(), result.getValor());
         }
         
         return (loaded);
@@ -81,7 +82,7 @@ public class ProdutoDAO implements DAO<Produto> {
                                                          .fetchOne();
         
         if(result != null){
-            loaded = new Produto(result.getIdproduto(), result.getNome(), result.getValor(), result.getQtddisponivel());
+            loaded = new Produto(result.getIdproduto(), result.getNome(), result.getValor());
         }
         
         return (loaded);
@@ -109,7 +110,7 @@ public class ProdutoDAO implements DAO<Produto> {
             loaded = new ArrayList<>();
             
             for(ProdutoRecord p : result){
-                Produto tmp = new Produto(p.getIdproduto(), p.getNome(), p.getValor(), p.getQtddisponivel());
+                Produto tmp = new Produto(p.getIdproduto(), p.getNome(), p.getValor());
                 loaded.add(tmp);
             }
         }
@@ -117,6 +118,29 @@ public class ProdutoDAO implements DAO<Produto> {
         return (loaded);
     }
 
+    public Collection<Produto> obterTodosByIdFilial(int idFilial) throws ClassNotFoundException, SQLException, IOException {
+        
+        ArrayList<Produto> loaded = null;
+       
+        Result<Record4<Integer, String, Double, Byte>> result = GerenciadorBD.getContext()
+                                    .select(PRODUTO.IDPRODUTO, PRODUTO.NOME, PRODUTO.VALOR, PRODUTO.APAGADO)
+                                    .from(PRODUTO).join(FILIAL_PRODUTO).on(PRODUTO.IDPRODUTO.eq(FILIAL_PRODUTO.IDPRODUTO))
+                                    .where(PRODUTO.APAGADO.eq((byte) 0)).and(FILIAL_PRODUTO.IDFILIAL.eq(idFilial))
+                                    .fetch();
+        
+        if(result != null){
+            
+            loaded = new ArrayList<>();
+            
+            for(Record4<Integer, String, Double, Byte> p : result){
+                Produto tmp = new Produto(p.value1(), p.value2(), p.value3());
+                loaded.add(tmp);
+            }
+        }
+        
+        return (loaded);
+    }
+    
     @Override
     public boolean apagar(int id) throws ClassNotFoundException, SQLException, IOException {
         ProdutoRecord deleted = GerenciadorBD.getContext().update(PRODUTO)
@@ -134,7 +158,7 @@ public class ProdutoDAO implements DAO<Produto> {
     @Override
     public boolean atualizar(Produto obj) throws ClassNotFoundException, SQLException, IOException {
         
-        ProdutoRecord p = new ProdutoRecord(obj.getId(), obj.getNome(), obj.getValor(), obj.getQtdDisponivel(), (byte) 0);
+        ProdutoRecord p = new ProdutoRecord(obj.getId(), obj.getNome(), obj.getValor(), (byte) 0);
         
         p = GerenciadorBD.getContext().update(PRODUTO)
                          .set(p).where(PRODUTO.IDPRODUTO.eq(p.getIdproduto()))

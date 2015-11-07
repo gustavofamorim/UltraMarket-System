@@ -8,19 +8,16 @@ public class Produto {
     private Integer id = -1;
     private String nome;
     private Double valor;
-    private Integer qtdDisponivel;
 
-    public Produto(Integer id, String nome, Double valor, Integer qtdDisponivel){
+    public Produto(Integer id, String nome, Double valor){
         this.id = id;
         this.nome = nome;
         this.valor = valor;
-        this.qtdDisponivel = qtdDisponivel;
     }
     
-    public Produto(String nome, Double valor, Integer qtdDisponivel){
+    public Produto(String nome, Double valor){
         this.nome = nome;
         this.valor = valor;
-        this.qtdDisponivel = qtdDisponivel;
     }
 
     public String getNome() {
@@ -47,14 +44,6 @@ public class Produto {
         this.id = id;
     }
 
-    public Integer getQtdDisponivel() {
-        return qtdDisponivel;
-    }
-
-    public void setQtdDisponivel(Integer qtdDisponivel) {
-        this.qtdDisponivel = qtdDisponivel;
-    }
-    
     @Override
     public String toString(){
         return (String.format("%-15s", this.nome));

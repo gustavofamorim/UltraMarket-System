@@ -15,6 +15,7 @@ import Modelo.Produto;
 import Modelo.Venda.Venda;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.jws.WebService;
@@ -109,9 +110,38 @@ public class MatrizServices {
      * Operação de Web service
      */
     @WebMethod(operationName = "cancelarVenda")
-    public String cancelarVenda(@WebParam(name = "idVenda") int idVenda) {
-        
+    public boolean cancelarVenda(@WebParam(name = "idVenda") int idVenda) {
+        try {
+            return (VendaDAO.getInstance().apagar(idVenda));
+        } catch (ClassNotFoundException | SQLException | IOException ex) {
+            Logger.getLogger(MatrizServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return (false);
     }
 
+    /**
+     * Operação de Web service
+     */
+    @WebMethod(operationName = "obterProdutosFilial")
+    public Collection<Produto> obterProdutosFilial(@WebParam(name = "idFilial") int idFilial) {
+        try {
+            return (ProdutoDAO.getInstance().obterTodosByIdFilial(idFilial));
+        } catch (ClassNotFoundException | SQLException | IOException ex) {
+            Logger.getLogger(MatrizServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return (null);
+    }
 
+    /**
+     * Operação de Web service
+     */
+    @WebMethod(operationName = "obterClientes")
+    public Collection<Cliente> obterClientes(@WebParam(name = "idFilial") int idFilial) {
+        try {
+            return (ClienteDAO.getInstance().obterTodos());
+        } catch (ClassNotFoundException | SQLException | IOException ex) {
+            Logger.getLogger(MatrizServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return (null);
+    }
 }
