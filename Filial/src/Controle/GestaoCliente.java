@@ -16,11 +16,7 @@ public class GestaoCliente {
     }
 
     public Cliente buscarCliente(String cpf) {
-        Cliente result = null;
-        if(result == null){
-            // busca cliente no webservice
-        }
-        return (result);
+            
     }
 
     public boolean salvarCliente(String nome, String CPF){
@@ -37,6 +33,24 @@ public class GestaoCliente {
     public ArrayList<Cliente> obterTodosCliente(){
         // busca todos clientes no webservice
         return (null);
+    }
+
+    private static boolean cadastrarCliente(services.Cliente cliente) {
+        services.MatrizServices_Service service = new services.MatrizServices_Service();
+        services.MatrizServices port = service.getMatrizServicesPort();
+        return port.cadastrarCliente(cliente);
+    }
+
+    private static boolean excluirCliente(int idCliente) {
+        services.MatrizServices_Service service = new services.MatrizServices_Service();
+        services.MatrizServices port = service.getMatrizServicesPort();
+        return port.excluirCliente(idCliente);
+    }
+
+    private static java.util.List<services.Cliente> obterClientes() {
+        services.MatrizServices_Service service = new services.MatrizServices_Service();
+        services.MatrizServices port = service.getMatrizServicesPort();
+        return port.obterClientes();
     }
 
 
