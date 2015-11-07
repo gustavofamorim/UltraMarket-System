@@ -1,13 +1,10 @@
 package Visao.Visualizar;
 
 import Controle.Controle;
-import Modelo.Cliente;
 import Tools.Visual.Controller;
 import Tools.Visual.UsaCamadaControle;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,8 +16,8 @@ public class VisualizarClientesController extends Controller implements UsaCamad
 
     private Controle controle;
 
-    @FXML
-    private TableView<Cliente> dados;
+    //@FXML
+    //private TableView<Cliente> dados;
 
     @FXML
     private TableColumn colNome;
@@ -32,10 +29,12 @@ public class VisualizarClientesController extends Controller implements UsaCamad
     private TableColumn colCPF;
 
     private void update(){
+/*
         this.colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         this.colSaldo.setCellValueFactory(new PropertyValueFactory<>("saldo"));
         this.colCPF.setCellValueFactory(new PropertyValueFactory<>("CPF"));
         this.dados.getItems().addAll(this.controle.getGestaoCliente().obterTodosCliente());
+*/
     }
 
     @Override

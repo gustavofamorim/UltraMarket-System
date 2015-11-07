@@ -31,6 +31,7 @@ public class NovoClienteController extends Controller implements Initializable, 
 
     @FXML
     private void cadastrar(ActionEvent event){
+/*
         if(this.controle == null){
             throw new NullPointerException("O controlador não foi setado.");
         }
@@ -50,6 +51,7 @@ public class NovoClienteController extends Controller implements Initializable, 
                 }
             }
         }
+*/
     }
 
     @FXML

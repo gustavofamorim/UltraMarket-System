@@ -83,7 +83,6 @@ public class VendaBuilder implements Builder<Venda>, Serializable {
     public void cancelar(){
         this.venda = new Venda();
     }
-
 }
 
 

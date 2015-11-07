@@ -1,10 +1,5 @@
 package Controle;
 
-import Modelo.Cliente;
-import Modelo.Venda.ItemVenda;
-import Modelo.Venda.Venda;
-import Modelo.Venda.VendaBuilder;
-
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -18,7 +13,7 @@ public class GestaoVenda {
     public GestaoVenda(Controle mainController){
         this.mainController = mainController;
     }
-
+/*
     public void novaVenda(Collection<ItemVenda> itens, Double pagamento, Double desconto, Cliente cliente){
 
         desconto /= 100;
@@ -27,11 +22,12 @@ public class GestaoVenda {
         builder.darDesconto(desconto);
         builder.pagar(pagamento);
         builder.cliente(cliente);
-        this.mainController.banco.insertIntoVendas(builder.getInstance());
+        //this.mainController.banco.insertIntoVendas(builder.getInstance());
     }
 
     public ArrayList<Venda> obterTodosVenda(){
-        return (this.mainController.banco.selectAllFromVenda());
+        //return (this.mainController.banco.selectAllFromVenda());
+        return (null);
     }
 
     public void cancelarVenda(Venda venda){
@@ -43,4 +39,5 @@ public class GestaoVenda {
             venda.setStatus(Venda.STATUS_VENDA.CANCELADA);
         }
     }
+*/
 }

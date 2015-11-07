@@ -2,6 +2,7 @@ package Modelo.Venda;
 
 import Modelo.Produto;
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Created by Gustavo Freitas on 02/10/2015.
@@ -60,4 +61,30 @@ public class ItemVenda implements Serializable {
     public String toString(){
         return ("| " + this.item + String.format("%-8d", this.qtd) + String.format("%-10.2f", this.total) + "\t|");
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ItemVenda other = (ItemVenda) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
+    }
+
+    
+    
+    
 }

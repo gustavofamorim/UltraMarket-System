@@ -1,9 +1,6 @@
 package Visao.Novo;
 
 import Controle.Controle;
-import Modelo.Cliente;
-import Modelo.Produto;
-import Modelo.Venda.ItemVenda;
 import Tools.Visual.UsaCamadaControle;
 import Tools.Visual.Controller;
 import Tools.Visual.WindowController;
@@ -14,7 +11,6 @@ import javafx.scene.control.*;
 import javafx.stage.StageStyle;
 
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -22,14 +18,14 @@ import java.util.ResourceBundle;
  */
 public class NovaVendaController extends Controller implements UsaCamadaControle<Controle>{
 
-    private Cliente cliente = null;
+    //private Cliente cliente = null;
     private Controle controle = null;
 
-    @FXML
-    private ListView<Produto> itens;
+    //@FXML
+    //private ListView<Produto> itens;
 
-    @FXML
-    private ListView<ItemVenda> itensAdicionados;
+    //@FXML
+    //private ListView<ItemVenda> itensAdicionados;
 
     @FXML
     private TextField desconto;
@@ -57,16 +53,18 @@ public class NovaVendaController extends Controller implements UsaCamadaControle
         ((NovoClienteController)janela.getInternalController()).cancelarButton.setDisable(true);
         janela.initStyle(StageStyle.UNDECORATED);
         janela.showAndWait();
-
+/*
         if(this.controle.getGestaoCliente().obterTodosCliente().size() > 0){
             this.cliente = this.controle.getGestaoCliente().obterTodosCliente().get(this.controle.getGestaoCliente().obterTodosCliente().size() - 1);
             this.resultadoBusca.setText("Nome: " + this.cliente.getNome());
             this.debitosCliente.setText("Débito: " + this.cliente.getSaldo());
         }
+*/
     }
 
     @FXML
     private void addItem(ActionEvent event){
+/*
         Produto selecionado = this.itens.getSelectionModel().getSelectedItem();
         if(selecionado != null){
 
@@ -92,10 +90,12 @@ public class NovaVendaController extends Controller implements UsaCamadaControle
 
             this.itensAdicionados.getItems().addAll(new ItemVenda(selecionado, Integer.parseInt(quantidade.get())));
         }
+*/
     }
 
     @FXML
     private void finalizar(ActionEvent event){
+/*
         if(this.controle == null){
             throw new NullPointerException("O controlador não foi setado.");
         }
@@ -125,9 +125,11 @@ public class NovaVendaController extends Controller implements UsaCamadaControle
                 this.limpar();
             }
         }
+*/
     }
 
     private void execFinalizar(){
+/*
         try {
             Double desconto = Double.parseDouble(this.desconto.getText().replace(",", "."));
             Double valorPago = Double.parseDouble(this.valorPago.getText().replace(",", "."));
@@ -135,6 +137,7 @@ public class NovaVendaController extends Controller implements UsaCamadaControle
         } catch (NumberFormatException e) {
             WindowLoader.showError("Entrada Incorreta", "Desconto e Valor Pago devem ser números.", "");
         }
+*/
     }
 
     @FXML
@@ -143,20 +146,25 @@ public class NovaVendaController extends Controller implements UsaCamadaControle
     }
 
     public void limpar(){
+/*
         this.itensAdicionados.getItems().clear();
         this.desconto.setText("");
         this.valorPago.setText("");
         this.cliente = null;
         this.resultadoBusca.setText("Nome: ");
         this.debitosCliente.setText("Débitos: ");
+*/      
     }
 
     public void update(){
+/*      
         this.itens.getItems().addAll(this.controle.getGestaoProduto().obterTodosProduto());
+*/      
     }
 
     @FXML
     private void buscarCliente(ActionEvent event){
+/*        
         if(this.cpfCliente.getText().length() > 0){
             this.cliente = this.controle.getGestaoCliente().buscarCliente(this.cpfCliente.getText());
 
@@ -168,6 +176,7 @@ public class NovaVendaController extends Controller implements UsaCamadaControle
                 this.debitosCliente.setText("Débitos: " + this.cliente.getSaldo());
             }
         }
+*/        
     }
 
     @Override

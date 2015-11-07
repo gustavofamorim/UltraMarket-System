@@ -1,8 +1,5 @@
 package Controle;
 
-import Modelo.Filial;
-import Modelo.Produto;
-
 import java.net.MalformedURLException;
 
 /**
@@ -10,7 +7,7 @@ import java.net.MalformedURLException;
  */
 public class Controle {
 
-    public static Filial filial = null;
+    //public static Filial filial = null;
 
     protected final GestaoCliente gestaoCliente = new GestaoCliente(this);
     protected final GestaoVenda gestaoVenda = new GestaoVenda(this);

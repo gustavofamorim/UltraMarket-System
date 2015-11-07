@@ -1,7 +1,5 @@
 package Controle;
 
-import Modelo.Produto;
-
 import java.util.ArrayList;
 
 /**
@@ -14,14 +12,14 @@ public class GestaoProduto {
     public GestaoProduto(Controle mainController){
         this.mainController = mainController;
     }
-
+/*
     public void salvarProduto(String nome, Double valor){
-        this.mainController.banco.insertIntoProduto(new Produto(nome, valor));
+        //this.mainController.banco.insertIntoProduto(new Produto(nome, valor));
     }
 
     public ArrayList<Produto> obterTodosProduto(){
-        return (this.mainController.banco.selectAllFromProduto());
+        //return (this.mainController.banco.selectAllFromProduto());
+        return (null);
     }
-
-
+*/
 }

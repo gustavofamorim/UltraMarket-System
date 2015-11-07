@@ -1,18 +1,10 @@
 package Visao.Visualizar;
 
 import Controle.Controle;
-import Modelo.Produto;
-import Modelo.Venda.Venda;
 import Tools.Visual.Controller;
 import Tools.Visual.UsaCamadaControle;
-import Tools.Visual.WindowController;
-import Tools.Visual.WindowLoader;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,8 +16,8 @@ public class VisualizarProdutosController extends Controller implements UsaCamad
 
     private Controle controle;
 
-    @FXML
-    private TableView<Produto> dados;
+    //@FXML
+    //private TableView<Produto> dados;
 
     @FXML
     private TableColumn colNome;
@@ -34,9 +26,11 @@ public class VisualizarProdutosController extends Controller implements UsaCamad
     private TableColumn colValor;
 
     private void update(){
+/*
         this.colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         this.colValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
         this.dados.getItems().addAll(this.controle.getGestaoProduto().obterTodosProduto());
+*/
     }
 
     @Override

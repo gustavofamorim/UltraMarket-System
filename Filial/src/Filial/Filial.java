@@ -5,11 +5,8 @@ import Tools.Visual.UsaCamadaControle;
 import Tools.Visual.WindowController;
 import Tools.Visual.WindowLoader;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
-import java.rmi.RemoteException;
 import javafx.application.Platform;
 
 public class Filial extends Application {
@@ -69,7 +66,7 @@ public class Filial extends Application {
             System.out.println(s);
         }
         System.out.println("end");
-        launch(args);
+        //launch(args);
     }
 
     private void showInputError(){

@@ -27,7 +27,7 @@ public class NovoProdutoController extends Controller implements UsaCamadaContro
 
     @FXML
     private void cadastrar(ActionEvent event){
-
+/*
         Double valor = null;
 
         if(this.controle == null){
@@ -50,6 +50,7 @@ public class NovoProdutoController extends Controller implements UsaCamadaContro
                 this.limpar();
             }
         }
+*/
     }
 
     @FXML
