@@ -3,6 +3,7 @@ package Modelo.Venda;
 import Modelo.Cliente;
 import Modelo.Produto;
 import Tools.Builder;
+import java.io.Serializable;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -13,7 +14,7 @@ import java.util.Locale;
 /**
  * Created by Gustavo Freitas on 02/10/2015.
  */
-public class VendaBuilder implements Builder<Venda> {
+public class VendaBuilder implements Builder<Venda>, Serializable {
 
     private Venda venda = new Venda();
 

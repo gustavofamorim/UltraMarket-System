@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+ <definitions 
+ xmlns="http://schemas.xmlsoap.org/wsdl/" 
+ xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+ xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="MatrizServices" targetNamespace="http://Services/" xmlns:tns="http://Services/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsoma="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization" 
+ >
+    <message name="logar"/>
+    <message name="logarResponse"/>
+    <message name="cadastrarCliente"/>
+    <message name="cadastrarClienteResponse"/>
+    <message name="cadastrarProduto"/>
+    <message name="cadastrarProdutoResponse"/>
+    <message name="cadastrarVenda"/>
+    <message name="cadastrarVendaResponse"/>
+    <message name="excluirCliente"/>
+    <message name="excluirClienteResponse"/>
+    <message name="cancelarVenda"/>
+    <message name="cancelarVendaResponse"/>
+    <message name="obterProdutosFilial"/>
+    <message name="obterProdutosFilialResponse"/>
+    <message name="obterClientes"/>
+    <message name="obterClientesResponse"/>
+    <message name="obterClienteByCPF"/>
+    <message name="obterClienteByCPFResponse"/>
+    <portType name="MatrizServices">
+        <operation name="logar">
+            <input message="tns:logar"/>
+            <output message="tns:logarResponse"/>
+        </operation>
+        <operation name="cadastrarCliente">
+            <input message="tns:cadastrarCliente"/>
+            <output message="tns:cadastrarClienteResponse"/>
+        </operation>
+        <operation name="cadastrarProduto">
+            <input message="tns:cadastrarProduto"/>
+            <output message="tns:cadastrarProdutoResponse"/>
+        </operation>
+        <operation name="cadastrarVenda">
+            <input message="tns:cadastrarVenda"/>
+            <output message="tns:cadastrarVendaResponse"/>
+        </operation>
+        <operation name="excluirCliente">
+            <input message="tns:excluirCliente"/>
+            <output message="tns:excluirClienteResponse"/>
+        </operation>
+        <operation name="cancelarVenda">
+            <input message="tns:cancelarVenda"/>
+            <output message="tns:cancelarVendaResponse"/>
+        </operation>
+        <operation name="obterProdutosFilial">
+            <input message="tns:obterProdutosFilial"/>
+            <output message="tns:obterProdutosFilialResponse"/>
+        </operation>
+        <operation name="obterClientes">
+            <input message="tns:obterClientes"/>
+            <output message="tns:obterClientesResponse"/>
+        </operation>
+        <operation name="obterClienteByCPF">
+            <input message="tns:obterClienteByCPF"/>
+            <output message="tns:obterClienteByCPFResponse"/>
+        </operation>
+    </portType>
+    <binding name="MatrizServicesPortBinding" type="tns:MatrizServices">
+        <operation name="logar">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="cadastrarCliente">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="cadastrarProduto">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="cadastrarVenda">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="excluirCliente">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="cancelarVenda">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="obterProdutosFilial">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="obterClientes">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="obterClienteByCPF">
+            <input/>
+            <output/>
+        </operation>
+    </binding>
+    <service name="MatrizServices">
+        <port name="MatrizServicesPort" binding="tns:MatrizServicesPortBinding"/>
+    </service>
+</definitions>

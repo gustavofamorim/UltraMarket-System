@@ -1,6 +1,7 @@
 package Modelo.Venda;
 
 import Modelo.Cliente;
+import java.io.Serializable;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 /**
  * Created by Gustavo Freitas on 02/10/2015.
  */
-public class Venda {
+public class Venda implements Serializable {
 
     public static enum STATUS_VENDA{
         CONFIRMADA(1, "Venda confirmada."), CANCELADA(0, "Venda cancelada.");

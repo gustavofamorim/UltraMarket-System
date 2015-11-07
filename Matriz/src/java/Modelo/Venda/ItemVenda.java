@@ -1,11 +1,12 @@
 package Modelo.Venda;
 
 import Modelo.Produto;
+import java.io.Serializable;
 
 /**
  * Created by Gustavo Freitas on 02/10/2015.
  */
-public class ItemVenda {
+public class ItemVenda implements Serializable {
 
     private Integer id = -1;
     private Integer qtd;

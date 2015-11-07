@@ -1,9 +1,11 @@
 package Modelo;
 
+import java.io.Serializable;
+
 /**
  * Created by Gustavo Freitas on 02/10/2015.
  */
-public class Produto {
+public class Produto implements Serializable{
 
     private Integer id = -1;
     private String nome;
