@@ -1,12 +1,6 @@
 package Visao.Novo;
 
 import Controle.Controle;
-<<<<<<< HEAD
-=======
-import services.Cliente;
-import Modelo.Produto;
-import Modelo.Venda.ItemVenda;
->>>>>>> origin/master
 import Tools.Visual.UsaCamadaControle;
 import Tools.Visual.Controller;
 import Tools.Visual.WindowController;
