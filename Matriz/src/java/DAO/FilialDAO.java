@@ -115,8 +115,4 @@ public class FilialDAO implements DAO<Filial> {
         
         return (f != null);
     }
-    
-    public static FilialDAO getInstance(){
-        return (new FilialDAO());
-    }
 }
