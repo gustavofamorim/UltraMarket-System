@@ -34,7 +34,7 @@ public class MatrizServices {
      */
     @WebMethod(operationName = "logar")
     public Filial logar(@WebParam(name = "nome") String nome) {
-        
+
         Filial f = null;
         
         try {
@@ -52,6 +52,7 @@ public class MatrizServices {
         }
         
         return (f);
+
     }
 
     /**

@@ -27,8 +27,16 @@ public class Venda implements Serializable {
             return id;
         }
 
+        public void setId(int id) {
+            this.id = id;
+        }
+
         public String getDescricao() {
             return descricao;
+        }
+
+        public void setDescricao(String descricao) {
+            this.descricao = descricao;
         }
         
         @Override        
@@ -50,21 +58,9 @@ public class Venda implements Serializable {
     private Cliente cliente;
     private ArrayList<ItemVenda> itens = new ArrayList<>();
 
-    public Venda(){
-
-    }
-
     public void addItemVenda(ItemVenda item){
         this.itens.add(item);
         this.totalBruto += item.getTotal();
-    }
-
-    public ArrayList<ItemVenda> getItens() {
-        return itens;
-    }
-
-    public void setItens(ArrayList<ItemVenda> itens) {
-        this.itens = itens;
     }
 
     public void aplicarDesconto(Double porcentagem){
@@ -78,54 +74,10 @@ public class Venda implements Serializable {
             throw new IllegalArgumentException("Porcentagem al�m do permitido.");
         }
     }
-
-    public Double getTotalLiquido() {
-        return totalLiquido;
-    }
-
-    public Double getTotalBruto() {
-        return totalBruto;
-    }
-
-    public void setTotalBruto(Double totalBruto) {
-        this.totalBruto = totalBruto;
-    }
     
-    public Double getTroco() {
-        return troco;
-    }
-
-    public Double getValorPago() {
-        return valorPago;
-    }
-
     public void pagar(Double valorPago) {
         this.valorPago = valorPago;
         this.troco = this.valorPago - this.totalLiquido;
-    }
-
-    public LocalDateTime getDataEHora() {
-        return dataEHora;
-    }
-
-    public void setDataEHora(LocalDateTime dataEHora) {
-        this.dataEHora = dataEHora;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public STATUS_VENDA getStatus() {
-        return status;
-    }
-
-    public void setStatus(STATUS_VENDA status) {
-        this.status = status;
     }
 
     public Integer getId() {
@@ -136,18 +88,70 @@ public class Venda implements Serializable {
         this.id = id;
     }
 
+    public STATUS_VENDA getStatus() {
+        return status;
+    }
+
+    public void setStatus(STATUS_VENDA status) {
+        this.status = status;
+    }
+
+    public LocalDateTime getDataEHora() {
+        return dataEHora;
+    }
+
+    public void setDataEHora(LocalDateTime dataEHora) {
+        this.dataEHora = dataEHora;
+    }
+
+    public Double getTotalBruto() {
+        return totalBruto;
+    }
+
+    public void setTotalBruto(Double totalBruto) {
+        this.totalBruto = totalBruto;
+    }
+
+    public Double getTotalLiquido() {
+        return totalLiquido;
+    }
+
     public void setTotalLiquido(Double totalLiquido) {
         this.totalLiquido = totalLiquido;
+    }
+
+    public Double getTroco() {
+        return troco;
     }
 
     public void setTroco(Double troco) {
         this.troco = troco;
     }
 
+    public Double getValorPago() {
+        return valorPago;
+    }
+
     public void setValorPago(Double valorPago) {
         this.valorPago = valorPago;
     }
 
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public ArrayList<ItemVenda> getItens() {
+        return itens;
+    }
+
+    public void setItens(ArrayList<ItemVenda> itens) {
+        this.itens = itens;
+    }
+    
     @Override
     public String toString(){
         String str = "ID da Venda: " + this.id + "\n";

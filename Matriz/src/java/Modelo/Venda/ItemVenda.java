@@ -21,11 +21,19 @@ public class ItemVenda implements Serializable {
         this.total = this.item.getValor() * this.qtd;
     }
 
-    public int getQtd() {
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getQtd() {
         return qtd;
     }
 
-    public void setQtd(int qtd) {
+    public void setQtd(Integer qtd) {
         this.qtd = qtd;
     }
 
@@ -43,18 +51,6 @@ public class ItemVenda implements Serializable {
 
     public void setTotal(Double total) {
         this.total = total;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setQtd(Integer qtd) {
-        this.qtd = qtd;
     }
     
     @Override

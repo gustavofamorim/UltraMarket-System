@@ -72,4 +72,12 @@ public class Filial extends Application {
     private void showInputError(){
         WindowLoader.showError("Argumento Inválido", "Os argumentos obtidos não são válidos.", "Invoque o programa com a seguinte combinação:\n <Nome da Filial> <Porta>");
     }
+
+    private static services.Filial logar(java.lang.String nome) {
+        services.MatrizServices_Service service = new services.MatrizServices_Service();
+        services.MatrizServices port = service.getMatrizServicesPort();
+        return port.logar(nome);
+    }
+    
+    
 }

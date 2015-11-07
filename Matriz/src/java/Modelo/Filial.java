@@ -32,6 +32,10 @@ public class Filial implements Serializable{
         return nome;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     @Override
     public String toString() {
         return id + " | " + nome;

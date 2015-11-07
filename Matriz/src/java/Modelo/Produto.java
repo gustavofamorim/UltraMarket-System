@@ -23,6 +23,14 @@ public class Produto implements Serializable{
         this.valor = valor;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -37,14 +45,6 @@ public class Produto implements Serializable{
 
     public void setValor(Double valor) {
         this.valor = valor;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     @Override
