@@ -7,6 +7,7 @@ package DAO;
 
 import DAO.Gerenciador.GerenciadorBD;
 import static DAO.mysql.generatedclasses.Tables.PRODUTO;
+import static DAO.mysql.generatedclasses.Tables.FILIAL_PRODUTO;
 import DAO.mysql.generatedclasses.tables.records.ProdutoRecord;
 import Modelo.Produto;
 import java.io.IOException;
@@ -36,6 +37,25 @@ public class ProdutoDAO implements DAO<Produto> {
         return (false);
     }
 
+    public boolean novo(Produto novo, int idFilial) throws ClassNotFoundException, SQLException, IOException {
+        
+        ProdutoRecord created = GerenciadorBD.getContext().insertInto(PRODUTO, PRODUTO.NOME, PRODUTO.QTDDISPONIVEL, PRODUTO.VALOR, PRODUTO.APAGADO)
+                                                          .values(novo.getNome(), novo.getQtdDisponivel(), novo.getValor(), (byte) 0)
+                                                          .returning().fetchOne();
+
+        if(created != null){
+            novo.setId(created.getIdproduto());
+            
+            GerenciadorBD.getContext().insertInto(FILIAL_PRODUTO, FILIAL_PRODUTO.IDFILIAL, FILIAL_PRODUTO.IDPRODUTO)
+                                                          .values(idFilial, novo.getId())
+                                                          .returning().fetchOne();
+            
+            return (true);
+        }
+        
+        return (false);
+    }
+    
     @Override
     public Produto obter(int id) throws ClassNotFoundException, SQLException, IOException {
         
