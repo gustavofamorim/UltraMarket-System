@@ -24,6 +24,10 @@
 
 <xs:element name="logarResponse" type="tns:logarResponse"/>
 
+<xs:element name="obterClienteByCPF" type="tns:obterClienteByCPF"/>
+
+<xs:element name="obterClienteByCPFResponse" type="tns:obterClienteByCPFResponse"/>
+
 <xs:element name="obterClientes" type="tns:obterClientes"/>
 
 <xs:element name="obterClientesResponse" type="tns:obterClientesResponse"/>
@@ -60,6 +64,16 @@
 <xs:complexType name="cadastrarClienteResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="obterClientes">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="obterClientesResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:cliente" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -117,18 +131,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="obterProdutosFilial">
-<xs:sequence>
-<xs:element name="idFilial" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="obterProdutosFilialResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:produto" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="cancelarVenda">
 <xs:sequence>
 <xs:element name="idVenda" type="xs:int"/>
@@ -141,15 +143,27 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="obterClientes">
+<xs:complexType name="obterProdutosFilial">
 <xs:sequence>
 <xs:element name="idFilial" type="xs:int"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="obterClientesResponse">
+<xs:complexType name="obterProdutosFilialResponse">
 <xs:sequence>
-<xs:element name="return" type="tns:cliente" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="return" type="tns:produto" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="obterClienteByCPF">
+<xs:sequence>
+<xs:element name="cpf" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="obterClienteByCPFResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:cliente" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 

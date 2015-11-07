@@ -15,14 +15,13 @@ public class GestaoCliente {
         this.mainController = mainController;
     }
 
-    public Cliente buscarCliente(String cpf) {
-            
+    public services.Cliente buscarCliente(String cpf) {
+        return obterClienteByCPF(cpf);
     }
 
     public boolean salvarCliente(String nome, String CPF){
         if(this.mainController.getGestaoCliente().buscarCliente(CPF) == null) {
-            //this.mainController.banco.insertIntoCliente(new Cliente(nome, CPF));
-            // Insere cliente no webservice
+            cadastrarCliente(new services.Cliente(nome, CPF))
             return (true);
         }
         else {
@@ -31,8 +30,7 @@ public class GestaoCliente {
     }
 
     public ArrayList<Cliente> obterTodosCliente(){
-        // busca todos clientes no webservice
-        return (null);
+        return (obterTodosCliente());
     }
 
     private static boolean cadastrarCliente(services.Cliente cliente) {
@@ -47,11 +45,15 @@ public class GestaoCliente {
         return port.excluirCliente(idCliente);
     }
 
+    private static services.Cliente obterClienteByCPF(java.lang.String cpf) {
+        services.MatrizServices_Service service = new services.MatrizServices_Service();
+        services.MatrizServices port = service.getMatrizServicesPort();
+        return port.obterClienteByCPF(cpf);
+    }
+
     private static java.util.List<services.Cliente> obterClientes() {
         services.MatrizServices_Service service = new services.MatrizServices_Service();
         services.MatrizServices port = service.getMatrizServicesPort();
         return port.obterClientes();
-    }
-
-
+    }    
 }

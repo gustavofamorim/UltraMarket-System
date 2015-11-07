@@ -1,7 +1,7 @@
 package Visao.Novo;
 
 import Controle.Controle;
-import Modelo.Cliente;
+import services.Cliente;
 import Modelo.Produto;
 import Modelo.Venda.ItemVenda;
 import Tools.Visual.UsaCamadaControle;
