@@ -6,7 +6,8 @@ import java.io.Serializable;
  * Created by Gustavo Freitas on 02/10/2015.
  */
 public class Cliente implements Serializable{
-
+    
+    private Integer id = -1;
     private String nome;
     private String CPF;
     private Double saldo;
@@ -33,6 +34,14 @@ public class Cliente implements Serializable{
         this.saldo = saldo;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     @Override
     public String toString(){
         return ("Nome: " + this.nome + "   CPF: " + this.CPF);

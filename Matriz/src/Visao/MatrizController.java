@@ -2,14 +2,12 @@ package Visao;
 
 import Controle.Controle;
 import Modelo.Filial;
-import Remote.MatrizRemote;
 import Tools.Visual.Controller;
 import Tools.Visual.UsaCamadaControle;
 import Tools.Visual.WindowLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import Controle.RMIManager;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -25,7 +23,7 @@ public class MatrizController extends Controller implements UsaCamadaControle<Co
     public static ObservableList<Filial> filiais = FXCollections.observableArrayList();
 
     private Controle controle;
-    private RMIManager rmiManager;
+    //private RMIManager rmiManager;
 
     @FXML
     private Button iniciar;
@@ -38,7 +36,7 @@ public class MatrizController extends Controller implements UsaCamadaControle<Co
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        rmiManager = RMIManager.getInstance();
+        //rmiManager = RMIManager.getInstance();
         finalizar.setDisable(true);
         lista.setItems(MatrizController.filiais);
     }
@@ -59,9 +57,7 @@ public class MatrizController extends Controller implements UsaCamadaControle<Co
 
         if(selecionada != null){
             WindowLoader.showMessage("Filial " + selecionada.getNome(),
-                                     "ID: " + selecionada.getId() + "\nNome: " + selecionada.getNome() + "\nHostname: "
-                                     + selecionada.getHostName() + "\nPorta: " + selecionada.getServerPort() + "\nNome do objeto remoto: " + selecionada.getObjectName(),
-                                     "Dados da filial: " + selecionada.getNome());
+                                     "ID: " + selecionada.getId() + "\nNome: " + selecionada.getNome() + "\n");
         }
     }
 
@@ -69,8 +65,8 @@ public class MatrizController extends Controller implements UsaCamadaControle<Co
     private void iniciarClick() {
         iniciar.setDisable(true);
         finalizar.setDisable(false);
-        rmiManager.rebind(MatrizRemote.PORTA, MatrizRemote.OBJECT_NAME);
-        status.setText("Servidor iniciado na porta: " + MatrizRemote.PORTA);
+        //rmiManager.rebind(MatrizRemote.PORTA, MatrizRemote.OBJECT_NAME);
+        //status.setText("Servidor iniciado na porta: " + MatrizRemote.PORTA);
         status.setTextFill(Color.GREEN);
     }
 
@@ -78,7 +74,7 @@ public class MatrizController extends Controller implements UsaCamadaControle<Co
     private void finalizarClick() {
         iniciar.setDisable(false);
         finalizar.setDisable(true);
-        rmiManager.unbind(MatrizRemote.OBJECT_NAME);
+        //rmiManager.unbind(MatrizRemote.OBJECT_NAME);
         status.setText("Não iniciado");
         status.setTextFill(Color.RED);
         MatrizController.filiais.clear();

@@ -1,9 +1,18 @@
 package Matriz;
 
+import DAO.ClienteDAO;
+import DAO.Gerenciador.GerenciadorBD;
+import DAO.ProdutoDAO;
+import DAO.VendaDAO;
+import Modelo.Cliente;
+import Modelo.Produto;
+import Modelo.Venda.ItemVenda;
+import Modelo.Venda.VendaBuilder;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.stage.Stage;
-
-import static java.rmi.registry.LocateRegistry.createRegistry;
-import static java.rmi.registry.LocateRegistry.getRegistry;
 
 public class Main extends FXMLApplication {
 
@@ -12,12 +21,16 @@ public class Main extends FXMLApplication {
         associateFile("../Visao/Matriz.fxml");
         start(getScene(), "Servidor Matriz", FXMLApplication.STAGE_SHOW);
 
-        //Força o fechamento da aplicação quando a janela é fechada
         getStage().setOnCloseRequest(event -> {
-            System.exit(0);
+            Platform.exit();
         });
     }
 
+    @Override
+    public void stop(){
+        System.out.println("Matriz finalizada.");
+    }
+    
     public static void main(String[] args) {
         launch(args);
     }

@@ -66,8 +66,8 @@ public class VendaBuilder implements Builder<Venda> {
 
             this.venda.setDataEHora(dataEHora);
 
-            if(this.venda.getValorPago() < this.venda.getTotalComDesconto()){
-                this.venda.getCliente().setSaldo(this.venda.getValorPago() - this.venda.getTotalComDesconto());
+            if(this.venda.getValorPago() < this.venda.getTotalLiquido()){
+                this.venda.getCliente().setSaldo(this.venda.getValorPago() - this.venda.getTotalLiquido());
             }
 
             this.venda.setStatus(Venda.STATUS_VENDA.CONFIRMADA);

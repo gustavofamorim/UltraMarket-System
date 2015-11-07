@@ -1,7 +1,6 @@
 package Controle;
 
 import Modelo.Cliente;
-import Tools.Visual.WindowLoader;
 
 import java.util.ArrayList;
 
@@ -20,11 +19,11 @@ public class GestaoCliente {
         Cliente result = this.mainController.banco.selectFromClienteWhereCpfEquals(cpf);
 
         if(result == null){
-            try {
-                result = this.mainController.rmiClientManager.getMatrizRemote().buscarCliente(this.mainController.filial.getId(), cpf);
-            } catch (Exception e) {
-                WindowLoader.showException("Erro", "Erro ao se comunicar com o servidor.", e);
-            }
+            //try {
+            //    result = this.mainController.rmiClientManager.getMatrizRemote().buscarCliente(this.mainController.filial.getId(), cpf);
+            //} catch (Exception e) {
+            //    WindowLoader.showException("Erro", "Erro ao se comunicar com o servidor.", e);
+            //}
         }
 
         return (result);

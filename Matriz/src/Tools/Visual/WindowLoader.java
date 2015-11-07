@@ -55,7 +55,7 @@ public class WindowLoader {
         mensagem = new TextArea();
         mensagem.setEditable(false);
         mensagem.setWrapText(true);
-        mensagem.setText("Descrição: " + excessao.getMessage() + "\nRastro da Pilha:\n" + sw);
+        mensagem.setText("DescriÃ§Ã£o: " + excessao.getMessage() + "\nRastro da Pilha:\n" + sw);
 
         mensagem.setMaxWidth(Double.MAX_VALUE);
         mensagem.setMaxHeight(Double.MAX_VALUE);

@@ -7,10 +7,11 @@ import Modelo.Produto;
  */
 public class ItemVenda {
 
-    private int qtd;
+    private Integer id = -1;
+    private Integer qtd;
     private Produto item;
     private Double total;
-
+    
     public ItemVenda(Produto item, int qtd){
         this.qtd = qtd;
         this.item = item;
@@ -42,6 +43,18 @@ public class ItemVenda {
         this.total = total;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setQtd(Integer qtd) {
+        this.qtd = qtd;
+    }
+    
     @Override
     public String toString(){
         return ("| " + this.item + String.format("%-8d", this.qtd) + String.format("%-10.2f", this.total) + "\t|");
