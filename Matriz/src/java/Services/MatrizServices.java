@@ -136,7 +136,7 @@ public class MatrizServices {
      * Operação de Web service
      */
     @WebMethod(operationName = "obterClientes")
-    public Collection<Cliente> obterClientes(@WebParam(name = "idFilial") int idFilial) {
+    public Collection<Cliente> obterTodosClientes() {
         try {
             return (ClienteDAO.getInstance().obterTodos());
         } catch (ClassNotFoundException | SQLException | IOException ex) {
@@ -144,4 +144,19 @@ public class MatrizServices {
         }
         return (null);
     }
+
+    /**
+     * Operação de Web service
+     */
+    @WebMethod(operationName = "obterClienteByCPF")
+    public Cliente obterClienteByCPF(@WebParam(name = "cpf") String cpf) {
+        try {
+            return (ClienteDAO.getInstance().obter(cpf));
+        } catch (ClassNotFoundException | SQLException | IOException ex) {
+            Logger.getLogger(MatrizServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return (null);
+    }
+    
+
 }
