@@ -7,18 +7,16 @@ import java.io.Serializable;
  */
 public class Filial implements Serializable{
 
-    private Integer id;
+    private Integer id = -1;
     private String nome;
 
-    private String HOST_NAME;
-    private Integer SERVER_PORT;
-    private String OBJECT_NAME;
-
-    public Filial(String nome, String HOST_NAME, Integer SERVER_PORT, String OBJECT_NAME){
+    public Filial(String nome){
         this.nome = nome;
-        this.HOST_NAME = HOST_NAME;
-        this.SERVER_PORT = SERVER_PORT;
-        this.OBJECT_NAME = OBJECT_NAME;
+    }
+    
+    public Filial(int id, String nome){
+        this.id = id;
+        this.nome = nome;
     }
 
     public Integer getId() {
@@ -33,24 +31,8 @@ public class Filial implements Serializable{
         return nome;
     }
 
-    public String getHostName() {
-        return HOST_NAME;
-    }
-
-    public Integer getServerPort() {
-        return SERVER_PORT;
-    }
-
-    public String getObjectName() {
-        return OBJECT_NAME;
-    }
-
     @Override
     public String toString() {
-        return id + " | "
-                + nome + " | "
-                + HOST_NAME + " | "
-                + SERVER_PORT + " | "
-                + OBJECT_NAME;
+        return id + " | " + nome;
     }
 }

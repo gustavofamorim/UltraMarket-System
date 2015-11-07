@@ -16,26 +16,17 @@ public class GestaoCliente {
     }
 
     public Cliente buscarCliente(String cpf) {
-        Cliente result = this.mainController.banco.selectFromClienteWhereCpfEquals(cpf);
-
+        Cliente result = null;
         if(result == null){
-            //try {
-            //    result = this.mainController.rmiClientManager.getMatrizRemote().buscarCliente(this.mainController.filial.getId(), cpf);
-            //} catch (Exception e) {
-            //    WindowLoader.showException("Erro", "Erro ao se comunicar com o servidor.", e);
-            //}
+            // busca cliente no webservice
         }
-
         return (result);
-    }
-
-    public Cliente buscarClienteLocal(String cpf) {
-        return (this.mainController.banco.selectFromClienteWhereCpfEquals(cpf));
     }
 
     public boolean salvarCliente(String nome, String CPF){
         if(this.mainController.getGestaoCliente().buscarCliente(CPF) == null) {
-            this.mainController.banco.insertIntoCliente(new Cliente(nome, CPF));
+            //this.mainController.banco.insertIntoCliente(new Cliente(nome, CPF));
+            // Insere cliente no webservice
             return (true);
         }
         else {
@@ -44,7 +35,8 @@ public class GestaoCliente {
     }
 
     public ArrayList<Cliente> obterTodosCliente(){
-        return (this.mainController.banco.selectAllFromCliente());
+        // busca todos clientes no webservice
+        return (null);
     }
 
 

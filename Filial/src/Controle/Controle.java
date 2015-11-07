@@ -1,7 +1,7 @@
 package Controle;
 
-import Banco.BankSimulator;
 import Modelo.Filial;
+import Modelo.Produto;
 
 import java.net.MalformedURLException;
 
@@ -11,15 +11,14 @@ import java.net.MalformedURLException;
 public class Controle {
 
     public static Filial filial = null;
-    protected final BankSimulator banco = new BankSimulator();
 
     protected final GestaoCliente gestaoCliente = new GestaoCliente(this);
     protected final GestaoVenda gestaoVenda = new GestaoVenda(this);
     protected final GestaoProduto gestaoProduto = new GestaoProduto(this);
 
     public Controle(String nome, String hostName, Integer porta) throws MalformedURLException {
-        Controle.filial = new Filial(nome, hostName, porta, nome);
-        this.iniciarConexao();
+//        Controle.filial = new Filial(nome, hostName, porta, nome);
+//        this.iniciarConexao();
     }
 
     public void iniciarConexao() throws MalformedURLException {
