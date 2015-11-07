@@ -19,7 +19,7 @@
     <target name="wsimport-client-MatrizServices" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/MatrizServices"/>
         <property name="wsdl-MatrizServices" location="xml-resources/web-service-references/MatrizServices/wsdl/localhost_8080/Matriz/MatrizServices.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/MatrizServices" destdir="${build.generated.dir}/jax-wsCache/MatrizServices" wsdl="${wsdl-MatrizServices}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/Matriz/MatrizServices?WSDL" xnocompile="true" xendorsed="true">
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/MatrizServices" destdir="${build.generated.dir}/jax-wsCache/MatrizServices" wsdl="${wsdl-MatrizServices}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/Matriz/MatrizServices?wsdl" xnocompile="true" xendorsed="true">
             <depends file="${wsdl-MatrizServices}"/>
             <produces dir="${build.generated.dir}/jax-wsCache/MatrizServices"/>
         </wsimport>

@@ -17,7 +17,7 @@ import java.util.Locale;
 public class VendaBuilder implements Builder<Venda>, Serializable {
 
     private Venda venda = new Venda();
-
+    
     public void addItem(ItemVenda item){
         this.venda.addItemVenda(item);
     }

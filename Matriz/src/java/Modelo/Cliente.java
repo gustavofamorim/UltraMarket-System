@@ -9,10 +9,14 @@ import java.util.Objects;
 public class Cliente implements Serializable{
     
     private Integer id = -1;
-    private String nome;
-    private String CPF;
-    private Double saldo;
+    private String nome = "";
+    private String CPF = "";
+    private Double saldo = 0.0;
 
+    public Cliente(){
+        
+    }
+    
     public Cliente(String nome, String CPF){
         this.CPF = CPF;
         this.nome = nome;

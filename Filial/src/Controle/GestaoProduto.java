@@ -7,9 +7,9 @@ import java.util.ArrayList;
  */
 public class GestaoProduto {
 
-    private Controle mainController = null;
+    private Control mainController = null;
 
-    public GestaoProduto(Controle mainController){
+    public GestaoProduto(Control mainController){
         this.mainController = mainController;
     }
 /*

@@ -42,30 +42,26 @@ public class MatrizServices {
             
             if(f == null){
                 f = new Filial(nome);
-                
-                if(!FilialDAO.getInstance().novo(f)){
-                    f = null;
-                }
+                f = FilialDAO.getInstance().novo(f);
             }
         } catch (ClassNotFoundException | SQLException | IOException ex) {
             Logger.getLogger(MatrizServices.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return (f);
-
     }
 
     /**
      * Operação de Web service
      */
     @WebMethod(operationName = "cadastrarCliente")
-    public boolean cadastrarCliente(@WebParam(name = "cliente") Cliente cliente) {
+    public Cliente cadastrarCliente(@WebParam(name = "cliente") Cliente cliente) {
         try {
             return (ClienteDAO.getInstance().novo(cliente));
         } catch (ClassNotFoundException | SQLException | IOException ex) {
             Logger.getLogger(MatrizServices.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return (false);
+        return (null);
     }
 
     /**
@@ -85,13 +81,13 @@ public class MatrizServices {
      * Operação de Web service
      */
     @WebMethod(operationName = "cadastrarVenda")
-    public boolean cadastrarVenda(@WebParam(name = "venda") Venda venda, @WebParam(name = "filial") Filial filial) {
+    public Venda cadastrarVenda(@WebParam(name = "venda") Venda venda, @WebParam(name = "filial") Filial filial) {
         try {
             return (VendaDAO.getInstance().novo(venda));
         } catch (ClassNotFoundException | SQLException | IOException ex) {
             Logger.getLogger(MatrizServices.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return (false);
+        return (null);
     }
 
     /**

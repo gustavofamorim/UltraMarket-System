@@ -22,7 +22,7 @@ import org.jooq.Result;
 public class ClienteDAO implements DAO<Cliente>{
 
     @Override
-    public boolean novo(Cliente novo) throws ClassNotFoundException, SQLException, IOException {
+    public Cliente novo(Cliente novo) throws ClassNotFoundException, SQLException, IOException {
         
         ClienteRecord created = GerenciadorBD.getContext().insertInto(CLIENTE, CLIENTE.NOME, CLIENTE.SALDO, CLIENTE.CPF, CLIENTE.APAGADO)
                                                           .values(novo.getNome(), novo.getSaldo(), novo.getCPF(), (byte) 0)
@@ -30,10 +30,10 @@ public class ClienteDAO implements DAO<Cliente>{
         
         if(created != null){
             novo.setId(created.getIdcliente());
-            return (true);
+            return (novo);
         }
         
-        return (false);
+        return (null);
     }
 
     @Override

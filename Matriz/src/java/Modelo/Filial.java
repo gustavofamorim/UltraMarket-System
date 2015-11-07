@@ -9,8 +9,12 @@ import java.util.Objects;
 public class Filial implements Serializable{
 
     private Integer id = -1;
-    private String nome;
+    private String nome = "";
 
+    public Filial(){
+        
+    }
+    
     public Filial(String nome){
         this.nome = nome;
     }

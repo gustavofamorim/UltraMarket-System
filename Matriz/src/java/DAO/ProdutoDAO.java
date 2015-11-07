@@ -24,7 +24,7 @@ import org.jooq.Result;
 public class ProdutoDAO implements DAO<Produto> {
 
     @Override
-    public boolean novo(Produto novo) throws ClassNotFoundException, SQLException, IOException {
+    public Produto novo(Produto novo) throws ClassNotFoundException, SQLException, IOException {
         
         ProdutoRecord created = GerenciadorBD.getContext().insertInto(PRODUTO, PRODUTO.NOME, PRODUTO.VALOR, PRODUTO.APAGADO)
                                                           .values(novo.getNome(), novo.getValor(), (byte) 0)
@@ -32,10 +32,10 @@ public class ProdutoDAO implements DAO<Produto> {
 
         if(created != null){
             novo.setId(created.getIdproduto());
-            return (true);
+            return (novo);
         }
         
-        return (false);
+        return (null);
     }
 
     public boolean novo(Produto novo, int idFilial) throws ClassNotFoundException, SQLException, IOException {

@@ -22,7 +22,7 @@ import org.jooq.Result;
 public class FilialDAO implements DAO<Filial> {
 
     @Override
-    public boolean novo(Filial novo) throws ClassNotFoundException, SQLException, IOException {
+    public Filial novo(Filial novo) throws ClassNotFoundException, SQLException, IOException {
         
         FilialRecord created = GerenciadorBD.getContext().insertInto(FILIAL, FILIAL.NOME)
                                                           .values(novo.getNome())
@@ -30,10 +30,10 @@ public class FilialDAO implements DAO<Filial> {
         
         if(created != null){
             novo.setId(created.getIdfilial());
-            return (true);
+            return (novo);
         }
         
-        return (false);
+        return (null);
     }
 
     @Override

@@ -9,9 +9,13 @@ import java.util.Objects;
 public class Produto implements Serializable{
 
     private Integer id = -1;
-    private String nome;
-    private Double valor;
+    private String nome = "";
+    private Double valor = 0.0;
 
+    public Produto(){
+        
+    }
+    
     public Produto(Integer id, String nome, Double valor){
         this.id = id;
         this.nome = nome;

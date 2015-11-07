@@ -15,7 +15,7 @@ import java.util.Collection;
  */
 public interface DAO<Objeto> {
     
-    public abstract boolean novo(Objeto novo)  throws ClassNotFoundException, SQLException, IOException;
+    public abstract Objeto novo(Objeto novo)  throws ClassNotFoundException, SQLException, IOException;
     public abstract Objeto obter(int id)  throws ClassNotFoundException, SQLException, IOException;
     public abstract Objeto obter(Objeto obj) throws ClassNotFoundException, SQLException, IOException;
     public abstract Collection<Objeto> obterTodos() throws ClassNotFoundException, SQLException, IOException;

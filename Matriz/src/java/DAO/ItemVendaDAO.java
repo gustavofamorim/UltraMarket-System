@@ -22,21 +22,21 @@ import org.jooq.Result;
 public class ItemVendaDAO implements DAO<ItemVenda>{
 
     @Override
-    public boolean novo(ItemVenda novo) throws ClassNotFoundException, SQLException, IOException {
+    public ItemVenda novo(ItemVenda novo) throws ClassNotFoundException, SQLException, IOException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    public boolean novo(ItemVenda novo, int idVenda) throws ClassNotFoundException, SQLException, IOException {
+    public ItemVenda novo(ItemVenda novo, int idVenda) throws ClassNotFoundException, SQLException, IOException {
         
         ItemvendaRecord created = GerenciadorBD.getContext().insertInto(ITEMVENDA, ITEMVENDA.PRODUTO_IDPRODUTO, ITEMVENDA.VENDA_IDVENDA, ITEMVENDA.QTD, ITEMVENDA.TOTAL)
                                                           .values(novo.getItem().getId(), idVenda, novo.getQtd(), novo.getTotal())
                                                           .returning().fetchOne();
         
         if(created != null){
-            return (true);
+            return (novo);
         }
         
-        return (false);
+        return (null);
     }
 
     @Override

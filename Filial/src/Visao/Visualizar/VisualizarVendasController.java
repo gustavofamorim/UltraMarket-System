@@ -1,13 +1,10 @@
 package Visao.Visualizar;
 
-import Controle.Controle;
+import Controle.Control;
 import Tools.Visual.Controller;
-import Tools.Visual.UsaCamadaControle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,9 +12,9 @@ import java.util.ResourceBundle;
 /**
  * Created by Gustavo Freitas on 04/10/2015.
  */
-public class VisualizarVendasController extends Controller implements UsaCamadaControle<Controle> {
+public class VisualizarVendasController extends Controller{
 
-    private Controle controle;
+    private Control controle;
 
     //@FXML
     //private TableView<Venda> dados;
@@ -68,16 +65,5 @@ public class VisualizarVendasController extends Controller implements UsaCamadaC
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-    }
-
-    @Override
-    public Controle getControle() {
-        return (this.controle);
-    }
-
-    @Override
-    public void setControle(Controle controle) {
-        this.controle = controle;
-        this.update();
     }
 }

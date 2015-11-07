@@ -1,7 +1,5 @@
 package Visao.Novo;
 
-import Controle.Controle;
-import Tools.Visual.UsaCamadaControle;
 import Tools.Visual.Controller;
 import Tools.Visual.WindowController;
 import Tools.Visual.WindowLoader;
@@ -12,20 +10,22 @@ import javafx.stage.StageStyle;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import services.Cliente;
+import services.ItemVenda;
+import services.Produto;
 
 /**
  * Created by Gustavo Freitas on 02/10/2015.
  */
-public class NovaVendaController extends Controller implements UsaCamadaControle<Controle>{
+public class NovaVendaController extends Controller{
+    
+    private Cliente cliente = null;
 
-    //private Cliente cliente = null;
-    private Controle controle = null;
+    @FXML
+    private ListView<Produto> itens;
 
-    //@FXML
-    //private ListView<Produto> itens;
-
-    //@FXML
-    //private ListView<ItemVenda> itensAdicionados;
+    @FXML
+    private ListView<ItemVenda> itensAdicionados;
 
     @FXML
     private TextField desconto;
@@ -48,18 +48,17 @@ public class NovaVendaController extends Controller implements UsaCamadaControle
     @FXML
     public void novoCliente(ActionEvent event){
         WindowController janela = WindowLoader.loadWindow("/Visao/Novo/NovoCliente.fxml");
-        ((UsaCamadaControle)janela.getInternalController()).setControle(this.controle);
         janela.getInternalController().setMyStage(janela);
         ((NovoClienteController)janela.getInternalController()).cancelarButton.setDisable(true);
         janela.initStyle(StageStyle.UNDECORATED);
         janela.showAndWait();
-/*
-        if(this.controle.getGestaoCliente().obterTodosCliente().size() > 0){
-            this.cliente = this.controle.getGestaoCliente().obterTodosCliente().get(this.controle.getGestaoCliente().obterTodosCliente().size() - 1);
+        
+        this.cliente = ((NovoClienteController)janela.getInternalController()).getCliente();
+        
+        if(this.cliente != null){
             this.resultadoBusca.setText("Nome: " + this.cliente.getNome());
             this.debitosCliente.setText("Débito: " + this.cliente.getSaldo());
         }
-*/
     }
 
     @FXML
@@ -181,16 +180,5 @@ public class NovaVendaController extends Controller implements UsaCamadaControle
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    }
-
-    @Override
-    public Controle getControle() {
-        return (this.controle);
-    }
-
-    @Override
-    public void setControle(Controle controle){
-        this.controle = controle;
-        this.update();
     }
 }

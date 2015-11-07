@@ -65,7 +65,7 @@
 
 <xs:complexType name="cadastrarClienteResponse">
 <xs:sequence>
-<xs:element name="return" type="xs:boolean"/>
+<xs:element name="return" type="tns:cliente" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -130,6 +130,18 @@
 
 <xs:complexType name="cadastrarVendaResponse">
 <xs:sequence>
+<xs:element name="return" type="tns:venda" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cancelarVenda">
+<xs:sequence>
+<xs:element name="idVenda" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cancelarVendaResponse">
+<xs:sequence>
 <xs:element name="return" type="xs:boolean"/>
 </xs:sequence>
 </xs:complexType>
@@ -143,18 +155,6 @@
 <xs:complexType name="obterProdutosFilialResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:produto" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="cancelarVenda">
-<xs:sequence>
-<xs:element name="idVenda" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="cancelarVendaResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:boolean"/>
 </xs:sequence>
 </xs:complexType>
 

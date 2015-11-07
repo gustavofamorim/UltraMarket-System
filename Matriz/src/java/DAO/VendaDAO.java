@@ -24,7 +24,7 @@ import org.jooq.Result;
 public class VendaDAO implements DAO<Venda> {
 
     @Override
-    public boolean novo(Venda novo) throws ClassNotFoundException, SQLException, IOException {
+    public Venda novo(Venda novo) throws ClassNotFoundException, SQLException, IOException {
                 
         VendaRecord created;
         created = GerenciadorBD.getContext().insertInto(VENDA, VENDA.IDCIENTE, VENDA.TOTALBRUTO, VENDA.TOTALLIQUIDO, VENDA.TROCO, VENDA.VALORPAGO, VENDA.DATA, VENDA.STATUS)
@@ -38,10 +38,10 @@ public class VendaDAO implements DAO<Venda> {
                 ItemVendaDAO.getInstance().novo(item, novo.getId());
             }
             
-            return (true);
+            return (novo);
         }
         
-        return (false);
+        return (null);
     }
 
     @Override

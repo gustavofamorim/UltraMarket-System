@@ -4,10 +4,7 @@ package Visao.Novo;
  * Created by Gustavo Freitas on 02/10/2015.
  */
 
-import Controle.Controle;
-import Tools.Visual.UsaCamadaControle;
 import Tools.Visual.Controller;
-import Tools.Visual.WindowLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -15,9 +12,7 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class NovoProdutoController extends Controller implements UsaCamadaControle<Controle> {
-
-    private Controle controle;
+public class NovoProdutoController extends Controller {
 
     @FXML
     private TextField nome;
@@ -65,15 +60,5 @@ public class NovoProdutoController extends Controller implements UsaCamadaContro
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    }
-
-    @Override
-    public Controle getControle() {
-        return (this.controle);
-    }
-
-    @Override
-    public void setControle(Controle controle) {
-        this.controle = controle;
     }
 }

@@ -46,7 +46,7 @@ public class Venda implements Serializable {
     };
 
     private Integer id = -1;
-    private STATUS_VENDA status;
+    private STATUS_VENDA status = null;
 
     private LocalDateTime dataEHora = null;
     
@@ -55,9 +55,13 @@ public class Venda implements Serializable {
     private Double troco = -1.0;
     private Double valorPago = -1.0;
     
-    private Cliente cliente;
+    private Cliente cliente = null;
     private ArrayList<ItemVenda> itens = new ArrayList<>();
 
+    public Venda(){
+        
+    }
+    
     public void addItemVenda(ItemVenda item){
         this.itens.add(item);
         this.totalBruto += item.getTotal();

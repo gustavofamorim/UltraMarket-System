@@ -10,9 +10,13 @@ import java.util.Objects;
 public class ItemVenda implements Serializable {
 
     private Integer id = -1;
-    private Integer qtd;
-    private Produto item;
-    private Double total;
+    private Integer qtd = 0;
+    private Produto item = null;
+    private Double total = 0.0;
+    
+    public ItemVenda(){
+        
+    }
     
     public ItemVenda(Produto item, int qtd){
         this.qtd = qtd;

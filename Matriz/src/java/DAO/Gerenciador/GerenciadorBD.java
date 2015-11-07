@@ -24,11 +24,6 @@ public class GerenciadorBD {
     private static DSLContext context = null;
     
     public static boolean connect() throws ClassNotFoundException, SQLException, IOException{
-        
-        if(ConfigLoader.CONTROLLER == null){
-            ConfigLoader.load();
-        }
-        
         System.out.println("Conectando-se ao banco de dados... ");
         Class.forName(ConfigLoader.CONTROLLER);
         GerenciadorBD.con = DriverManager.getConnection(ConfigLoader.URL, ConfigLoader.USER, ConfigLoader.PASSWORD);

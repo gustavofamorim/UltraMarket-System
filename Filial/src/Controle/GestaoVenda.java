@@ -8,9 +8,9 @@ import java.util.Collection;
  */
 public class GestaoVenda {
 
-    private Controle mainController = null;
+    private Control mainController = null;
 
-    public GestaoVenda(Controle mainController){
+    public GestaoVenda(Control mainController){
         this.mainController = mainController;
     }
 /*

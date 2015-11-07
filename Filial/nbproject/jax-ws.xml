@@ -3,7 +3,7 @@
   <services/>
   <clients>
     <client name="MatrizServices">
-      <wsdl-url>http://localhost:8080/Matriz/MatrizServices?WSDL</wsdl-url>
+      <wsdl-url>http://localhost:8080/Matriz/MatrizServices?wsdl</wsdl-url>
       <local-wsdl-file>localhost_8080/Matriz/MatrizServices.wsdl</local-wsdl-file>
       <package-name>services</package-name>
       <catalog-file>catalog.xml</catalog-file>
@@ -22,7 +22,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://localhost:8080/Matriz/MatrizServices?WSDL</wsimport-option-value>
+          <wsimport-option-value>http://localhost:8080/Matriz/MatrizServices?wsdl</wsimport-option-value>
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>xnocompile</wsimport-option-name>
