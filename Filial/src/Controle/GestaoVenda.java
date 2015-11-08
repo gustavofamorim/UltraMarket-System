@@ -1,22 +1,13 @@
 package Controle;
 
 import Modelo.VendaBuilder;
-import Tools.DateParser;
 import Tools.Visual.WindowLoader;
 import Visao.Novo.NovaVendaController;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.GregorianCalendar;
 import java.util.Optional;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.DatatypeFactory;
-import javax.xml.datatype.XMLGregorianCalendar;
-import services.StatusVENDA;
-import services.Venda;
+import Modelo.Venda;
 
 /**
  * Created by Gustavo Freitas on 06/10/2015.
@@ -51,25 +42,8 @@ public class GestaoVenda {
             builder.darDesconto(desconto);
             builder.pagar(valorPago);
             builder.cliente(form.getCliente());
-            Modelo.Venda venda = builder.getInstance();
-            Venda vendaService = new Venda();
-            vendaService.setCliente(venda.getCliente());
-            GregorianCalendar gc = new GregorianCalendar();
-            gc.setTime(venda.getDataEHora());
-            XMLGregorianCalendar date = null;
-            try {
-                date = DatatypeFactory.newInstance().newXMLGregorianCalendar(gc);
-            } catch (DatatypeConfigurationException ex) {
-                Logger.getLogger(GestaoVenda.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            vendaService.setDataEHora(date);
-            vendaService.setId(venda.getId());
-            vendaService.setStatus(venda.getStatus() == Modelo.Venda.STATUS_VENDA.CANCELADA ? StatusVENDA.CANCELADA : StatusVENDA.CONFIRMADA);
-            vendaService.setTotalBruto(venda.getTotalBruto());
-            vendaService.setTotalLiquido(venda.getTroco());
-            vendaService.setTroco(venda.getTroco());
-            vendaService.setValorPago(venda.getValorPago());
-            cadastrarVenda(vendaService, Control.filial);
+            Venda venda = builder.getInstance();
+            cadastrarVenda(venda, Control.filial);
         }
     }
 
@@ -78,7 +52,7 @@ public class GestaoVenda {
         return (null);
     }
 
-    public void cancelarVenda(Modelo.Venda venda){
+    public void cancelarVenda(Venda venda){
 //        if(venda.getStatus() == Modelo.Venda.STATUS_VENDA.CONFIRMADA) {
 //            venda.getCliente().setSaldo(venda.getCliente().getSaldo() + venda.getValorPago());
 //            if (venda.getTroco() < 0) {
@@ -89,7 +63,7 @@ public class GestaoVenda {
         cancelarVenda(venda.getId());
     }
 
-    private static Venda cadastrarVenda(services.Venda venda, services.Filial filial) {
+    private static services.Venda cadastrarVenda(services.Venda venda, services.Filial filial) {
         services.MatrizServices_Service service = new services.MatrizServices_Service();
         services.MatrizServices port = service.getMatrizServicesPort();
         return port.cadastrarVenda(venda, filial);

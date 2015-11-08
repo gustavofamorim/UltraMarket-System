@@ -3,7 +3,8 @@ package Controle;
 import Tools.Visual.WindowLoader;
 import Visao.Novo.NovoProdutoController;
 import java.util.ArrayList;
-import services.Produto;
+import Modelo.Produto;
+import java.util.List;
 
 /**
  * Created by Gustavo Freitas on 06/10/2015.
@@ -30,7 +31,13 @@ public class GestaoProduto {
     }
 
     public ArrayList<Produto> obterTodosProduto(){
-        return (ArrayList<Produto>) (obterProdutosFilial(Control.filial.getId()));
+        ArrayList<Produto> produtos = new ArrayList<>();
+        
+        obterProdutosFilial(Control.filial.getId()).forEach(produto -> {
+            produtos.add((Produto) produto);
+        });
+        
+        return produtos;
     }
 
     private static boolean cadastrarProduto(services.Produto produto, services.Filial filial) {

@@ -1,12 +1,10 @@
 package Visao.Novo;
 
 import Tools.Visual.Controller;
-import Tools.Visual.WindowController;
 import Tools.Visual.WindowLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.stage.StageStyle;
 
 import java.net.URL;
 import java.util.Collection;
@@ -14,7 +12,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import services.Cliente;
 import services.ItemVenda;
-import services.Produto;
+import Modelo.Produto;
 
 /**
  * Created by Gustavo Freitas on 02/10/2015.

@@ -6,12 +6,14 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.Objects;
+import javax.xml.datatype.XMLGregorianCalendar;
 import services.ItemVenda;
+import services.StatusVENDA;
 
 /**
  * Created by Gustavo Freitas on 02/10/2015.
  */
-public class Venda implements Serializable {
+public class Venda extends services.Venda {
 
     public static enum STATUS_VENDA{
         CONFIRMADA(1, "Venda confirmada."), CANCELADA(0, "Venda cancelada.");
@@ -45,23 +47,6 @@ public class Venda implements Serializable {
             return (this.id + " - " + this.descricao);
         }
     };
-
-    private Integer id = -1;
-    private STATUS_VENDA status = null;
-
-    private Date dataEHora = null;
-    
-    private Double totalBruto = 0.0;
-    private Double totalLiquido = -1.0;
-    private Double troco = -1.0;
-    private Double valorPago = -1.0;
-    
-    private Cliente cliente = null;
-    private ArrayList<ItemVenda> itens = new ArrayList<>();
-
-    public Venda(){
-        
-    }
     
     public void addItemVenda(ItemVenda item){
         this.itens.add(item);
@@ -76,7 +61,7 @@ public class Venda implements Serializable {
             this.totalLiquido = this.totalBruto * (1.0 - porcentagem);
         }
         else{
-            throw new IllegalArgumentException("Porcentagem al�m do permitido.");
+            throw new IllegalArgumentException("Porcentagem alem do permitido.");
         }
     }
     
@@ -85,72 +70,8 @@ public class Venda implements Serializable {
         this.troco = this.valorPago - this.totalLiquido;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public STATUS_VENDA getStatus() {
-        return status;
-    }
-
     public void setStatus(STATUS_VENDA status) {
-        this.status = status;
-    }
-
-    public Date getDataEHora() {
-        return dataEHora;
-    }
-
-    public void setDataEHora(Date dataEHora) {
-        this.dataEHora = dataEHora;
-    }
-
-    public Double getTotalBruto() {
-        return totalBruto;
-    }
-
-    public void setTotalBruto(Double totalBruto) {
-        this.totalBruto = totalBruto;
-    }
-
-    public Double getTotalLiquido() {
-        return totalLiquido;
-    }
-
-    public void setTotalLiquido(Double totalLiquido) {
-        this.totalLiquido = totalLiquido;
-    }
-
-    public Double getTroco() {
-        return troco;
-    }
-
-    public void setTroco(Double troco) {
-        this.troco = troco;
-    }
-
-    public Double getValorPago() {
-        return valorPago;
-    }
-
-    public void setValorPago(Double valorPago) {
-        this.valorPago = valorPago;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public ArrayList<ItemVenda> getItens() {
-        return itens;
+        this.status = status == STATUS_VENDA.CONFIRMADA ? StatusVENDA.CONFIRMADA : StatusVENDA.CANCELADA;
     }
 
     public void setItens(ArrayList<ItemVenda> itens) {

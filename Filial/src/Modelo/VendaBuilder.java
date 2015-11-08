@@ -61,7 +61,7 @@ public class VendaBuilder implements Builder<Venda>, Serializable {
 
     public Venda getInstance(){
 
-        if(!this.venda.getItens().isEmpty()) {
+        if(!venda.getItens().isEmpty()) {
             LocalDateTime dataEHora = LocalDateTime.now();
 
             DateTimeFormatter formatador = DateTimeFormatter
@@ -70,16 +70,16 @@ public class VendaBuilder implements Builder<Venda>, Serializable {
 
             dataEHora.format(formatador);
 
-            this.venda.setDataEHora(DateParser.toDate(dataEHora));
+            this.venda.setDataEHora(DateParser.toXMLGregorianCalendar(dataEHora));
 
-            if(this.venda.getValorPago() < this.venda.getTotalLiquido()){
-                this.venda.getCliente().setSaldo(this.venda.getValorPago() - this.venda.getTotalLiquido());
+            if(venda.getValorPago() < venda.getTotalLiquido()){
+                venda.getCliente().setSaldo(venda.getValorPago() - venda.getTotalLiquido());
             }
 
-            this.venda.setStatus(Venda.STATUS_VENDA.CONFIRMADA);
+            venda.setStatus(Venda.STATUS_VENDA.CONFIRMADA);
 
-            System.out.println(this.venda);
-            return (this.venda);
+            System.out.println(venda);
+            return (venda);
         }
 
         return (null);
