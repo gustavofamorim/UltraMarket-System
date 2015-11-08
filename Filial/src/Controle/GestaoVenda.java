@@ -8,6 +8,7 @@ import java.util.Optional;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import Modelo.Venda.Venda;
+import services.StatusVENDA;
 
 /**
  * Created by Gustavo Freitas on 06/10/2015.
@@ -48,17 +49,20 @@ public class GestaoVenda {
     }
 
     public ArrayList<Venda> obterTodosVenda(){
-        //return (this.mainController.banco.selectAllFromVenda());
-        return (null);
+        ArrayList<Venda> vendas = new ArrayList<>();
+        obterTodasVendaByIdFilial(Control.filial.getId()).forEach(item -> {
+            vendas.add(Venda.ParseToModel(item));
+        });
+        return vendas;
     }
 
     public void cancelarVenda(Venda venda){
-//        if(venda.getStatus() == Modelo.Venda.STATUS_VENDA.CONFIRMADA) {
+//        if(venda.getStatus() == StatusVENDA.CONFIRMADA) {
 //            venda.getCliente().setSaldo(venda.getCliente().getSaldo() + venda.getValorPago());
 //            if (venda.getTroco() < 0) {
 //                venda.getCliente().setSaldo(venda.getCliente().getSaldo() - venda.getTroco());
 //            }
-//            venda.setStatus(Modelo.Venda.STATUS_VENDA.CANCELADA);
+//            venda.setStatus(StatusVENDA.CANCELADA);
 //        }
         cancelarVenda(venda.getId());
     }
@@ -73,6 +77,12 @@ public class GestaoVenda {
         services.MatrizServices_Service service = new services.MatrizServices_Service();
         services.MatrizServices port = service.getMatrizServicesPort();
         return port.cancelarVenda(idVenda);
+    }
+
+    private static java.util.List<services.Venda> obterTodasVendaByIdFilial(int idFilial) {
+        services.MatrizServices_Service service = new services.MatrizServices_Service();
+        services.MatrizServices port = service.getMatrizServicesPort();
+        return port.obterTodasVendaByIdFilial(idFilial);
     }
 
 }

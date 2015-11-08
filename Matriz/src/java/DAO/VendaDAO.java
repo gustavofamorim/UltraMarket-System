@@ -113,30 +113,32 @@ public class VendaDAO implements DAO<Venda> {
         
         ArrayList<Venda> loaded = null;
 
-        Result<Record1<Integer>> tmpResult = GerenciadorBD.getContext().select(ITEMVENDA.VENDA_IDVENDA).distinctOn(ITEMVENDA.VENDA_IDVENDA)
+        Result<Record1<Integer>> tmpResult = GerenciadorBD.getContext().selectDistinct(ITEMVENDA.VENDA_IDVENDA)
                                         .from(FILIAL_PRODUTO).join(PRODUTO).on(FILIAL_PRODUTO.IDFILIAL.eq(idFilial).and(FILIAL_PRODUTO.IDPRODUTO.eq(PRODUTO.IDPRODUTO)))
                                         .join(ITEMVENDA).on(PRODUTO.IDPRODUTO.eq(ITEMVENDA.PRODUTO_IDPRODUTO))
                                         .fetch();
-        
-        for(Record1<Integer> r : tmpResult){
-            
-            VendaRecord v = GerenciadorBD.getContext().selectFrom(VENDA).where(VENDA.IDVENDA.eq(r.value1())).fetchOne();
-            
-            if(v != null){
-                Venda tmp = new Venda();
-                tmp.setId(v.getIdvenda());
-                tmp.setCliente(ClienteDAO.getInstance().obter(v.getIdciente()));
-                tmp.setDataEHora(v.getData());
-                tmp.setStatus(v.getStatus() == 1 ? Venda.STATUS_VENDA.CONFIRMADA : Venda.STATUS_VENDA.CANCELADA);
-                tmp.setTotalBruto(v.getTotalbruto());
-                tmp.setTotalLiquido(v.getTotalliquido());
-                tmp.setTroco(v.getTroco());
-                tmp.setValorPago(v.getValorpago());
-                tmp.setItens((ArrayList<ItemVenda>) ItemVendaDAO.getInstance().obterTodos(tmp.getId()));
-                loaded.add(tmp);
+        if (tmpResult != null) {
+            loaded = new ArrayList<>();
+            for(Record1<Integer> r : tmpResult){
+
+                VendaRecord v = GerenciadorBD.getContext().selectFrom(VENDA).where(VENDA.IDVENDA.eq(r.value1())).fetchOne();
+
+                if(v != null){
+                    Venda tmp = new Venda();
+                    tmp.setId(v.getIdvenda());
+                    tmp.setCliente(ClienteDAO.getInstance().obter(v.getIdciente()));
+                    tmp.setDataEHora(v.getData());
+                    tmp.setStatus(v.getStatus() == 1 ? Venda.STATUS_VENDA.CONFIRMADA : Venda.STATUS_VENDA.CANCELADA);
+                    tmp.setTotalBruto(v.getTotalbruto());
+                    tmp.setTotalLiquido(v.getTotalliquido());
+                    tmp.setTroco(v.getTroco());
+                    tmp.setValorPago(v.getValorpago());
+                    tmp.setItens((ArrayList<ItemVenda>) ItemVendaDAO.getInstance().obterTodos(tmp.getId()));
+                    loaded.add(tmp);
+                    System.out.println(tmp);
+                }
             }
         }
-        
         return (loaded);
     }
     

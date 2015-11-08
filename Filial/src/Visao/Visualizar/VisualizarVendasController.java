@@ -2,6 +2,8 @@ package Visao.Visualizar;
 
 import Modelo.Venda.Venda;
 import Tools.Visual.Controller;
+import Tools.Visual.WindowController;
+import Tools.Visual.WindowLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -33,33 +35,29 @@ public class VisualizarVendasController extends Controller{
 
     private void update(){
 
-        this.colId.setCellValueFactory(new PropertyValueFactory<>("cod"));
-        this.colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
-        this.colData.setCellValueFactory(new PropertyValueFactory<>("dataEHora"));
-        this.colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-        this.dados.getItems().addAll(Controle.Control.getInstance().getGestaoVenda().obterTodosVenda());
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colTotal.setCellValueFactory(new PropertyValueFactory<>("totalLiquido"));
+        colData.setCellValueFactory(new PropertyValueFactory<>("dataEHora"));
+        colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+        dados.getItems().addAll(Controle.Control.getInstance().getGestaoVenda().obterTodosVenda());
 
     }
 
     @FXML
     private void verDetalhes(ActionEvent event){
-/*
         WindowController detalhes = WindowLoader.loadWindow("/Visao/Visualizar/DetalheVenda.fxml");
-        ((DetalheVendaController)detalhes.getInternalController()).setDados(this.dados.getSelectionModel().getSelectedItem());
+        ((DetalheVendaController)detalhes.getInternalController()).setDados(dados.getSelectionModel().getSelectedItem());
         detalhes.setResizable(false);
         detalhes.getInternalController().setMyStage(detalhes);
         detalhes.showAndWait();
-*/
     }
 
     @FXML
     private void cancelarVenda(ActionEvent event){
-/*
-        this.controle.getGestaoVenda().cancelarVenda(this.dados.getSelectionModel().getSelectedItem());
+        Controle.Control.getInstance().getGestaoVenda().cancelarVenda(dados.getSelectionModel().getSelectedItem());
         WindowLoader.showMessage("Venda cancelada", "A venda foi cancelada.\nO cliente foi ressarcido com o valor pago.");
         this.dados.getItems().clear();
-        this.dados.getItems().addAll(this.controle.getGestaoVenda().obterTodosVenda());
-*/
+        this.dados.getItems().addAll(Controle.Control.getInstance().getGestaoVenda().obterTodosVenda());
     }
 
     @Override

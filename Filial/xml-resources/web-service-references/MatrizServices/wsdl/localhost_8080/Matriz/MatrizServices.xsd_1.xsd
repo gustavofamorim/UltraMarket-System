@@ -36,6 +36,10 @@
 
 <xs:element name="obterProdutosFilialResponse" type="tns:obterProdutosFilialResponse"/>
 
+<xs:element name="obterTodasVendaByIdFilial" type="tns:obterTodasVendaByIdFilial"/>
+
+<xs:element name="obterTodasVendaByIdFilialResponse" type="tns:obterTodasVendaByIdFilialResponse"/>
+
 <xs:complexType name="excluirCliente">
 <xs:sequence>
 <xs:element name="idCliente" type="xs:int"/>
@@ -79,10 +83,15 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="cadastrarVenda">
+<xs:complexType name="obterTodasVendaByIdFilial">
 <xs:sequence>
-<xs:element name="venda" type="tns:venda" minOccurs="0"/>
-<xs:element name="filial" type="tns:filial" minOccurs="0"/>
+<xs:element name="idFilial" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="obterTodasVendaByIdFilialResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:venda" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -114,6 +123,13 @@
 <xs:element name="id" type="xs:int" minOccurs="0"/>
 <xs:element name="nome" type="xs:string" minOccurs="0"/>
 <xs:element name="valor" type="xs:double" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="cadastrarVenda">
+<xs:sequence>
+<xs:element name="venda" type="tns:venda" minOccurs="0"/>
+<xs:element name="filial" type="tns:filial" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 

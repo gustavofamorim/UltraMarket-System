@@ -1,5 +1,6 @@
 package Visao.Visualizar;
 
+import Modelo.Venda.Venda;
 import Tools.Visual.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,7 +16,7 @@ public class DetalheVendaController extends Controller {
 
     @FXML
     private TextArea detalhesVenda;
-/*
+    
     public void setDados(Venda venda){
         this.detalhesVenda.setText(venda.toString());
     }
@@ -24,7 +25,7 @@ public class DetalheVendaController extends Controller {
     public void fechar(ActionEvent event){
         this.getMyStage().close();
     }
-*/
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.detalhesVenda.setStyle("-fx-font-family: Monospaced");

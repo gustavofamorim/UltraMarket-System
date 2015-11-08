@@ -1,6 +1,5 @@
 package Modelo.Venda;
 
-import Tools.Visual.WindowLoader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
