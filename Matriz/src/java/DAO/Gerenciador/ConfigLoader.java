@@ -12,6 +12,6 @@ package DAO.Gerenciador;
 public class ConfigLoader {
     public static String URL = "jdbc:mysql://localhost:3306/matrizDB";
     public static String USER = "root";
-    public static String PASSWORD = "";
+    public static String PASSWORD = "050596";
     public static String CONTROLLER = "com.mysql.jdbc.Driver";    
 }

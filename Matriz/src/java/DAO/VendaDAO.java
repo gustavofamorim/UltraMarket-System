@@ -7,6 +7,10 @@ package DAO;
 
 import DAO.Gerenciador.GerenciadorBD;
 import static DAO.mysql.generatedclasses.tables.Venda.VENDA;
+import static DAO.mysql.generatedclasses.tables.Filial.FILIAL;
+import static DAO.mysql.generatedclasses.tables.FilialProduto.FILIAL_PRODUTO;
+import static DAO.mysql.generatedclasses.tables.Produto.PRODUTO;
+import static DAO.mysql.generatedclasses.tables.Itemvenda.ITEMVENDA;
 import DAO.mysql.generatedclasses.tables.records.VendaRecord;
 import Modelo.Venda.ItemVenda;
 import Modelo.Venda.Venda;
@@ -15,6 +19,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import org.jooq.Record1;
 import org.jooq.Result;
 
 /**
@@ -104,6 +109,37 @@ public class VendaDAO implements DAO<Venda> {
         return (loaded);
     }
 
+    public Collection<Venda> obterTodosByIdFilial(int idFilial) throws ClassNotFoundException, SQLException, IOException {
+        
+        ArrayList<Venda> loaded = null;
+
+        Result<Record1<Integer>> tmpResult = GerenciadorBD.getContext().select(ITEMVENDA.VENDA_IDVENDA).distinctOn(ITEMVENDA.VENDA_IDVENDA)
+                                        .from(FILIAL_PRODUTO).join(PRODUTO).on(FILIAL_PRODUTO.IDFILIAL.eq(idFilial).and(FILIAL_PRODUTO.IDPRODUTO.eq(PRODUTO.IDPRODUTO)))
+                                        .join(ITEMVENDA).on(PRODUTO.IDPRODUTO.eq(ITEMVENDA.PRODUTO_IDPRODUTO))
+                                        .fetch();
+        
+        for(Record1<Integer> r : tmpResult){
+            
+            VendaRecord v = GerenciadorBD.getContext().selectFrom(VENDA).where(VENDA.IDVENDA.eq(r.value1())).fetchOne();
+            
+            if(v != null){
+                Venda tmp = new Venda();
+                tmp.setId(v.getIdvenda());
+                tmp.setCliente(ClienteDAO.getInstance().obter(v.getIdciente()));
+                tmp.setDataEHora(v.getData());
+                tmp.setStatus(v.getStatus() == 1 ? Venda.STATUS_VENDA.CONFIRMADA : Venda.STATUS_VENDA.CANCELADA);
+                tmp.setTotalBruto(v.getTotalbruto());
+                tmp.setTotalLiquido(v.getTotalliquido());
+                tmp.setTroco(v.getTroco());
+                tmp.setValorPago(v.getValorpago());
+                tmp.setItens((ArrayList<ItemVenda>) ItemVendaDAO.getInstance().obterTodos(tmp.getId()));
+                loaded.add(tmp);
+            }
+        }
+        
+        return (loaded);
+    }
+    
     @Override
     public boolean apagar(int id) throws ClassNotFoundException, SQLException, IOException {
         

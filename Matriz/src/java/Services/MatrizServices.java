@@ -15,6 +15,7 @@ import Modelo.Produto;
 import Modelo.Venda.Venda;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -149,6 +150,19 @@ public class MatrizServices {
     public Cliente obterClienteByCPF(@WebParam(name = "cpf") String cpf) {
         try {
             return (ClienteDAO.getInstance().obter(cpf));
+        } catch (ClassNotFoundException | SQLException | IOException ex) {
+            Logger.getLogger(MatrizServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return (null);
+    }
+
+    /**
+     * Operação de Web service
+     */
+    @WebMethod(operationName = "obterTodasVendaByIdFilial")
+    public Collection<Venda> obterTodasVendaByIdFilial(@WebParam(name = "idFilial") int idFilial) {
+        try {
+            return (VendaDAO.getInstance().obterTodosByIdFilial(idFilial));
         } catch (ClassNotFoundException | SQLException | IOException ex) {
             Logger.getLogger(MatrizServices.class.getName()).log(Level.SEVERE, null, ex);
         }
