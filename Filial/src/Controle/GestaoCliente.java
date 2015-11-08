@@ -9,12 +9,6 @@ import services.Cliente;
  * Created by Gustavo Freitas on 05/10/2015.
  */
 public class GestaoCliente {
-
-    public Control mainController;
-
-    public GestaoCliente(Control mainController){
-        this.mainController = mainController;
-    }
     
     public services.Cliente searchCliente(String cpf) {
         return obterClienteByCPF(cpf);

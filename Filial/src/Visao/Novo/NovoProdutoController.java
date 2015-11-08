@@ -4,6 +4,7 @@ package Visao.Novo;
  * Created by Gustavo Freitas on 02/10/2015.
  */
 
+import Controle.Control;
 import Tools.Visual.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,30 +23,7 @@ public class NovoProdutoController extends Controller {
 
     @FXML
     private void cadastrar(ActionEvent event){
-/*
-        Double valor = null;
-
-        if(this.controle == null){
-            throw new NullPointerException("O controlador não foi setado.");
-        }
-        else {
-
-            try {
-                valor = Double.parseDouble(this.valor.getText().replace(",", "."));
-            }
-            catch(NumberFormatException e){
-                WindowLoader.showMessage("Entrada Inválida", "Valor é um campo numérico.");
-                valor = null;
-            }
-
-            if (this.nome.getText().length() == 0 && this.valor.getText().length() == 0 && valor > 0) {
-                WindowLoader.showError("Preencha todos os campos.", "É necessário que todos os campos estejam preenchidos corretamente.");
-            } else {
-                this.controle.getGestaoProduto().salvarProduto(this.nome.getText(), valor);
-                this.limpar();
-            }
-        }
-*/
+        Control.getInstance().getGestaoProduto().saveProduto(this);
     }
 
     @FXML
@@ -56,6 +34,14 @@ public class NovoProdutoController extends Controller {
     public void limpar(){
         this.nome.setText("");
         this.valor.setText("");
+    }
+    
+    public String getNome() {
+        return nome.getText();
+    }
+    
+    public String getValor() {
+        return valor.getText();
     }
 
     @Override
