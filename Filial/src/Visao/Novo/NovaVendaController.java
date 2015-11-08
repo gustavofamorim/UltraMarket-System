@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import services.Cliente;
-import services.ItemVenda;
+import Modelo.Venda.ItemVenda;
 import Modelo.Produto;
 
 /**
@@ -83,13 +83,13 @@ public class NovaVendaController extends Controller{
             itemVenda.setItem(selecionado);
             itemVenda.setQtd(Integer.parseInt(quantidade.get()));
             itemVenda.setTotal(selecionado.getValor()*itemVenda.getQtd());
-            itensAdicionados.getItems().addAll(itemVenda);
+            itensAdicionados.getItems().add(itemVenda);
         }
     }
 
     @FXML
     private void finalizar(ActionEvent event){
-        if (itensAdicionados.getItems().size() == 0 || cliente == null) {
+        if (itensAdicionados.getItems().isEmpty() || cliente == null) {
             WindowLoader.showError("Venda sem itens.", "Adicione itens para prosseguir.", "");
         }
         else {

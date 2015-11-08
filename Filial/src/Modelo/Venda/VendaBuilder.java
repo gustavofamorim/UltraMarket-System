@@ -1,5 +1,7 @@
-package Modelo;
+package Modelo.Venda;
 
+import Modelo.Produto;
+import Modelo.Venda.Venda;
 import Tools.Builder;
 import Tools.DateParser;
 import java.io.Serializable;
@@ -10,8 +12,6 @@ import java.time.format.FormatStyle;
 import java.util.Collection;
 import java.util.Locale;
 import services.Cliente;
-import services.ItemVenda;
-import services.Produto;
 
 /**
  * Created by Gustavo Freitas on 02/10/2015.

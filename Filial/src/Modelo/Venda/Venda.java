@@ -1,19 +1,16 @@
-package Modelo;
+package Modelo.Venda;
 
-import services.Cliente;
-import java.io.Serializable;
-
-import java.util.Date;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import javax.xml.datatype.XMLGregorianCalendar;
-import services.ItemVenda;
 import services.StatusVENDA;
 
 /**
  * Created by Gustavo Freitas on 02/10/2015.
  */
 public class Venda extends services.Venda {
+    
+    private List<ItemVenda> itens;
 
     public static enum STATUS_VENDA{
         CONFIRMADA(1, "Venda confirmada."), CANCELADA(0, "Venda cancelada.");
@@ -48,6 +45,24 @@ public class Venda extends services.Venda {
         }
     };
     
+    public static Venda ParseToModel(services.Venda service) {
+        Venda venda = new Venda();
+        venda.setCliente(service.getCliente());
+        venda.setDataEHora(service.getDataEHora());
+        venda.setId(service.getId());
+        
+        ArrayList<ItemVenda> itens = new ArrayList<>();
+        service.getItens().forEach(item -> {itens.add(ItemVenda.ParseToModel(item)); });
+        
+        venda.setItens(itens);
+        venda.setStatus(service.getStatus());
+        venda.setTotalBruto(service.getTotalBruto());
+        venda.setTotalLiquido(service.getTotalLiquido());
+        venda.setTroco(service.getTroco());
+        venda.setValorPago(service.getValorPago());
+        return venda;
+    }
+    
     public void addItemVenda(ItemVenda item){
         this.itens.add(item);
         this.totalBruto += item.getTotal();
@@ -74,7 +89,7 @@ public class Venda extends services.Venda {
         this.status = status == STATUS_VENDA.CONFIRMADA ? StatusVENDA.CONFIRMADA : StatusVENDA.CANCELADA;
     }
 
-    public void setItens(ArrayList<ItemVenda> itens) {
+    public void setItens(ArrayList <ItemVenda> itens) {
         this.itens = itens;
     }
     

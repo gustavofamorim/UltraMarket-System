@@ -1,13 +1,13 @@
 package Controle;
 
-import Modelo.VendaBuilder;
+import Modelo.Venda.VendaBuilder;
 import Tools.Visual.WindowLoader;
 import Visao.Novo.NovaVendaController;
 import java.util.ArrayList;
 import java.util.Optional;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import Modelo.Venda;
+import Modelo.Venda.Venda;
 
 /**
  * Created by Gustavo Freitas on 06/10/2015.

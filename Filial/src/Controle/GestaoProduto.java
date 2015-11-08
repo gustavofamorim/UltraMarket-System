@@ -34,7 +34,7 @@ public class GestaoProduto {
         ArrayList<Produto> produtos = new ArrayList<>();
         
         obterProdutosFilial(Control.filial.getId()).forEach(produto -> {
-            produtos.add((Produto) produto);
+            produtos.add(Produto.ParseToModel(produto));
         });
         
         return produtos;
