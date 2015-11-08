@@ -28,7 +28,7 @@ public class VendaDAO implements DAO<Venda> {
                 
         VendaRecord created;
         created = GerenciadorBD.getContext().insertInto(VENDA, VENDA.IDCIENTE, VENDA.TOTALBRUTO, VENDA.TOTALLIQUIDO, VENDA.TROCO, VENDA.VALORPAGO, VENDA.DATA, VENDA.STATUS)
-                .values(novo.getCliente().getId(), novo.getTotalBruto(), novo.getTotalLiquido(), novo.getTroco(), novo.getValorPago(), new java.sql.Date(DateParser.toDate(novo.getDataEHora()).getTime()), (byte) novo.getStatus().getId())
+                .values(novo.getCliente().getId(), novo.getTotalBruto(), novo.getTotalLiquido(), novo.getTroco(), novo.getValorPago(), new java.sql.Date(novo.getDataEHora().getTime()), (byte) novo.getStatus().getId())
                 .returning().fetchOne();
 
         if(created != null){
@@ -58,7 +58,7 @@ public class VendaDAO implements DAO<Venda> {
             loaded = new Venda();
             loaded.setId(result.getIdvenda());
             loaded.setCliente(ClienteDAO.getInstance().obter(result.getIdciente()));
-            loaded.setDataEHora(DateParser.toLocalDateTime(result.getData()));
+            loaded.setDataEHora(result.getData());
             loaded.setStatus(result.getStatus() == 1 ? Venda.STATUS_VENDA.CONFIRMADA : Venda.STATUS_VENDA.CANCELADA);
             loaded.setTotalBruto(result.getTotalbruto());
             loaded.setTotalLiquido(result.getTotalliquido());
@@ -90,7 +90,7 @@ public class VendaDAO implements DAO<Venda> {
                 Venda tmp = new Venda();
                 tmp.setId(v.getIdvenda());
                 tmp.setCliente(ClienteDAO.getInstance().obter(v.getIdciente()));
-                tmp.setDataEHora(DateParser.toLocalDateTime(v.getData()));
+                tmp.setDataEHora(v.getData());
                 tmp.setStatus(v.getStatus() == 1 ? Venda.STATUS_VENDA.CONFIRMADA : Venda.STATUS_VENDA.CANCELADA);
                 tmp.setTotalBruto(v.getTotalbruto());
                 tmp.setTotalLiquido(v.getTotalliquido());
@@ -124,7 +124,7 @@ public class VendaDAO implements DAO<Venda> {
         
         VendaRecord v = new VendaRecord(obj.getId(), obj.getCliente().getId(), 
                 obj.getTotalBruto(), obj.getTotalLiquido(), obj.getTroco(), 
-                obj.getValorPago(), new java.sql.Date(DateParser.toDate(obj.getDataEHora()).getTime()), 
+                obj.getValorPago(), new java.sql.Date(obj.getDataEHora().getTime()), 
                 (byte) obj.getStatus().getId());
         
         v = GerenciadorBD.getContext().update(VENDA)

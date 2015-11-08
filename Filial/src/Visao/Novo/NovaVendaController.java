@@ -9,6 +9,8 @@ import javafx.scene.control.*;
 import javafx.stage.StageStyle;
 
 import java.net.URL;
+import java.util.Collection;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import services.Cliente;
 import services.ItemVenda;
@@ -46,24 +48,17 @@ public class NovaVendaController extends Controller{
     private ToggleButton buscaToggle;
 
     @FXML
-    public void novoCliente(ActionEvent event){
-        WindowController janela = WindowLoader.loadWindow("/Visao/Novo/NovoCliente.fxml");
-        janela.getInternalController().setMyStage(janela);
-        ((NovoClienteController)janela.getInternalController()).cancelarButton.setDisable(true);
-        janela.initStyle(StageStyle.UNDECORATED);
-        janela.showAndWait();
+    private void novoCliente(ActionEvent event){
+        cliente = Controle.Control.getInstance().getGestaoCliente().windowSaveCliente();
         
-        this.cliente = ((NovoClienteController)janela.getInternalController()).getCliente();
-        
-        if(this.cliente != null){
-            this.resultadoBusca.setText("Nome: " + this.cliente.getNome());
-            this.debitosCliente.setText("Débito: " + this.cliente.getSaldo());
+        if(cliente != null){
+            resultadoBusca.setText("Nome: " + cliente.getNome());
+            debitosCliente.setText("Débito: " + cliente.getSaldo());
         }
     }
 
     @FXML
     private void addItem(ActionEvent event){
-/*
         Produto selecionado = this.itens.getSelectionModel().getSelectedItem();
         if(selecionado != null){
 
@@ -86,79 +81,41 @@ public class NovaVendaController extends Controller{
                     WindowLoader.showError("Entrada Inválida.", "Quantidade é um campo numérico.", "");
                 }
             }
-
-            this.itensAdicionados.getItems().addAll(new ItemVenda(selecionado, Integer.parseInt(quantidade.get())));
+            ItemVenda itemVenda = new ItemVenda();
+            itemVenda.setItem(selecionado);
+            itemVenda.setQtd(Integer.parseInt(quantidade.get()));
+            itemVenda.setTotal(selecionado.getValor()*itemVenda.getQtd());
+            itensAdicionados.getItems().addAll(itemVenda);
         }
-*/
     }
 
     @FXML
     private void finalizar(ActionEvent event){
-/*
-        if(this.controle == null){
-            throw new NullPointerException("O controlador não foi setado.");
+        if (itensAdicionados.getItems().size() == 0 || cliente == null) {
+            WindowLoader.showError("Venda sem itens.", "Adicione itens para prosseguir.", "");
         }
         else {
-            if (this.itensAdicionados.getItems().size() == 0 || this.cliente == null) {
-                WindowLoader.showError("Venda sem itens.", "Adicione itens para prosseguir.", "");
-            }
-            else {
-
-                if(this.cliente.getSaldo() > 0){
-                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                    alert.setTitle("O cliente possui débito");
-                    alert.setHeaderText("O cliente deve pagar o débito.");
-                    alert.setContentText("Ele tem dinheiro disponível?");
-                    Optional<ButtonType> result = alert.showAndWait();
-                    if (result.get() == ButtonType.OK){
-                        this.execFinalizar();
-                    }
-                    else {
-                        this.limpar();
-                        WindowLoader.showMessage("Cancelada", "A venda foi cancelada por falta de grana.");
-                    }
-                }
-                else{
-                    this.execFinalizar();
-                }
-                this.limpar();
-            }
+            Controle.Control.getInstance().getGestaoVenda().novaVenda(this);
+            limpar();
         }
-*/
-    }
-
-    private void execFinalizar(){
-/*
-        try {
-            Double desconto = Double.parseDouble(this.desconto.getText().replace(",", "."));
-            Double valorPago = Double.parseDouble(this.valorPago.getText().replace(",", "."));
-            this.controle.getGestaoVenda().novaVenda(this.itensAdicionados.getItems(), valorPago, desconto, this.cliente);
-        } catch (NumberFormatException e) {
-            WindowLoader.showError("Entrada Incorreta", "Desconto e Valor Pago devem ser números.", "");
-        }
-*/
     }
 
     @FXML
     private void cancelar(ActionEvent event){
-        this.limpar();
+        limpar();
     }
 
     public void limpar(){
-/*
-        this.itensAdicionados.getItems().clear();
-        this.desconto.setText("");
-        this.valorPago.setText("");
-        this.cliente = null;
-        this.resultadoBusca.setText("Nome: ");
-        this.debitosCliente.setText("Débitos: ");
-*/      
+        itensAdicionados.getItems().clear();
+        desconto.setText("");
+        valorPago.setText("");
+        cliente = null;
+        resultadoBusca.setText("Nome: ");
+        debitosCliente.setText("Débitos: ");
     }
 
     public void update(){
-/*      
-        this.itens.getItems().addAll(this.controle.getGestaoProduto().obterTodosProduto());
-*/      
+        itens.getItems().addAll(Controle.Control.getInstance().getGestaoProduto().obterTodosProduto());  
     }
 
     @FXML
@@ -180,5 +137,28 @@ public class NovaVendaController extends Controller{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        update();
     }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public String getDesconto() {
+        return desconto.getText();
+    }
+
+    public String getValorPago() {
+        return valorPago.getText();
+    }
+
+    public Collection<ItemVenda> getItensAdicionados() {
+        return itensAdicionados.getItems();
+    }
+    
+    
 }

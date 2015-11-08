@@ -30,8 +30,7 @@ public class GestaoProduto {
     }
 
     public ArrayList<Produto> obterTodosProduto(){
-        //return (this.mainController.banco.selectAllFromProduto());
-        return (null);
+        return (ArrayList<Produto>) (obterProdutosFilial(Control.filial.getId()));
     }
 
     private static boolean cadastrarProduto(services.Produto produto, services.Filial filial) {

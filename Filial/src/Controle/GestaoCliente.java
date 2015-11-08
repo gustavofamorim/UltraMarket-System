@@ -1,8 +1,10 @@
 package Controle;
 
+import Tools.Visual.WindowController;
 import Tools.Visual.WindowLoader;
 import Visao.Novo.NovoClienteController;
 import java.util.ArrayList;
+import javafx.stage.StageStyle;
 import services.Cliente;
 
 /**
@@ -12,6 +14,16 @@ public class GestaoCliente {
     
     public services.Cliente searchCliente(String cpf) {
         return obterClienteByCPF(cpf);
+    }
+    
+    public Cliente windowSaveCliente() {
+        WindowController janela = WindowLoader.loadWindow("/Visao/Novo/NovoCliente.fxml");
+        janela.getInternalController().setMyStage(janela);
+        ((NovoClienteController)janela.getInternalController()).cancelarButton.setDisable(true);
+        janela.initStyle(StageStyle.UNDECORATED);
+        janela.showAndWait();
+        
+        return ((NovoClienteController)janela.getInternalController()).getCliente();
     }
 
     public Cliente saveCliente(NovoClienteController form){

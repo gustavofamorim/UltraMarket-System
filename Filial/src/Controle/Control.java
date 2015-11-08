@@ -12,7 +12,7 @@ public class Control {
     public static Filial filial = null;
 
     protected final GestaoCliente gestaoCliente = new GestaoCliente();
-    protected final GestaoVenda gestaoVenda = new GestaoVenda(this);
+    protected final GestaoVenda gestaoVenda = new GestaoVenda();
     protected final GestaoProduto gestaoProduto = new GestaoProduto();
 
     public void startApplication(String nome){

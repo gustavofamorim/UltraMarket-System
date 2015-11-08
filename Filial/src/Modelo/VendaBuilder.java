@@ -1,7 +1,5 @@
-package Modelo.Venda;
+package Modelo;
 
-import Modelo.Cliente;
-import Modelo.Produto;
 import Tools.Builder;
 import Tools.DateParser;
 import java.io.Serializable;
@@ -11,6 +9,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Collection;
 import java.util.Locale;
+import services.Cliente;
+import services.ItemVenda;
+import services.Produto;
 
 /**
  * Created by Gustavo Freitas on 02/10/2015.
@@ -30,8 +31,11 @@ public class VendaBuilder implements Builder<Venda>, Serializable {
     }
 
     public void addItem(Produto produto, int qtd){
-        ItemVenda item = new ItemVenda(produto, qtd);
-        this.venda.addItemVenda(item);
+        ItemVenda item = new ItemVenda();
+        item.setItem(produto);
+        item.setQtd(qtd);
+        item.setTotal(produto.getValor()*qtd);
+        venda.addItemVenda(item);
     }
 
     public boolean darDesconto(Double porcentagem){

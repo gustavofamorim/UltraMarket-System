@@ -1,11 +1,12 @@
-package Modelo.Venda;
+package Modelo;
 
-import Modelo.Cliente;
+import services.Cliente;
 import java.io.Serializable;
 
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.Objects;
+import services.ItemVenda;
 
 /**
  * Created by Gustavo Freitas on 02/10/2015.
