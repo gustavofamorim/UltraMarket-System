@@ -24,6 +24,15 @@ public class ItemVenda extends services.ItemVenda {
         return itemVenda;
     }
     
+    public static services.ItemVenda ParseToService(ItemVenda modelo) {
+//        ItemVenda itemVenda = new ItemVenda();
+//        itemVenda.setId(modelo.getId());
+//        itemVenda.setItem(Produto.ParseToModel(modelo.getItem()));
+//        itemVenda.setQtd(modelo.getQtd());
+//        itemVenda.setTotal(modelo.getTotal());
+        return modelo;
+    }
+    
     @Override
     public Produto getItem() {
         return produto;

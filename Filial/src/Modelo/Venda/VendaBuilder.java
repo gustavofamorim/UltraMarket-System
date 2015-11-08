@@ -1,7 +1,6 @@
 package Modelo.Venda;
 
 import Modelo.Produto;
-import Modelo.Venda.Venda;
 import Tools.Builder;
 import Tools.DateParser;
 import java.io.Serializable;
@@ -21,13 +20,14 @@ public class VendaBuilder implements Builder<Venda>, Serializable {
     private Venda venda = new Venda();
     
     public void addItem(ItemVenda item){
-        this.venda.addItemVenda(item);
+        venda.addItemVenda(item);
     }
 
     public void addItens(Collection<ItemVenda> itens){
         for(ItemVenda item : itens){
-            this.venda.addItemVenda(item);
+            venda.addItemVenda(item);
         }
+        System.out.println(venda.getItens().size());
     }
 
     public void addItem(Produto produto, int qtd){
@@ -78,7 +78,6 @@ public class VendaBuilder implements Builder<Venda>, Serializable {
 
             venda.setStatus(Venda.STATUS_VENDA.CONFIRMADA);
 
-            System.out.println(venda);
             return (venda);
         }
 

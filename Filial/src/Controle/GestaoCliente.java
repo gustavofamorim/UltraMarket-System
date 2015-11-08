@@ -5,7 +5,7 @@ import Tools.Visual.WindowLoader;
 import Visao.Novo.NovoClienteController;
 import java.util.ArrayList;
 import javafx.stage.StageStyle;
-import services.Cliente;
+import Modelo.Cliente;
 
 /**
  * Created by Gustavo Freitas on 05/10/2015.
@@ -37,7 +37,7 @@ public class GestaoCliente {
         
         c.setNome(form.getNome());
         c.setCPF(form.getCPF());
-        c = cadastrarCliente(c);
+        cadastrarCliente(c);
         
         if(c != null) {
             form.limpar();
@@ -50,10 +50,14 @@ public class GestaoCliente {
     }
 
     public ArrayList<Cliente> obterTodosCliente(){
-        return (ArrayList<Cliente>) (obterClientes());
+        ArrayList<Cliente> clientes = new ArrayList<>();
+        obterClientes().forEach(item -> {
+            clientes.add(Cliente.ParseToModel(item));
+        });
+        return clientes;
     }
 
-    private static Cliente cadastrarCliente(services.Cliente cliente) {
+    private static services.Cliente cadastrarCliente(services.Cliente cliente) {
         services.MatrizServices_Service service = new services.MatrizServices_Service();
         services.MatrizServices port = service.getMatrizServicesPort();
         return port.cadastrarCliente(cliente);
@@ -65,7 +69,7 @@ public class GestaoCliente {
         return port.excluirCliente(idCliente);
     }
 
-    private static Cliente obterClienteByCPF(java.lang.String cpf) {
+    private static services.Cliente obterClienteByCPF(java.lang.String cpf) {
         services.MatrizServices_Service service = new services.MatrizServices_Service();
         services.MatrizServices port = service.getMatrizServicesPort();
         return port.obterClienteByCPF(cpf);

@@ -117,20 +117,18 @@ public class NovaVendaController extends Controller{
     }
 
     @FXML
-    private void buscarCliente(ActionEvent event){
-/*        
-        if(this.cpfCliente.getText().length() > 0){
-            this.cliente = this.controle.getGestaoCliente().buscarCliente(this.cpfCliente.getText());
+    private void buscarCliente(ActionEvent event){    
+        if(!cpfCliente.getText().isEmpty()){
+            cliente = Controle.Control.getInstance().getGestaoCliente().searchCliente(cpfCliente.getText());
 
-            if(this.cliente == null){
+            if(cliente == null){
                 WindowLoader.showMessage("Não cadastrado", "O cliente não está cadastrado na nossa base de dados.\nCadastre-o.");
             }
             else {
-                this.resultadoBusca.setText("Nome: " + this.cliente.getNome());
-                this.debitosCliente.setText("Débitos: " + this.cliente.getSaldo());
+                resultadoBusca.setText("Nome: " + cliente.getNome());
+                debitosCliente.setText("Débitos: " + cliente.getSaldo());
             }
         }
-*/        
     }
 
     @Override

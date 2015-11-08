@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import services.Cliente;
+import Modelo.Cliente;
 
 /**
  * Created by Gustavo Freitas on 03/10/2015.

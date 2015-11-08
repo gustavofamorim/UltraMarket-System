@@ -1,5 +1,6 @@
 package Modelo.Venda;
 
+import Tools.Visual.WindowLoader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -10,7 +11,7 @@ import services.StatusVENDA;
  */
 public class Venda extends services.Venda {
     
-    private List<ItemVenda> itens;
+    private List<ItemVenda> itensVenda = new ArrayList<>();
 
     public static enum STATUS_VENDA{
         CONFIRMADA(1, "Venda confirmada."), CANCELADA(0, "Venda cancelada.");
@@ -64,8 +65,15 @@ public class Venda extends services.Venda {
     }
     
     public void addItemVenda(ItemVenda item){
-        this.itens.add(item);
-        this.totalBruto += item.getTotal();
+        itensVenda.add(item);
+        if (itens == null) {
+            itens = new ArrayList<>();
+        }
+        itens.add(item);
+        if (totalBruto == null) {
+            totalBruto = 0.0;
+        }
+        totalBruto += item.getTotal();
     }
 
     public void aplicarDesconto(Double porcentagem){
@@ -89,8 +97,14 @@ public class Venda extends services.Venda {
         this.status = status == STATUS_VENDA.CONFIRMADA ? StatusVENDA.CONFIRMADA : StatusVENDA.CANCELADA;
     }
 
-    public void setItens(ArrayList <ItemVenda> itens) {
-        this.itens = itens;
+    public void setItens(List <ItemVenda> itens) {
+        this.itensVenda = itens;
+        
+        ArrayList<services.ItemVenda> service = new ArrayList<>();
+        for (ItemVenda item : itens) {
+            service.add(ItemVenda.ParseToService(item));
+        }
+        this.itens = service;
     }
     
     @Override
@@ -100,7 +114,7 @@ public class Venda extends services.Venda {
         str += "---------------------------------------\n";
         str += "| Produto        QTD     Total        |\n";
 
-        for(ItemVenda item : this.itens){
+        for(ItemVenda item : this.itensVenda){
             str += item + "\n";
         }
 
