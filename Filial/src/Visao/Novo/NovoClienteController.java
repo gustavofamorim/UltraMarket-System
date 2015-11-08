@@ -30,7 +30,10 @@ public class NovoClienteController extends Controller implements Initializable{
 
     @FXML
     private void cadastrar(ActionEvent event){
-        this.cliente = Control.getInstance().getGestaoCliente().saveCliente(this);
+        cliente = Control.getInstance().getGestaoCliente().saveCliente(this);
+        if(getMyStage() != null && cliente != null){
+            getMyStage().close();
+        }
     }
 
     @FXML

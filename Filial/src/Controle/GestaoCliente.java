@@ -19,10 +19,10 @@ public class GestaoCliente {
     public Cliente windowSaveCliente() {
         WindowController janela = WindowLoader.loadWindow("/Visao/Novo/NovoCliente.fxml");
         janela.getInternalController().setMyStage(janela);
-        ((NovoClienteController)janela.getInternalController()).cancelarButton.setDisable(true);
-        janela.initStyle(StageStyle.UNDECORATED);
+        //((NovoClienteController)janela.getInternalController()).cancelarButton.setDisable(true);
+        //janela.initStyle(StageStyle.UNDECORATED);
         janela.showAndWait();
-        
+        janela.close();
         return ((NovoClienteController)janela.getInternalController()).getCliente();
     }
 
@@ -37,7 +37,7 @@ public class GestaoCliente {
         
         c.setNome(form.getNome());
         c.setCPF(form.getCPF());
-        cadastrarCliente(c);
+        c = Cliente.ParseToModel(cadastrarCliente(c));
         
         if(c != null) {
             form.limpar();

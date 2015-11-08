@@ -1,20 +1,23 @@
 package Visao.Visualizar;
 
 import Controle.Control;
+import Modelo.Cliente;
 import Tools.Visual.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * Created by Gustavo Freitas on 05/10/2015.
  */
 public class VisualizarClientesController extends Controller {
 
-    //@FXML
-    //private TableView<Cliente> dados;
+    @FXML
+    private TableView<Cliente> dados;
 
     @FXML
     private TableColumn colNome;
@@ -26,16 +29,14 @@ public class VisualizarClientesController extends Controller {
     private TableColumn colCPF;
 
     private void update(){
-/*
-        this.colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        this.colSaldo.setCellValueFactory(new PropertyValueFactory<>("saldo"));
-        this.colCPF.setCellValueFactory(new PropertyValueFactory<>("CPF"));
-        this.dados.getItems().addAll(this.controle.getGestaoCliente().obterTodosCliente());
-*/
+        colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        colSaldo.setCellValueFactory(new PropertyValueFactory<>("saldo"));
+        colCPF.setCellValueFactory(new PropertyValueFactory<>("CPF"));
+        dados.getItems().addAll(Controle.Control.getInstance().getGestaoCliente().obterTodosCliente());
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        update();
     }
 }

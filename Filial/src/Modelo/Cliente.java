@@ -12,12 +12,15 @@ package Modelo;
 public class Cliente extends services.Cliente {
     
     public static Cliente ParseToModel(services.Cliente service) {
-        Cliente cliente = new Cliente();
-        cliente.setId(service.getId());
-        cliente.setCPF(service.getCPF());
-        cliente.setNome(service.getNome());
-        cliente.setSaldo(service.getSaldo());
-        return cliente;
+        if (service != null) {
+            Cliente cliente = new Cliente();
+            cliente.setId(service.getId());
+            cliente.setCPF(service.getCPF());
+            cliente.setNome(service.getNome());
+            cliente.setSaldo(service.getSaldo());
+            return cliente;
+        }
+        return null;
     }
     
     @Override
