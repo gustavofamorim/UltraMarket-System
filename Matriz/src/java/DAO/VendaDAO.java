@@ -7,10 +7,12 @@ package DAO;
 
 import DAO.Gerenciador.GerenciadorBD;
 import static DAO.mysql.generatedclasses.tables.Venda.VENDA;
+import static DAO.mysql.generatedclasses.tables.Cliente.CLIENTE;
 import static DAO.mysql.generatedclasses.tables.Filial.FILIAL;
 import static DAO.mysql.generatedclasses.tables.FilialProduto.FILIAL_PRODUTO;
 import static DAO.mysql.generatedclasses.tables.Produto.PRODUTO;
 import static DAO.mysql.generatedclasses.tables.Itemvenda.ITEMVENDA;
+import DAO.mysql.generatedclasses.tables.records.ClienteRecord;
 import DAO.mysql.generatedclasses.tables.records.VendaRecord;
 import Modelo.Venda.ItemVenda;
 import Modelo.Venda.Venda;
@@ -135,7 +137,6 @@ public class VendaDAO implements DAO<Venda> {
                     tmp.setValorPago(v.getValorpago());
                     tmp.setItens((ArrayList<ItemVenda>) ItemVendaDAO.getInstance().obterTodos(tmp.getId()));
                     loaded.add(tmp);
-                    System.out.println(tmp);
                 }
             }
         }
@@ -144,12 +145,25 @@ public class VendaDAO implements DAO<Venda> {
     
     @Override
     public boolean apagar(int id) throws ClassNotFoundException, SQLException, IOException {
-        
-        VendaRecord v = GerenciadorBD.getContext().update(VENDA)
+
+        GerenciadorBD.getContext().update(VENDA)
                             .set(VENDA.STATUS, (byte) 0).where(VENDA.IDVENDA.eq(id))
-                            .returning().fetchOne();
+                            .execute();
+        Venda v = obter(id);
+        if(v != null){
+            ClienteRecord c = GerenciadorBD.getContext().selectFrom(CLIENTE).where(CLIENTE.IDCLIENTE.eq(v.getCliente().getId())).fetchOne();
+
+            if(c != null){
+                GerenciadorBD.getContext().update(CLIENTE)
+                                          .set(CLIENTE.SALDO, c.getSaldo() + v.getTotalLiquido())
+                                          .where(CLIENTE.IDCLIENTE.eq(c.getIdcliente()))
+                                          .execute();
+
+                return (true);
+            }
+        }
         
-        return (v != null);
+        return (false);
     }
 
     @Override

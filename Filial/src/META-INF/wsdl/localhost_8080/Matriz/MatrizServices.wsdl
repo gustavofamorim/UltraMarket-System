@@ -4,17 +4,17 @@
 <xsd:import namespace="http://Services/" schemaLocation="http://localhost:8080/Matriz/MatrizServices?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="logar">
-<part name="parameters" element="tns:logar"/>
+<message name="cancelarDebitoCliente">
+<part name="parameters" element="tns:cancelarDebitoCliente"/>
 </message>
-<message name="logarResponse">
-<part name="parameters" element="tns:logarResponse"/>
+<message name="cancelarDebitoClienteResponse">
+<part name="parameters" element="tns:cancelarDebitoClienteResponse"/>
 </message>
-<message name="cancelarVenda">
-<part name="parameters" element="tns:cancelarVenda"/>
+<message name="cadastrarProduto">
+<part name="parameters" element="tns:cadastrarProduto"/>
 </message>
-<message name="cancelarVendaResponse">
-<part name="parameters" element="tns:cancelarVendaResponse"/>
+<message name="cadastrarProdutoResponse">
+<part name="parameters" element="tns:cadastrarProdutoResponse"/>
 </message>
 <message name="cadastrarVenda">
 <part name="parameters" element="tns:cadastrarVenda"/>
@@ -28,11 +28,11 @@
 <message name="excluirClienteResponse">
 <part name="parameters" element="tns:excluirClienteResponse"/>
 </message>
-<message name="cadastrarProduto">
-<part name="parameters" element="tns:cadastrarProduto"/>
+<message name="cancelarVenda">
+<part name="parameters" element="tns:cancelarVenda"/>
 </message>
-<message name="cadastrarProdutoResponse">
-<part name="parameters" element="tns:cadastrarProdutoResponse"/>
+<message name="cancelarVendaResponse">
+<part name="parameters" element="tns:cancelarVendaResponse"/>
 </message>
 <message name="cadastrarCliente">
 <part name="parameters" element="tns:cadastrarCliente"/>
@@ -40,23 +40,11 @@
 <message name="cadastrarClienteResponse">
 <part name="parameters" element="tns:cadastrarClienteResponse"/>
 </message>
-<message name="obterProdutosFilial">
-<part name="parameters" element="tns:obterProdutosFilial"/>
+<message name="logar">
+<part name="parameters" element="tns:logar"/>
 </message>
-<message name="obterProdutosFilialResponse">
-<part name="parameters" element="tns:obterProdutosFilialResponse"/>
-</message>
-<message name="obterTodasVendaByIdFilial">
-<part name="parameters" element="tns:obterTodasVendaByIdFilial"/>
-</message>
-<message name="obterTodasVendaByIdFilialResponse">
-<part name="parameters" element="tns:obterTodasVendaByIdFilialResponse"/>
-</message>
-<message name="obterClienteByCPF">
-<part name="parameters" element="tns:obterClienteByCPF"/>
-</message>
-<message name="obterClienteByCPFResponse">
-<part name="parameters" element="tns:obterClienteByCPFResponse"/>
+<message name="logarResponse">
+<part name="parameters" element="tns:logarResponse"/>
 </message>
 <message name="obterClientes">
 <part name="parameters" element="tns:obterClientes"/>
@@ -64,14 +52,38 @@
 <message name="obterClientesResponse">
 <part name="parameters" element="tns:obterClientesResponse"/>
 </message>
+<message name="obterProdutosFilial">
+<part name="parameters" element="tns:obterProdutosFilial"/>
+</message>
+<message name="obterProdutosFilialResponse">
+<part name="parameters" element="tns:obterProdutosFilialResponse"/>
+</message>
+<message name="obterClienteByCPF">
+<part name="parameters" element="tns:obterClienteByCPF"/>
+</message>
+<message name="obterClienteByCPFResponse">
+<part name="parameters" element="tns:obterClienteByCPFResponse"/>
+</message>
+<message name="obterTodasVendaByIdFilial">
+<part name="parameters" element="tns:obterTodasVendaByIdFilial"/>
+</message>
+<message name="obterTodasVendaByIdFilialResponse">
+<part name="parameters" element="tns:obterTodasVendaByIdFilialResponse"/>
+</message>
+<message name="atualizarCliente">
+<part name="parameters" element="tns:atualizarCliente"/>
+</message>
+<message name="atualizarClienteResponse">
+<part name="parameters" element="tns:atualizarClienteResponse"/>
+</message>
 <portType name="MatrizServices">
-<operation name="logar">
-<input wsam:Action="http://Services/MatrizServices/logarRequest" message="tns:logar"/>
-<output wsam:Action="http://Services/MatrizServices/logarResponse" message="tns:logarResponse"/>
+<operation name="cancelarDebitoCliente">
+<input wsam:Action="http://Services/MatrizServices/cancelarDebitoClienteRequest" message="tns:cancelarDebitoCliente"/>
+<output wsam:Action="http://Services/MatrizServices/cancelarDebitoClienteResponse" message="tns:cancelarDebitoClienteResponse"/>
 </operation>
-<operation name="cancelarVenda">
-<input wsam:Action="http://Services/MatrizServices/cancelarVendaRequest" message="tns:cancelarVenda"/>
-<output wsam:Action="http://Services/MatrizServices/cancelarVendaResponse" message="tns:cancelarVendaResponse"/>
+<operation name="cadastrarProduto">
+<input wsam:Action="http://Services/MatrizServices/cadastrarProdutoRequest" message="tns:cadastrarProduto"/>
+<output wsam:Action="http://Services/MatrizServices/cadastrarProdutoResponse" message="tns:cadastrarProdutoResponse"/>
 </operation>
 <operation name="cadastrarVenda">
 <input wsam:Action="http://Services/MatrizServices/cadastrarVendaRequest" message="tns:cadastrarVenda"/>
@@ -81,34 +93,42 @@
 <input wsam:Action="http://Services/MatrizServices/excluirClienteRequest" message="tns:excluirCliente"/>
 <output wsam:Action="http://Services/MatrizServices/excluirClienteResponse" message="tns:excluirClienteResponse"/>
 </operation>
-<operation name="cadastrarProduto">
-<input wsam:Action="http://Services/MatrizServices/cadastrarProdutoRequest" message="tns:cadastrarProduto"/>
-<output wsam:Action="http://Services/MatrizServices/cadastrarProdutoResponse" message="tns:cadastrarProdutoResponse"/>
+<operation name="cancelarVenda">
+<input wsam:Action="http://Services/MatrizServices/cancelarVendaRequest" message="tns:cancelarVenda"/>
+<output wsam:Action="http://Services/MatrizServices/cancelarVendaResponse" message="tns:cancelarVendaResponse"/>
 </operation>
 <operation name="cadastrarCliente">
 <input wsam:Action="http://Services/MatrizServices/cadastrarClienteRequest" message="tns:cadastrarCliente"/>
 <output wsam:Action="http://Services/MatrizServices/cadastrarClienteResponse" message="tns:cadastrarClienteResponse"/>
 </operation>
-<operation name="obterProdutosFilial">
-<input wsam:Action="http://Services/MatrizServices/obterProdutosFilialRequest" message="tns:obterProdutosFilial"/>
-<output wsam:Action="http://Services/MatrizServices/obterProdutosFilialResponse" message="tns:obterProdutosFilialResponse"/>
-</operation>
-<operation name="obterTodasVendaByIdFilial">
-<input wsam:Action="http://Services/MatrizServices/obterTodasVendaByIdFilialRequest" message="tns:obterTodasVendaByIdFilial"/>
-<output wsam:Action="http://Services/MatrizServices/obterTodasVendaByIdFilialResponse" message="tns:obterTodasVendaByIdFilialResponse"/>
-</operation>
-<operation name="obterClienteByCPF">
-<input wsam:Action="http://Services/MatrizServices/obterClienteByCPFRequest" message="tns:obterClienteByCPF"/>
-<output wsam:Action="http://Services/MatrizServices/obterClienteByCPFResponse" message="tns:obterClienteByCPFResponse"/>
+<operation name="logar">
+<input wsam:Action="http://Services/MatrizServices/logarRequest" message="tns:logar"/>
+<output wsam:Action="http://Services/MatrizServices/logarResponse" message="tns:logarResponse"/>
 </operation>
 <operation name="obterClientes">
 <input wsam:Action="http://Services/MatrizServices/obterClientesRequest" message="tns:obterClientes"/>
 <output wsam:Action="http://Services/MatrizServices/obterClientesResponse" message="tns:obterClientesResponse"/>
 </operation>
+<operation name="obterProdutosFilial">
+<input wsam:Action="http://Services/MatrizServices/obterProdutosFilialRequest" message="tns:obterProdutosFilial"/>
+<output wsam:Action="http://Services/MatrizServices/obterProdutosFilialResponse" message="tns:obterProdutosFilialResponse"/>
+</operation>
+<operation name="obterClienteByCPF">
+<input wsam:Action="http://Services/MatrizServices/obterClienteByCPFRequest" message="tns:obterClienteByCPF"/>
+<output wsam:Action="http://Services/MatrizServices/obterClienteByCPFResponse" message="tns:obterClienteByCPFResponse"/>
+</operation>
+<operation name="obterTodasVendaByIdFilial">
+<input wsam:Action="http://Services/MatrizServices/obterTodasVendaByIdFilialRequest" message="tns:obterTodasVendaByIdFilial"/>
+<output wsam:Action="http://Services/MatrizServices/obterTodasVendaByIdFilialResponse" message="tns:obterTodasVendaByIdFilialResponse"/>
+</operation>
+<operation name="atualizarCliente">
+<input wsam:Action="http://Services/MatrizServices/atualizarClienteRequest" message="tns:atualizarCliente"/>
+<output wsam:Action="http://Services/MatrizServices/atualizarClienteResponse" message="tns:atualizarClienteResponse"/>
+</operation>
 </portType>
 <binding name="MatrizServicesPortBinding" type="tns:MatrizServices">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="logar">
+<operation name="cancelarDebitoCliente">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -117,7 +137,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="cancelarVenda">
+<operation name="cadastrarProduto">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -144,7 +164,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="cadastrarProduto">
+<operation name="cancelarVenda">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -162,7 +182,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="obterProdutosFilial">
+<operation name="logar">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -171,7 +191,16 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="obterTodasVendaByIdFilial">
+<operation name="obterClientes">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="obterProdutosFilial">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -189,7 +218,16 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="obterClientes">
+<operation name="obterTodasVendaByIdFilial">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="atualizarCliente">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

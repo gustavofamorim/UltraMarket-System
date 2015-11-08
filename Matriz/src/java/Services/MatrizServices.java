@@ -168,6 +168,32 @@ public class MatrizServices {
         }
         return (null);
     }
+
+    /**
+     * Operação de Web service
+     */
+    @WebMethod(operationName = "cancelarDebitoCliente")
+    public boolean cancelarDebitoCliente(@WebParam(name = "idCliente") int idCliente) {
+        try {
+            return (ClienteDAO.getInstance().cancelarDebito(idCliente));
+        } catch (ClassNotFoundException | SQLException | IOException ex) {
+            Logger.getLogger(MatrizServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return (false);
+    }
+
+    /**
+     * Operação de Web service
+     */
+    @WebMethod(operationName = "atualizarCliente")
+    public boolean atualizarCliente(@WebParam(name = "cliente") Cliente cliente) {
+        try {
+            return (ClienteDAO.getInstance().atualizar(cliente));
+        } catch (ClassNotFoundException | SQLException | IOException ex) {
+            Logger.getLogger(MatrizServices.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return (false);
+    }
     
 
 }

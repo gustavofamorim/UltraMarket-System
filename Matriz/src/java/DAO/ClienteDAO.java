@@ -130,6 +130,15 @@ public class ClienteDAO implements DAO<Cliente>{
         return (c != null);
     }
     
+    public boolean cancelarDebito(int id) throws ClassNotFoundException, SQLException, IOException {
+        
+        ClienteRecord c = GerenciadorBD.getContext().update(CLIENTE)
+                         .set(CLIENTE.SALDO, 0.0).where(CLIENTE.IDCLIENTE.eq(id))
+                         .returning().fetchOne();
+        
+        return (c != null);
+    }    
+    
     public static ClienteDAO getInstance(){
         return (new ClienteDAO());
     }

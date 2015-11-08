@@ -8,7 +8,6 @@ import java.util.Optional;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import Modelo.Venda.Venda;
-import services.StatusVENDA;
 
 /**
  * Created by Gustavo Freitas on 06/10/2015.
@@ -17,14 +16,14 @@ public class GestaoVenda {
 
     public void novaVenda(NovaVendaController form){
         boolean check = false;
-        if(form.getCliente().getSaldo() > 0){
+        if(form.getCliente().getSaldo() < 0){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("O cliente possui débito");
             alert.setHeaderText("O cliente deve pagar o débito.");
             alert.setContentText("Ele tem dinheiro disponível?");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK){
-                check = true;
+                check = cancelarDebitoCliente(form.getCliente().getId());
             }
             else {
                 WindowLoader.showMessage("Cancelada", "A venda foi cancelada por falta de grana.");
@@ -45,6 +44,7 @@ public class GestaoVenda {
             builder.cliente(form.getCliente());
             Venda venda = builder.getInstance();
             cadastrarVenda(venda, Control.filial);
+            atualizarCliente(venda.getCliente());
         }
     }
 
@@ -83,6 +83,18 @@ public class GestaoVenda {
         services.MatrizServices_Service service = new services.MatrizServices_Service();
         services.MatrizServices port = service.getMatrizServicesPort();
         return port.obterTodasVendaByIdFilial(idFilial);
+    }
+
+    private static boolean cancelarDebitoCliente(int idCliente) {
+        services.MatrizServices_Service service = new services.MatrizServices_Service();
+        services.MatrizServices port = service.getMatrizServicesPort();
+        return port.cancelarDebitoCliente(idCliente);
+    }
+
+    private static boolean atualizarCliente(services.Cliente cliente) {
+        services.MatrizServices_Service service = new services.MatrizServices_Service();
+        services.MatrizServices port = service.getMatrizServicesPort();
+        return port.atualizarCliente(cliente);
     }
 
 }

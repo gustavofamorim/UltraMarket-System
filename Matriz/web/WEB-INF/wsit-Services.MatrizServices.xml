@@ -23,6 +23,8 @@
     <message name="obterClientesResponse"/>
     <message name="obterClienteByCPF"/>
     <message name="obterClienteByCPFResponse"/>
+    <message name="atualizarCliente"/>
+    <message name="atualizarClienteResponse"/>
     <portType name="MatrizServices">
         <operation name="logar">
             <input message="tns:logar"/>
@@ -60,6 +62,10 @@
             <input message="tns:obterClienteByCPF"/>
             <output message="tns:obterClienteByCPFResponse"/>
         </operation>
+        <operation name="atualizarCliente">
+            <input message="tns:atualizarCliente"/>
+            <output message="tns:atualizarClienteResponse"/>
+        </operation>
     </portType>
     <binding name="MatrizServicesPortBinding" type="tns:MatrizServices">
         <operation name="logar">
@@ -95,6 +101,10 @@
             <output/>
         </operation>
         <operation name="obterClienteByCPF">
+            <input/>
+            <output/>
+        </operation>
+        <operation name="atualizarCliente">
             <input/>
             <output/>
         </operation>
