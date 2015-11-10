@@ -6,6 +6,7 @@ package Visao.Novo;
 
 import Controle.Control;
 import Tools.Visual.Controller;
+import Tools.Visual.WindowLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -24,6 +25,8 @@ public class NovoProdutoController extends Controller {
     @FXML
     private void cadastrar(ActionEvent event){
         Control.getInstance().getGestaoProduto().saveProduto(this);
+        WindowLoader.showMessage("Produto cadastrado", "O produto foi cadastrado!", "O produto foi cadastrado com sucesso.");
+        limpar();
     }
 
     @FXML

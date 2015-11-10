@@ -89,12 +89,17 @@ public class NovaVendaController extends Controller{
 
     @FXML
     private void finalizar(ActionEvent event){
-        if (itensAdicionados.getItems().isEmpty() || cliente == null) {
-            WindowLoader.showError("Venda sem itens.", "Adicione itens para prosseguir.", "");
-        }
-        else {
-            Controle.Control.getInstance().getGestaoVenda().novaVenda(this);
-            limpar();
+        if (cliente != null) {
+            if (itensAdicionados.getItems().isEmpty()) {
+                WindowLoader.showError("Erro ao finalizar venda", "Venda sem itens!", "Adicione itens para prosseguir.");
+            }
+            else {
+                Controle.Control.getInstance().getGestaoVenda().novaVenda(this);
+                WindowLoader.showMessage("Venda finalizada", "Clique em 'Visualizar > Venda' para acompanhar a sua compra.", "A venda foi efetuada com sucesso!");
+                limpar();
+            }
+        } else {
+            WindowLoader.showError("Erro ao finalizar venda", "Venda sem cliente!", "Selecione um cliente para prosseguir.");
         }
     }
 

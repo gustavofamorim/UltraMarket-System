@@ -57,13 +57,6 @@ public class GestaoVenda {
     }
 
     public void cancelarVenda(Venda venda){
-//        if(venda.getStatus() == StatusVENDA.CONFIRMADA) {
-//            venda.getCliente().setSaldo(venda.getCliente().getSaldo() + venda.getValorPago());
-//            if (venda.getTroco() < 0) {
-//                venda.getCliente().setSaldo(venda.getCliente().getSaldo() - venda.getTroco());
-//            }
-//            venda.setStatus(StatusVENDA.CANCELADA);
-//        }
         cancelarVenda(venda.getId());
     }
 
@@ -96,5 +89,4 @@ public class GestaoVenda {
         services.MatrizServices port = service.getMatrizServicesPort();
         return port.atualizarCliente(cliente);
     }
-
 }

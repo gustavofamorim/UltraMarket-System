@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 import Modelo.Cliente;
+import Tools.Visual.WindowLoader;
 
 /**
  * Created by Gustavo Freitas on 03/10/2015.
@@ -24,29 +25,41 @@ public class NovoClienteController extends Controller implements Initializable{
 
     @FXML
     private TextField CPF;
-
+    
     @FXML
-    public Button cancelarButton;
+    private Button cancelarButton;
 
     @FXML
     private void cadastrar(ActionEvent event){
-        cliente = Control.getInstance().getGestaoCliente().saveCliente(this);
-        if(getMyStage() != null && cliente != null){
-            getMyStage().close();
+        if (!getNome().isEmpty() && !getCPF().isEmpty()) {
+            cliente = Control.getInstance().getGestaoCliente().saveCliente(this);
+            if (cliente != null) {
+                WindowLoader.showMessage("Cliente cadastrado", "O cliente foi cadastrado com sucesso!");
+                if(getMyStage() != null){
+                    getMyStage().close();
+                }
+                limpar();
+            } else {
+                WindowLoader.showError("Cliente não cadastrado", "Ocorreu um erro ao cadastrar o cliente!",
+                                       "Por favor, tente novamente.\n Caso o erro persista, entre em contato com "
+                                     + "o administrador do sistema.");
+            }
+        } else {
+            WindowLoader.showError("Campos não preenchidos", "Preencha todos os campos!", "É necessário que todos os campos estejam preenchidos.");
         }
     }
 
     @FXML
     private void cancelar(ActionEvent event){
-        this.limpar();
-        if(this.getMyStage() != null){
-            this.getMyStage().close();
+        limpar();
+        if(getMyStage() != null){
+            getMyStage().close();
         }
     }
 
     public void limpar(){
-        this.nome.setText("");
-        this.CPF.setText("");
+        nome.setText("");
+        CPF.setText("");
     }
 
     @Override

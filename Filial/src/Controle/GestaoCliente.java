@@ -27,11 +27,6 @@ public class GestaoCliente {
     }
 
     public Cliente saveCliente(NovoClienteController form){
-
-        if (form.getNome().length() == 0 && form.getCPF().length() == 0) {
-            WindowLoader.showError("Preencha todos os campos.", "É necessário que todos os campos estejam preenchidos.", "");
-            return (null);
-        }
         
         Cliente c = new Cliente();
         
@@ -39,14 +34,7 @@ public class GestaoCliente {
         c.setCPF(form.getCPF());
         c = Cliente.ParseToModel(cadastrarCliente(c));
         
-        if(c != null) {
-            form.limpar();
-            return (c);
-        }
-        else{
-            WindowLoader.showMessage("Erro", "Erro ao salvar cliente.");
-            return (null);
-        }
+        return (c);
     }
 
     public ArrayList<Cliente> obterTodosCliente(){
